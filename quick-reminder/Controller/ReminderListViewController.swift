@@ -11,6 +11,7 @@ class ReminderListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "登録中のリマインダー"
         view.backgroundColor = .systemMint
     }
 
