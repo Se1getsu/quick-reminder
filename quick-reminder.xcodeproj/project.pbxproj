@@ -75,9 +75,9 @@
 		A6B4187A2AA8C0D9006A7053 /* quick-reminder */ = {
 			isa = PBXGroup;
 			children = (
+				A6B4188F2AA8C4C4006A7053 /* Model */,
 				A6B418912AA8C4DA006A7053 /* Controller */,
 				A6B418902AA8C4CE006A7053 /* View */,
-				A6B4188F2AA8C4C4006A7053 /* Model */,
 				A6B418942AA8C842006A7053 /* Delegate */,
 				A6B418842AA8C0D9006A7053 /* Assets.xcassets */,
 				A6B418862AA8C0D9006A7053 /* LaunchScreen.storyboard */,
