@@ -15,6 +15,7 @@
 		A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418922AA8C6A7006A7053 /* ReminderListViewController.swift */; };
 		A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */; };
 		A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A12AAADFF5006A7053 /* Reminder.swift */; };
+		A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A32AAB361C006A7053 /* ReminderListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		A6B418922AA8C6A7006A7053 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRepository.swift; sourceTree = "<group>"; };
 		A6B418A12AAADFF5006A7053 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		A6B418A32AAB361C006A7053 /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
 		EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.release.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		A6B418902AA8C4CE006A7053 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6B418A32AAB361C006A7053 /* ReminderListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */,
 				A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */,
 				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,
 				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,

@@ -10,11 +10,11 @@ import UIKit
 class ReminderListViewController: UIViewController {
     
     private let reminderRepository = ReminderRepository()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "登録中のリマインダー"
-        view.backgroundColor = .systemMint
+        view = ReminderListView()
     }
 
 }
