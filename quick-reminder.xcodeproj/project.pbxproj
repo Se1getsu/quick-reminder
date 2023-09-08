@@ -13,6 +13,8 @@
 		A6B418852AA8C0D9006A7053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6B418842AA8C0D9006A7053 /* Assets.xcassets */; };
 		A6B418882AA8C0D9006A7053 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6B418862AA8C0D9006A7053 /* LaunchScreen.storyboard */; };
 		A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418922AA8C6A7006A7053 /* ReminderListViewController.swift */; };
+		A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */; };
+		A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A12AAADFF5006A7053 /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		A6B418872AA8C0D9006A7053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6B418892AA8C0D9006A7053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6B418922AA8C6A7006A7053 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
+		A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRepository.swift; sourceTree = "<group>"; };
+		A6B418A12AAADFF5006A7053 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.release.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,8 @@
 		A6B4188F2AA8C4C4006A7053 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6B418A12AAADFF5006A7053 /* Reminder.swift */,
+				A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,7 +123,6 @@
 				494859C06A2E17347F629B0C /* Pods-quick-reminder.debug.xcconfig */,
 				EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -236,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */,
+				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,
+				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
 				A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */,
 			);
