@@ -8,10 +8,11 @@
 import RealmSwift
 
 final class ReminderRepository {
-
+    static let shared = ReminderRepository()
+    
     private let realm: Realm
 
-    init() {
+    private init() {
         realm = try! Realm()
     }
 

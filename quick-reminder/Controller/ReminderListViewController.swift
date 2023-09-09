@@ -9,7 +9,7 @@ import UIKit
 
 class ReminderListViewController: UIViewController {
     
-    private let reminderRepository = ReminderRepository()
+    private let reminderRepository = ReminderRepository.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
