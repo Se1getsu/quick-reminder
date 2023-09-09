@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class Reminder: Object {
+final class Reminder: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var title: String = ""
     @objc dynamic var date: Date = Date()
