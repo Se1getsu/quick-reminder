@@ -10,6 +10,7 @@ import UIKit
 class ReminderListViewController: UIViewController {
     
     private let reminderRepository = ReminderRepository.shared
+    private var reminders: [Reminder] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class ReminderListViewController: UIViewController {
             reminderListView.dataSource = self
             return reminderListView
         }()
+        
+        reminders = Array(reminderRepository.getAllReminders())
     }
 
 }
@@ -27,17 +30,19 @@ class ReminderListViewController: UIViewController {
 extension ReminderListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return reminders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let text = reminders[indexPath.row].title
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
-            content.text = "aaa"
+            content.text = text
             cell.contentConfiguration = content
         } else {
-            cell.textLabel?.text = "aaa"
+            cell.textLabel?.text = text
         }
         return cell
     }
