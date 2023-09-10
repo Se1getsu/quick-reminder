@@ -21,9 +21,8 @@ class ReminderListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "登録中のリマインダー"
-        
-        setupNavigationBar()
         view = reminderListView
+        setupNavigationBar()
         
         reminderListView.reminderTableView.dataSource = self
         reminderListView.reminderTableView.delegate = self

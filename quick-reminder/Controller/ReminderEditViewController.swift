@@ -19,11 +19,8 @@ class ReminderEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "編集"
-        
-        setupNavigationBar()
         view = reminderEditView
-        
-        
+        setupNavigationBar()
     }
     
     private func setupNavigationBar() {
