@@ -9,7 +9,6 @@ import UIKit
 
 class ReminderListViewController: UIViewController {
     
-    private let reminderRepository = ReminderRepository.shared
     private let reminderList = ReminderList()
     private let reminderListView = ReminderListView()
     private let dateFormatter: DateFormatter = {
@@ -76,6 +75,14 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
             cell.textLabel?.text = title
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = ReminderEditViewController()
+        vc.setup(reminder: reminderList.getReminder(index: indexPath.row))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
