@@ -12,23 +12,18 @@ final class ReminderList {
     let notificationCenter = NotificationCenter()
     
     private let reminderRepository = ReminderRepository.shared
-    private var reminders: [Reminder] = [] {
-        didSet {
-            for reminder in reminders {
-                reminder.notificationCenter.addObserver(
-                    forName: .init("didChange"),
-                    object: nil,
-                    queue: nil,
-                    using: { [unowned self] _ in
-                        self.notificationCenter.post(name: .init("reminderDidChange"), object: nil)
-                    }
-                )
-            }
-        }
-    }
+    private var reminders: [Reminder] = []
     
     init() {
         fetchReminders()
+        
+        reminderRepository.notificationCenter.addObserver(
+            forName: .init("update"),
+            object: nil,
+            queue: nil,
+            using: { [unowned self] _ in
+                self.notificationCenter.post(name: .init("updateReminder"), object: nil)
+            })
     }
     
     func fetchReminders() {

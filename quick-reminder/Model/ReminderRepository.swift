@@ -9,6 +9,7 @@ import RealmSwift
 
 final class ReminderRepository {
     static let shared = ReminderRepository()
+    let notificationCenter = NotificationCenter()
     
     private let realm: Realm
 
@@ -25,6 +26,7 @@ final class ReminderRepository {
     func updateReminder(_ reminder: Reminder) {
         try? realm.write {
             realm.add(reminder, update: .modified)
+            notificationCenter.post(name: .init("update"), object: nil)
         }
     }
 

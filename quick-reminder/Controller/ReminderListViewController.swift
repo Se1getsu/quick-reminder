@@ -37,7 +37,7 @@ class ReminderListViewController: UIViewController {
         )
         
         reminderList.notificationCenter.addObserver(
-            forName: .init("reminderDidChange"),
+            forName: .init("updateReminder"),
             object: nil,
             queue: nil,
             using: { [unowned self] _ in
