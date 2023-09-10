@@ -23,7 +23,8 @@ class ReminderEditViewController: UIViewController {
         view = reminderEditView
         setupNavigationBar()
         
-        reminderEditView.titleTextField.text = reminder.title
+        reminderEditView.titleTextField.placeholder = Reminder.defaultTitle
+        reminderEditView.titleTextField.text = reminder.title == Reminder.defaultTitle ? "" : reminder.title
         reminderEditView.datePicker.date = reminder.date
     }
     
@@ -36,7 +37,7 @@ class ReminderEditViewController: UIViewController {
     }
     
     @objc func doneButtonTapped() {
-        var title = "新規リマインダー"
+        var title = Reminder.defaultTitle
         if let text = reminderEditView.titleTextField.text, !text.isEmpty {
             title = text
         }

@@ -9,9 +9,10 @@ import RealmSwift
 
 final class Reminder: Object {
     let notificationCenter = NotificationCenter()
+    static let defaultTitle = "新規リマインダー"
     
     @objc dynamic var id: String = UUID().uuidString
-    @objc dynamic var title: String = ""
+    @objc dynamic var title: String = defaultTitle
     @objc dynamic var date: Date = Date()
     
     override static func primaryKey() -> String? {
