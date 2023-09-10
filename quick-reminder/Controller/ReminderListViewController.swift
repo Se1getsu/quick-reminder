@@ -34,7 +34,17 @@ class ReminderListViewController: UIViewController {
             queue: nil,
             using: { [unowned self] _ in
                 self.reloadTableView()
-            })
+            }
+        )
+        
+        reminderList.notificationCenter.addObserver(
+            forName: .init("reminderDidChange"),
+            object: nil,
+            queue: nil,
+            using: { [unowned self] _ in
+                self.reloadTableView()
+            }
+        )
     }
     
     private func setupNavigationBar() {

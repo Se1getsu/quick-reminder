@@ -10,6 +10,7 @@ import UIKit
 class ReminderEditViewController: UIViewController {
     
     private var reminder: Reminder!
+    private let reminderEditView = ReminderEditView()
     
     func setup(reminder: Reminder) {
         self.reminder = reminder
@@ -18,7 +19,7 @@ class ReminderEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "編集"
-        view = ReminderEditView()
+        view = reminderEditView
     }
 
 }
