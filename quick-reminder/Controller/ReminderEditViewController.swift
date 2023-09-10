@@ -21,6 +21,9 @@ class ReminderEditViewController: UIViewController {
         title = "編集"
         view = reminderEditView
         setupNavigationBar()
+        
+        reminderEditView.titleTextField.text = reminder.title
+        reminderEditView.datePicker.date = reminder.date
     }
     
     private func setupNavigationBar() {
