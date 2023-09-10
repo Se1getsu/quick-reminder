@@ -12,6 +12,12 @@ class ReminderListViewController: UIViewController {
     private let reminderRepository = ReminderRepository.shared
     private let reminderList = ReminderList()
     private let reminderListView = ReminderListView()
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +64,16 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let text = reminderList.getReminder(index: indexPath.row).title
+        let reminder = reminderList.getReminder(index: indexPath.row)
+        let title = reminder.title
+        let dateText = dateFormatter.string(from: reminder.date)
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
-            content.text = text
+            content.text = title
+            content.secondaryText = dateText
             cell.contentConfiguration = content
         } else {
-            cell.textLabel?.text = text
+            cell.textLabel?.text = title
         }
         return cell
     }
