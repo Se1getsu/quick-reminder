@@ -19,7 +19,23 @@ class ReminderEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "編集"
+        
+        setupNavigationBar()
         view = reminderEditView
+        
+        
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "完了",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonTapped))
+    }
+    
+    @objc func doneButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 
 }
