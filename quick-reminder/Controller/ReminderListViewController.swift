@@ -11,10 +11,11 @@ class ReminderListViewController: UIViewController {
     
     private let reminderList = ReminderList()
     private let reminderListView = ReminderListView()
+    private let notificationDateCalculator = NotificationDateCalculator.shared
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "MM/dd HH:mm:ss"
         return dateFormatter
     }()
     
@@ -54,11 +55,21 @@ class ReminderListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        reminderList.addReminder(title: "test", date: Date())
+        let index = reminderList.addReminder(
+            title: Reminder.defaultTitle,
+            date: notificationDateCalculator.calculate(from: Date())
+        )
+        pushToReminderEditVC(reminderIndex: index)
     }
     
     func reloadTableView() {
         reminderListView.reminderTableView.reloadData()
+    }
+    
+    func pushToReminderEditVC(reminderIndex index: Int) {
+        let vc = ReminderEditViewController()
+        vc.setup(reminder: reminderList.getReminder(index: index))
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -89,9 +100,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = ReminderEditViewController()
-        vc.setup(reminder: reminderList.getReminder(index: indexPath.row))
-        navigationController?.pushViewController(vc, animated: true)
+        pushToReminderEditVC(reminderIndex: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

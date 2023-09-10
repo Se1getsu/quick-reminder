@@ -38,13 +38,14 @@ final class ReminderList {
         return reminders[index]
     }
     
-    func addReminder(title: String, date: Date) {
+    func addReminder(title: String, date: Date) -> Int {
         let reminder = Reminder()
         reminder.title = title
         reminder.date = date
         reminderRepository.addReminder(reminder)
         reminders.append(reminder)
         notificationCenter.post(name: .init("newReminder"), object: nil)
+        return reminders.firstIndex(of: reminder)!
     }
     
     func deleteReminder(index: Int) {
