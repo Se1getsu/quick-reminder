@@ -11,6 +11,7 @@ class ReminderEditViewController: UIViewController {
     
     private var reminder: Reminder!
     private let reminderEditView = ReminderEditView()
+    private let notificationDateCalculator = NotificationDateCalculator.shared
     
     func setup(reminder: Reminder) {
         self.reminder = reminder
@@ -35,6 +36,17 @@ class ReminderEditViewController: UIViewController {
     }
     
     @objc func doneButtonTapped() {
+        var title = "新規リマインダー"
+        if let text = reminderEditView.titleTextField.text, !text.isEmpty {
+            title = text
+        }
+        
+        var date = reminderEditView.datePicker.date
+        date = notificationDateCalculator.calculate(from: date)
+        
+        let newReminder = reminder.reinit(title: title, date: date)
+        ReminderRepository.shared.updateReminder(newReminder)
+        
         navigationController?.popViewController(animated: true)
     }
 
