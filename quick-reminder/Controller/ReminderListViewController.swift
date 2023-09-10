@@ -21,6 +21,8 @@ class ReminderListViewController: UIViewController {
         view = reminderListView
         
         reminderListView.reminderTableView.dataSource = self
+        reminderListView.reminderTableView.delegate = self
+        
         reminderList.notificationCenter.addObserver(
             forName: .init("newReminder"),
             object: nil,
@@ -47,7 +49,7 @@ class ReminderListViewController: UIViewController {
 
 }
 
-extension ReminderListViewController: UITableViewDataSource {
+extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reminderList.getLength()
@@ -65,6 +67,17 @@ extension ReminderListViewController: UITableViewDataSource {
             cell.textLabel?.text = text
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, completionHandler) in
+            self.reminderList.deleteReminder(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
 }
