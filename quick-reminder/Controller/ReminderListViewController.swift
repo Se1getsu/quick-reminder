@@ -15,7 +15,7 @@ class ReminderListViewController: UIViewController {
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "MM/dd HH:mm:ss"
+        dateFormatter.dateFormat = "M/d HH:mm:ss"
         return dateFormatter
     }()
     

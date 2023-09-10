@@ -15,7 +15,9 @@ final class NotificationDateCalculator {
     func calculate(from date: Date) -> Date {
         let calendar = Calendar.current
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        if date <= Date() { dateComponents.day! += 1 }
+        let now = Date()
+        let nowDay = calendar.dateComponents([.day], from: now).day!
+        dateComponents.day = date <= now ? nowDay + 1 : nowDay
         return calendar.date(from: dateComponents)!
     }
 }
