@@ -10,17 +10,16 @@ import UIKit
 class ReminderListViewController: UIViewController {
     
     private let reminderRepository = ReminderRepository.shared
-    private var reminderList = ReminderList()
+    private let reminderList = ReminderList()
+    private let reminderListView = ReminderListView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "登録中のリマインダー"
         
-        view = {
-            let reminderListView = ReminderListView()
-            reminderListView.dataSource = self
-            return reminderListView
-        }()
+        view = reminderListView
+        
+        reminderListView.reminderTableView.dataSource = self
     }
 
 }

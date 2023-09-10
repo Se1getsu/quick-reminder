@@ -9,17 +9,11 @@ import UIKit
 
 class ReminderListView: UIView {
     
-    private let reminderTableView: UITableView = {
+    let reminderTableView: UITableView = {
         let reminderTableView = UITableView()
         reminderTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return reminderTableView
     }()
-    
-    weak var dataSource: UITableViewDataSource? {
-        didSet {
-            reminderTableView.dataSource = dataSource
-        }
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
