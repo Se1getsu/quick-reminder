@@ -9,6 +9,8 @@ import Foundation
 
 final class ReminderList {
     
+    let notificationCenter = NotificationCenter()
+    
     private let reminderRepository = ReminderRepository.shared
     private var reminders: [Reminder] = []
     
@@ -26,6 +28,15 @@ final class ReminderList {
     
     func getReminder(index: Int) -> Reminder {
         return reminders[index]
+    }
+    
+    func addReminder(title: String, date: Date) {
+        let reminder = Reminder()
+        reminder.title = title
+        reminder.date = date
+        reminderRepository.addReminder(reminder)
+        reminders.append(reminder)
+        notificationCenter.post(name: .init("newReminder"), object: nil)
     }
     
 }

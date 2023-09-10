@@ -17,9 +17,32 @@ class ReminderListViewController: UIViewController {
         super.viewDidLoad()
         title = "登録中のリマインダー"
         
+        setupNavigationBar()
         view = reminderListView
         
         reminderListView.reminderTableView.dataSource = self
+        reminderList.notificationCenter.addObserver(
+            forName: .init("newReminder"),
+            object: nil,
+            queue: nil,
+            using: { [unowned self] _ in
+                self.reloadTableView()
+            })
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped))
+    }
+    
+    @objc func addButtonTapped() {
+        reminderList.addReminder(title: "test", date: Date())
+    }
+    
+    func reloadTableView() {
+        reminderListView.reminderTableView.reloadData()
     }
 
 }
