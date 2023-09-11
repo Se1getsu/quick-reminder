@@ -6,3 +6,8 @@
 //
 
 import Foundation
+@testable import quick_reminder
+
+struct MockDateProvider: DateProviderProtocol {
+    var now: Date
+}

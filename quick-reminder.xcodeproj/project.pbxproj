@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		549D8097DD1BB75850638B52 /* Pods_quick_reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */; };
+		A60367D52AAF2F1E00FB5CB0 /* MockDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */; };
 		A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */; };
 		A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */; };
 		A6B418852AA8C0D9006A7053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6B418842AA8C0D9006A7053 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		494859C06A2E17347F629B0C /* Pods-quick-reminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.debug.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.debug.xcconfig"; sourceTree = "<group>"; };
 		81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quick_reminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateProvider.swift; sourceTree = "<group>"; };
 		A6B418782AA8C0D9006A7053 /* quick-reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quick-reminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 				81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A60367D32AAF2EFF00FB5CB0 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */,
+			);
+			path = Dummy;
 			sourceTree = "<group>";
 		};
 		A6B4186F2AA8C0D9006A7053 = {
@@ -168,6 +178,7 @@
 		A6B418BC2AAEF08D006A7053 /* quick-reminderTests */ = {
 			isa = PBXGroup;
 			children = (
+				A60367D32AAF2EFF00FB5CB0 /* Dummy */,
 				A6B418C42AAEF66D006A7053 /* Util */,
 			);
 			path = "quick-reminderTests";
@@ -352,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A60367D52AAF2F1E00FB5CB0 /* MockDateProvider.swift in Sources */,
 				A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,30 +6,69 @@
 //
 
 import XCTest
+@testable import quick_reminder
 
 final class NotificationDateCalculatorTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return formatter
+    }()
+    
+    func testCalculation(nowDate: Date, targetTime: Date, expected: Date) throws {
+        let dateProvider = MockDateProvider(now: nowDate)
+        NotificationDateCalculator.setUp(dateProvider)
+        let result = NotificationDateCalculator.shared.calculate(from: targetTime)
+        XCTAssertEqual(result, expected)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_時刻が過去の場合は翌日の日付になる() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/10/10 14:00:00")!,
+            targetTime: formatter.date(from: "1000/01/01 00:00:00")!,
+            expected:   formatter.date(from: "2023/10/11 00:00:00")!
+        )
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func test_時刻が同時刻の場合は翌日の日付になる() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/10/10 14:00:00")!,
+            targetTime: formatter.date(from: "1000/01/01 14:00:00")!,
+            expected:   formatter.date(from: "2023/10/11 14:00:00")!
+        )
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_時刻が同時刻直後の場合は同じ日付になる() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/10/10 14:00:00")!,
+            targetTime: formatter.date(from: "1000/01/01 14:01:00")!,
+            expected:   formatter.date(from: "2023/10/10 14:01:00")!
+        )
+    }
+    
+    func test_時刻が未来の場合は同じ日付になる() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/10/10 14:00:00")!,
+            targetTime: formatter.date(from: "1000/01/01 23:59:00")!,
+            expected:   formatter.date(from: "2023/10/10 23:59:00")!
+        )
+    }
+    
+    func test_戻り値に分以下の情報は含まれない() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/10/10 14:00:32")!,
+            targetTime: formatter.date(from: "1000/01/01 00:00:59")!,
+            expected:   formatter.date(from: "2023/10/11 00:00:00")!
+        )
+    }
+    
+    func test_大晦日は翌日が翌年となる() throws {
+        try! testCalculation(
+            nowDate:    formatter.date(from: "2023/12/31 14:00:00")!,
+            targetTime: formatter.date(from: "1000/01/01 12:00:00")!,
+            expected:   formatter.date(from: "2024/01/01 12:00:00")!
+        )
     }
 
 }
