@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         
+        // Dependency injection
+        NotificationDateCalculator.setUp(DateProvider())
+        
         return true
     }
 

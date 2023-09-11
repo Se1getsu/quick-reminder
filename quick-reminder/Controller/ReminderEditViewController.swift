@@ -11,7 +11,7 @@ class ReminderEditViewController: UIViewController {
     
     private var reminder: Reminder!
     private let reminderEditView = ReminderEditView()
-    private let notificationDateCalculator = NotificationDateCalculator.shared
+    private let notificationDateCalculator = NotificationDateCalculator.shared!
     
     func setup(reminder: Reminder) {
         self.reminder = reminder

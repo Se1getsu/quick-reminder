@@ -21,6 +21,7 @@
 		A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418AC2AAD8C40006A7053 /* ReminderEditView.swift */; };
 		A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */; };
 		A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */; };
+		A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationDateCalculator.swift; path = "quick-reminder/Util/NotificationDateCalculator.swift"; sourceTree = SOURCE_ROOT; };
 		A6B418BB2AAEF08D006A7053 /* quick-reminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDateCalculatorTests.swift; sourceTree = "<group>"; };
+		A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.release.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */,
+				A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */,
 				A6B418A72AACA989006A7053 /* ReminderList.swift in Sources */,
 				A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */,
+				A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */,
 				A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */,
 				A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */,
 				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,

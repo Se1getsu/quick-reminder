@@ -11,7 +11,7 @@ class ReminderListViewController: UIViewController {
     
     private let reminderList = ReminderList()
     private let reminderListView = ReminderListView()
-    private let notificationDateCalculator = NotificationDateCalculator.shared
+    private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
