@@ -16,13 +16,10 @@ struct NotificationHandler: NotificationHandlerProtocol {
     
     func register(_ reminder: Reminder) {
         
-        print("REGISTER: \(reminder)")
-        
         let identifier = reminder.id
         let content = UNMutableNotificationContent()
         content.sound = UNNotificationSound.default
-        content.title = "タイトル"
-        content.subtitle = "サブタイトル"
+        content.title = "クイックリマインダー"
         content.body = reminder.title
         let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminder.date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
