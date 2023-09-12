@@ -26,7 +26,7 @@ final class ReminderRepository {
     func updateReminder(_ reminder: Reminder) {
         try? realm.write {
             realm.add(reminder, update: .modified)
-            notificationCenter.post(name: .init("update"), object: nil)
+            notificationCenter.post(name: .init("update"), object: nil, userInfo: ["reminder": reminder])
         }
     }
 

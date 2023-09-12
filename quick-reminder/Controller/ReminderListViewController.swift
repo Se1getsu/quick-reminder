@@ -11,6 +11,7 @@ class ReminderListViewController: UIViewController {
     
     private let reminderList = ReminderList(ReminderSorter())
     private let reminderListView = ReminderListView()
+    private let notificationRegisterer: NotificationRegistererProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -18,6 +19,15 @@ class ReminderListViewController: UIViewController {
         dateFormatter.dateFormat = "M/d HH:mm:ss"
         return dateFormatter
     }()
+    
+    init(_ notificationRegisterer: NotificationRegistererProtocol!) {
+        self.notificationRegisterer = notificationRegisterer
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +42,9 @@ class ReminderListViewController: UIViewController {
             forName: .init("newReminder"),
             object: nil,
             queue: nil,
-            using: { [unowned self] _ in
+            using: { [unowned self] notification in
                 self.reloadTableView()
+                notificationRegisterer.register(notification.userInfo!["reminder"] as! Reminder)
             }
         )
         
@@ -41,8 +52,9 @@ class ReminderListViewController: UIViewController {
             forName: .init("updateReminder"),
             object: nil,
             queue: nil,
-            using: { [unowned self] _ in
+            using: { [unowned self] notification in
                 self.reloadTableView()
+                notificationRegisterer.register(notification.userInfo!["reminder"] as! Reminder)
             }
         )
     }

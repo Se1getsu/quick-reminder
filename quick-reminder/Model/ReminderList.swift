@@ -28,9 +28,9 @@ final class ReminderList {
             forName: .init("update"),
             object: nil,
             queue: nil,
-            using: { [unowned self] _ in
+            using: { [unowned self] notification in
                 self.reminders = self.reminderSorter.sorted(reminders)
-                self.notificationCenter.post(name: .init("updateReminder"), object: nil)
+                self.notificationCenter.post(name: .init("updateReminder"), object: nil, userInfo: notification.userInfo)
             })
     }
     
@@ -52,14 +52,14 @@ final class ReminderList {
         reminder.date = date
         reminderRepository.addReminder(reminder)
         reminders.append(reminder)
-        notificationCenter.post(name: .init("newReminder"), object: nil)
+        notificationCenter.post(name: .init("newReminder"), object: nil, userInfo: ["reminder": reminder])
         return reminders.firstIndex(of: reminder)!
     }
     
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         reminderRepository.deleteReminder(reminder)
-        notificationCenter.post(name: .init("deleteReminder"), object: nil)
+        notificationCenter.post(name: .init("deleteReminder"), object: nil, userInfo: ["reminder": reminder])
     }
     
 }
