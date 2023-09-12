@@ -34,8 +34,10 @@ final class NotificationDateCalculator {
         }
         
         let now = dateProvider.now
-        let nowDay = calendar.dateComponents([.day], from: now).day!
-        dateComponents.day = nowDay
+        let nowComponents = calendar.dateComponents([.year, .month, .day], from: now)
+        dateComponents.year = nowComponents.year!
+        dateComponents.month = nowComponents.month!
+        dateComponents.day = nowComponents.day!
         if calculateMinuteTime(from: date) <= calculateMinuteTime(from: now) {
             dateComponents.day! += 1
         }
