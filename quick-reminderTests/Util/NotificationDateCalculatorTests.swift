@@ -55,11 +55,11 @@ final class NotificationDateCalculatorTests: XCTestCase {
         )
     }
     
-    func test_戻り値に分以下の情報は含まれない() throws {
+    func test_分以下の情報は考慮しない() throws {
         try! testCalculation(
             nowDate:    formatter.date(from: "2023/10/10 14:00:32")!,
-            targetTime: formatter.date(from: "1000/01/01 00:00:59")!,
-            expected:   formatter.date(from: "2023/10/11 00:00:00")!
+            targetTime: formatter.date(from: "1000/01/01 14:00:59")!,
+            expected:   formatter.date(from: "2023/10/11 14:00:00")!
         )
     }
     
