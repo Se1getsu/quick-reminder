@@ -1,5 +1,5 @@
 //
-//  NotificationRegisterer.swift
+//  NotificationHandler.swift
 //  quick-reminder
 //
 //  Created by 垣本 桃弥 on 2023/09/12.
@@ -8,11 +8,11 @@
 import Foundation
 import UserNotifications
 
-protocol NotificationRegistererProtocol {
+protocol NotificationHandlerProtocol {
     func register(_ reminder: Reminder)
 }
 
-struct NotificationRegisterer: NotificationRegistererProtocol {
+struct NotificationHandler: NotificationHandlerProtocol {
     
     func register(_ reminder: Reminder) {
         

@@ -11,7 +11,7 @@ class ReminderListViewController: UIViewController {
     
     private let reminderList = ReminderList(ReminderSorter())
     private let reminderListView = ReminderListView()
-    private let notificationRegisterer: NotificationRegistererProtocol!
+    private let notificationHandler: NotificationHandlerProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -20,8 +20,8 @@ class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ notificationRegisterer: NotificationRegistererProtocol!) {
-        self.notificationRegisterer = notificationRegisterer
+    init(_ notificationHandler: NotificationHandlerProtocol!) {
+        self.notificationHandler = notificationHandler
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,7 +44,7 @@ class ReminderListViewController: UIViewController {
             queue: nil,
             using: { [unowned self] notification in
                 self.reloadTableView()
-                notificationRegisterer.register(notification.userInfo!["reminder"] as! Reminder)
+                notificationHandler.register(notification.userInfo!["reminder"] as! Reminder)
             }
         )
         
@@ -54,7 +54,7 @@ class ReminderListViewController: UIViewController {
             queue: nil,
             using: { [unowned self] notification in
                 self.reloadTableView()
-                notificationRegisterer.register(notification.userInfo!["reminder"] as! Reminder)
+                notificationHandler.register(notification.userInfo!["reminder"] as! Reminder)
             }
         )
     }
