@@ -58,8 +58,8 @@ final class ReminderList {
     
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
-        reminderRepository.deleteReminder(reminder)
         notificationCenter.post(name: .init("deleteReminder"), object: nil, userInfo: ["reminder": reminder])
+        reminderRepository.deleteReminder(reminder)
     }
     
 }

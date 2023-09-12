@@ -10,12 +10,12 @@ import UserNotifications
 
 protocol NotificationHandlerProtocol {
     func registerNotification(reminder: Reminder)
+    func removeNotification(reminder: Reminder)
 }
 
 struct NotificationHandler: NotificationHandlerProtocol {
     
     func registerNotification(reminder: Reminder) {
-        
         let identifier = reminder.id
         let content = UNMutableNotificationContent()
         content.sound = UNNotificationSound.default
@@ -35,6 +35,13 @@ struct NotificationHandler: NotificationHandlerProtocol {
                   print(error.localizedDescription)
              }
         }
+    }
+    
+    func removeNotification(reminder: Reminder) {
+        let identifier = reminder.id
+        
+        // 通知リクエストを削除
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
 }

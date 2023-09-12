@@ -51,6 +51,17 @@ class ReminderListViewController: UIViewController {
         )
         
         reminderList.notificationCenter.addObserver(
+            forName: .init("deleteReminder"),
+            object: nil,
+            queue: nil,
+            using: { [unowned self] notification in
+                notificationHandler.removeNotification(
+                    reminder: notification.userInfo!["reminder"] as! Reminder
+                )
+            }
+        )
+        
+        reminderList.notificationCenter.addObserver(
             forName: .init("updateReminder"),
             object: nil,
             queue: nil,
