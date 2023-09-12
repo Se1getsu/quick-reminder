@@ -12,9 +12,16 @@ final class ReminderList {
     let notificationCenter = NotificationCenter()
     
     private let reminderRepository = ReminderRepository.shared
-    private var reminders: [Reminder] = []
+    private let reminderSorter: ReminderSorterProtocol!
+    private var reminders: [Reminder] = [] {
+        didSet {
+            reminders = reminderSorter.sorted(reminders)
+        }
+    }
     
-    init() {
+    init(_ reminderSorter: ReminderSorterProtocol) {
+        self.reminderSorter = reminderSorter
+        
         fetchReminders()
         
         reminderRepository.notificationCenter.addObserver(
@@ -22,6 +29,7 @@ final class ReminderList {
             object: nil,
             queue: nil,
             using: { [unowned self] _ in
+                self.reminders = self.reminderSorter.sorted(reminders)
                 self.notificationCenter.post(name: .init("updateReminder"), object: nil)
             })
     }

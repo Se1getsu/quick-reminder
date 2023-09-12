@@ -9,7 +9,7 @@ import UIKit
 
 class ReminderListViewController: UIViewController {
     
-    private let reminderList = ReminderList()
+    private let reminderList = ReminderList(ReminderSorter())
     private let reminderListView = ReminderListView()
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateFormatter: DateFormatter = {

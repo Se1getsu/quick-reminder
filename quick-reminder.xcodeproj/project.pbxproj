@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		549D8097DD1BB75850638B52 /* Pods_quick_reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */; };
 		A60367D52AAF2F1E00FB5CB0 /* MockDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */; };
+		A66A22C42AB0413F007FE11D /* ReminderSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A22C32AB0413F007FE11D /* ReminderSorter.swift */; };
 		A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */; };
 		A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */; };
 		A6B418852AA8C0D9006A7053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6B418842AA8C0D9006A7053 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		494859C06A2E17347F629B0C /* Pods-quick-reminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.debug.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.debug.xcconfig"; sourceTree = "<group>"; };
 		81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quick_reminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateProvider.swift; sourceTree = "<group>"; };
+		A66A22C32AB0413F007FE11D /* ReminderSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSorter.swift; sourceTree = "<group>"; };
 		A6B418782AA8C0D9006A7053 /* quick-reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quick-reminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				A6B418A12AAADFF5006A7053 /* Reminder.swift */,
 				A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */,
 				A6B418A62AACA989006A7053 /* ReminderList.swift */,
+				A66A22C32AB0413F007FE11D /* ReminderSorter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66A22C42AB0413F007FE11D /* ReminderSorter.swift in Sources */,
 				A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */,
 				A6B418A72AACA989006A7053 /* ReminderList.swift in Sources */,
 				A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */,
