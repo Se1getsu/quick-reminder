@@ -9,12 +9,12 @@ import Foundation
 import UserNotifications
 
 protocol NotificationHandlerProtocol {
-    func register(_ reminder: Reminder)
+    func registerNotification(reminder: Reminder)
 }
 
 struct NotificationHandler: NotificationHandlerProtocol {
     
-    func register(_ reminder: Reminder) {
+    func registerNotification(reminder: Reminder) {
         
         let identifier = reminder.id
         let content = UNMutableNotificationContent()

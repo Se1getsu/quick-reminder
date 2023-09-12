@@ -44,7 +44,9 @@ class ReminderListViewController: UIViewController {
             queue: nil,
             using: { [unowned self] notification in
                 self.reloadTableView()
-                notificationHandler.register(notification.userInfo!["reminder"] as! Reminder)
+                notificationHandler.registerNotification(
+                    reminder: notification.userInfo!["reminder"] as! Reminder
+                )
             }
         )
         
@@ -54,7 +56,9 @@ class ReminderListViewController: UIViewController {
             queue: nil,
             using: { [unowned self] notification in
                 self.reloadTableView()
-                notificationHandler.register(notification.userInfo!["reminder"] as! Reminder)
+                notificationHandler.registerNotification(
+                    reminder: notification.userInfo!["reminder"] as! Reminder
+                )
             }
         )
     }
