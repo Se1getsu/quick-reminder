@@ -16,7 +16,7 @@ class ReminderListViewController: UIViewController {
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "M/d HH:mm:ss"
+        dateFormatter.dateFormat = "M/d HH:mm"
         return dateFormatter
     }()
     
@@ -113,14 +113,11 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
         let reminder = reminderList.getReminder(index: indexPath.row)
         let title = reminder.title
         let dateText = dateFormatter.string(from: reminder.date)
-        if #available(iOS 14.0, *) {
-            var content = cell.defaultContentConfiguration()
-            content.text = title
-            content.secondaryText = dateText
-            cell.contentConfiguration = content
-        } else {
-            cell.textLabel?.text = title
-        }
+        
+        var content = cell.defaultContentConfiguration()
+        content.text = title
+        content.secondaryText = dateText
+        cell.contentConfiguration = content
         return cell
     }
     

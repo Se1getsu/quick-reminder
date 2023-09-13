@@ -17,7 +17,7 @@ class ReminderListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemMint
+        backgroundColor = .white
         
         reminderTableView.translatesAutoresizingMaskIntoConstraints = false
         
