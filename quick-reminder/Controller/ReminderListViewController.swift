@@ -14,6 +14,7 @@ class ReminderListViewController: UIViewController {
     private let notificationHandler: NotificationHandlerProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateProvider: DateProviderProtocol!
+    private let oldReminderRemover: OldReminderRemoverProtocol!
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -21,9 +22,12 @@ class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ notificationHandler: NotificationHandlerProtocol, _ dateProvider: DateProviderProtocol) {
+    init(_ notificationHandler: NotificationHandlerProtocol,
+         _ dateProvider: DateProviderProtocol,
+         _ oldReminderRemover: OldReminderRemoverProtocol) {
         self.notificationHandler = notificationHandler
         self.dateProvider = dateProvider
+        self.oldReminderRemover = oldReminderRemover
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,6 +78,11 @@ class ReminderListViewController: UIViewController {
                 )
             }
         )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        oldReminderRemover.removeOldReminders(reminderList)
+        reloadTableView()
     }
     
     private func setupNavigationBar() {

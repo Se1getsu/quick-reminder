@@ -25,6 +25,7 @@
 		A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */; };
 		A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */; };
 		A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */; };
+		A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		A6B418BB2AAEF08D006A7053 /* quick-reminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDateCalculatorTests.swift; sourceTree = "<group>"; };
 		A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
+		A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemover.swift; sourceTree = "<group>"; };
 		EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.release.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				A6B418922AA8C6A7006A7053 /* ReminderListViewController.swift */,
 				A6B418AA2AAD85D5006A7053 /* ReminderEditViewController.swift */,
 				A66A22C52AB08044007FE11D /* NotificationHandler.swift */,
+				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
 				A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */,
+				A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */,
 				A66A22C62AB08044007FE11D /* NotificationHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

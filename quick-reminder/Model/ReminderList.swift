@@ -62,4 +62,8 @@ final class ReminderList {
         reminderRepository.deleteReminder(reminder)
     }
     
+    func enumerated() -> EnumeratedSequence<[Reminder]> {
+        return reminders.enumerated()
+    }
+    
 }

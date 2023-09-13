@@ -16,7 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let rootVC = ReminderListViewController(NotificationHandler(), DateProvider())
+        let rootVC = ReminderListViewController(
+            NotificationHandler(),
+            DateProvider(),
+            OldReminderRemover(DateProvider())
+        )
         window?.rootViewController = UINavigationController(rootViewController: rootVC)
         window?.makeKeyAndVisible()
     }
