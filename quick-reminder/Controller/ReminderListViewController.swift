@@ -81,7 +81,7 @@ class ReminderListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        oldReminderRemover.removeOldReminders(reminderList)
+        oldReminderRemover.removeOldReminders(in: reminderList)
         reloadTableView()
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol OldReminderRemoverProtocol {
-    func removeOldReminders(_ reminders: ReminderList)
+    func removeOldReminders(in reminderList: ReminderList)
 }
 
 final class OldReminderRemover: OldReminderRemoverProtocol {
@@ -19,13 +19,17 @@ final class OldReminderRemover: OldReminderRemoverProtocol {
         self.dateProvider = dateProvider
     }
     
-    func removeOldReminders(_ reminderList: ReminderList) {
-        let deadline = Calendar.current.date(byAdding: .hour, value: -24, to: dateProvider.now)!
-        reminderList.enumerated().reversed().forEach({ index, reminder in
-            if reminder.date < deadline {
-                reminderList.deleteReminder(index: index)
-            }
-        })
+    func removeOldReminders(in reminderList: ReminderList) {
+        reminderList.enumerated().filter { _, reminder in
+            isReminderOld(reminder)
+        }.reversed().forEach { index, _ in
+            reminderList.deleteReminder(index: index)
+        }
+    }
+    
+    private func isReminderOld(_ reminder: Reminder) -> Bool {
+        let deadline = Calendar.current.date(byAdding: .hour, value: -12, to: dateProvider.now)!
+        return reminder.date < deadline
     }
     
 }
