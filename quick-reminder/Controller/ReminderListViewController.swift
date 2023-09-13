@@ -13,6 +13,7 @@ class ReminderListViewController: UIViewController {
     private let reminderListView = ReminderListView()
     private let notificationHandler: NotificationHandlerProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
+    private let dateProvider: DateProviderProtocol!
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -20,8 +21,9 @@ class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ notificationHandler: NotificationHandlerProtocol!) {
+    init(_ notificationHandler: NotificationHandlerProtocol, _ dateProvider: DateProviderProtocol) {
         self.notificationHandler = notificationHandler
+        self.dateProvider = dateProvider
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -118,6 +120,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
         content.text = title
         content.secondaryText = dateText
         cell.contentConfiguration = content
+        cell.backgroundColor = reminder.date <= dateProvider.now ? .systemGray3 : .white
         return cell
     }
     
