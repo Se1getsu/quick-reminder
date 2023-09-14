@@ -113,7 +113,6 @@ class ReminderListViewController: UIViewController {
     
     func updateReminder(reminder: Reminder) throws {
         try reminderList.updateReminder(reminder: reminder)
-        print("Updated")
     }
 
 }
