@@ -7,6 +7,7 @@
 
 import RealmSwift
 
+/// リマインダーの情報を保持する値オブジェクト。
 struct Reminder {
     static let defaultTitle = "新規リマインダー"
     

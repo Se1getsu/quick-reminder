@@ -16,6 +16,7 @@ class ReminderListViewController: UIViewController {
     private let dateProvider: DateProviderProtocol!
     private let oldReminderRemover: OldReminderRemoverProtocol!
     
+    /// テーブルビューに表示する各リマインダーの通知時刻のフォーマッタ
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -95,22 +96,30 @@ class ReminderListViewController: UIViewController {
             action: #selector(addButtonTapped))
     }
     
+    /// ナビゲーションバーの＋ボタンが押された時の処理。
     @objc func addButtonTapped() {
         let reminder = Reminder(date: notificationDateCalculator.calculate(from: dateProvider.now))
         try! reminderList.addReminder(reminder: reminder)
         pushToReminderEditVC(reminder: reminder)
     }
     
+    /// テーブルビューのデータの表示を更新する。
     func reloadTableView() {
         reminderListView.reminderTableView.reloadData()
     }
     
+    /// ReminderEditViewに画面遷移する。
+    ///
+    /// - parameter reminder: ReminderEditViewで編集を行うReminder。
     func pushToReminderEditVC(reminder: Reminder) {
         let vc = ReminderEditViewController()
         vc.setup(reminder: reminder)
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    /// ReminderListのリマインダーを更新する。
+    ///
+    /// ReminderEditViewControllerでの編集結果を受け取る目的で使用される。
     func updateReminder(reminder: Reminder) throws {
         try reminderList.updateReminder(reminder: reminder)
     }

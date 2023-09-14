@@ -8,11 +8,15 @@
 import Foundation
 import UserNotifications
 
+/// Reminderのプッシュ通知を登録・削除するためのメソッド。
 protocol NotificationHandlerProtocol {
+    /// 与えられたReminderのプッシュ通知を登録する。
     func registerNotification(reminder: Reminder)
+    /// 与えられたReminderのプッシュ通知を削除する。
     func removeNotification(reminder: Reminder)
 }
 
+/// Reminderのプッシュ通知を登録・削除する。
 struct NotificationHandler: NotificationHandlerProtocol {
     
     func registerNotification(reminder: Reminder) {

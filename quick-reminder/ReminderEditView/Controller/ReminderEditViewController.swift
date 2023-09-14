@@ -36,6 +36,7 @@ class ReminderEditViewController: UIViewController {
             action: #selector(doneButtonTapped))
     }
     
+    /// ナビゲーションバーの完了ボタンがタップされた時の処理。
     @objc func doneButtonTapped() {
         var title = Reminder.defaultTitle
         if let text = reminderEditView.titleTextField.text, !text.isEmpty {

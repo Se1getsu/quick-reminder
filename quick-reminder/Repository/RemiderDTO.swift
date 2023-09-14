@@ -7,6 +7,7 @@
 
 import RealmSwift
 
+/// RealmとReminderデータをやり取りするためのDTO。
 final class ReminderDTO: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var title: String = ""
@@ -23,6 +24,7 @@ final class ReminderDTO: Object {
         self.date = reminder.date
     }
     
+    /// 自身をReminderに変換したものを返す。
     func convertToReminder() -> Reminder {
         return Reminder(id: id, title: title, date: date)
     }

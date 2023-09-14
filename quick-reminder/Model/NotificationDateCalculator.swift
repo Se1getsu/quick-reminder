@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 時刻から、リマインダーの通知日時を計算する。
 final class NotificationDateCalculator {
     static var shared: NotificationDateCalculator!
     private let dateProvider: DateProviderProtocol

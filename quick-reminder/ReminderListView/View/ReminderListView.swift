@@ -35,8 +35,4 @@ class ReminderListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func reloadData() {
-        reminderTableView.reloadData()
-    }
-    
 }
