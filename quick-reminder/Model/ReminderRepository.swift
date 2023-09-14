@@ -7,41 +7,51 @@
 
 import RealmSwift
 
-final class ReminderRepository {
-    static let shared = ReminderRepository()
-    let notificationCenter = NotificationCenter()
-    
+protocol ReminderRepositoryDelegate {
+    func addReminder(_ reminder: Reminder)
+    func updateReminder(_ reminder: Reminder)
+    func deleteReminder(_ reminder: Reminder)
+    func getAllReminders() -> [Reminder]
+    func getReminder(withID id: String) -> Reminder?
+}
+
+final class ReminderRepository: ReminderRepositoryDelegate {
     private let realm: Realm
 
-    private init() {
+    init() {
         realm = try! Realm()
     }
 
     func addReminder(_ reminder: Reminder) {
+        let reminderDTO = ReminderDTO(from: reminder)
         try? realm.write {
-            realm.add(reminder)
+            realm.add(reminderDTO)
         }
     }
 
     func updateReminder(_ reminder: Reminder) {
+        let reminderDTO = ReminderDTO(from: reminder)
         try? realm.write {
-            realm.add(reminder, update: .modified)
-            notificationCenter.post(name: .init("update"), object: nil, userInfo: ["reminder": reminder])
+            realm.add(reminderDTO, update: .modified)
         }
     }
 
     func deleteReminder(_ reminder: Reminder) {
+        let id = reminder.id
+        let reminderDTO = realm.object(ofType: ReminderDTO.self, forPrimaryKey: id)!
         try? realm.write {
-            realm.delete(reminder)
+            realm.delete(reminderDTO)
         }
     }
 
-    func getAllReminders() -> Results<Reminder> {
-        return realm.objects(Reminder.self)
+    func getAllReminders() -> [Reminder] {
+        let reminderDTOs = Array(realm.objects(ReminderDTO.self))
+        return reminderDTOs.map { $0.convertToReminder() }
     }
 
     func getReminder(withID id: String) -> Reminder? {
-        return realm.object(ofType: Reminder.self, forPrimaryKey: id)
+        let reminderDTO = realm.object(ofType: ReminderDTO.self, forPrimaryKey: id)
+        return reminderDTO?.convertToReminder()
     }
     
 }

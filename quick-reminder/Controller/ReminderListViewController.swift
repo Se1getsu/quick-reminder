@@ -9,12 +9,13 @@ import UIKit
 
 class ReminderListViewController: UIViewController {
     
-    private let reminderList = ReminderList(ReminderSorter())
-    private let reminderListView = ReminderListView()
+    private let reminderList: ReminderList!
+    private let reminderListView: ReminderListView!
     private let notificationHandler: NotificationHandlerProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateProvider: DateProviderProtocol!
     private let oldReminderRemover: OldReminderRemoverProtocol!
+    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -22,9 +23,13 @@ class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ notificationHandler: NotificationHandlerProtocol,
+    init(_ reminderList: ReminderList,
+         _ reminderListView: ReminderListView,
+         _ notificationHandler: NotificationHandlerProtocol,
          _ dateProvider: DateProviderProtocol,
          _ oldReminderRemover: OldReminderRemoverProtocol) {
+        self.reminderList = reminderList
+        self.reminderListView = reminderListView
         self.notificationHandler = notificationHandler
         self.dateProvider = dateProvider
         self.oldReminderRemover = oldReminderRemover
@@ -45,7 +50,7 @@ class ReminderListViewController: UIViewController {
         reminderListView.reminderTableView.delegate = self
         
         reminderList.notificationCenter.addObserver(
-            forName: .init("newReminder"),
+            forName: .init("didAddReminder"),
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
@@ -55,9 +60,8 @@ class ReminderListViewController: UIViewController {
                 )
             }
         )
-        
         reminderList.notificationCenter.addObserver(
-            forName: .init("deleteReminder"),
+            forName: .init("didDeleteReminder"),
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
@@ -66,9 +70,8 @@ class ReminderListViewController: UIViewController {
                 )
             }
         )
-        
         reminderList.notificationCenter.addObserver(
-            forName: .init("updateReminder"),
+            forName: .init("didUpdateReminder"),
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
@@ -93,21 +96,24 @@ class ReminderListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        let index = reminderList.addReminder(
-            title: Reminder.defaultTitle,
-            date: notificationDateCalculator.calculate(from: Date())
-        )
-        pushToReminderEditVC(reminderIndex: index)
+        let reminder = Reminder(date: notificationDateCalculator.calculate(from: dateProvider.now))
+        try! reminderList.addReminder(reminder: reminder)
+        pushToReminderEditVC(reminder: reminder)
     }
     
     func reloadTableView() {
         reminderListView.reminderTableView.reloadData()
     }
     
-    func pushToReminderEditVC(reminderIndex index: Int) {
+    func pushToReminderEditVC(reminder: Reminder) {
         let vc = ReminderEditViewController()
-        vc.setup(reminder: reminderList.getReminder(index: index))
+        vc.setup(reminder: reminder)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func updateReminder(reminder: Reminder) throws {
+        try reminderList.updateReminder(reminder: reminder)
+        print("Updated")
     }
 
 }
@@ -115,7 +121,7 @@ class ReminderListViewController: UIViewController {
 extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reminderList.getLength()
+        return reminderList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,8 +141,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        pushToReminderEditVC(reminderIndex: indexPath.row)
+        pushToReminderEditVC(reminder: reminderList.getReminder(index: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -146,7 +151,6 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
-        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     

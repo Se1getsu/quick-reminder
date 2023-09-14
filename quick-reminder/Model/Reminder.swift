@@ -7,23 +7,22 @@
 
 import RealmSwift
 
-final class Reminder: Object {
-    let notificationCenter = NotificationCenter()
+struct Reminder {
     static let defaultTitle = "新規リマインダー"
     
-    @objc dynamic var id: String = UUID().uuidString
-    @objc dynamic var title: String = defaultTitle
-    @objc dynamic var date: Date = Date()
+    let id: String
+    let title: String
+    let date: Date
     
-    override static func primaryKey() -> String? {
-        return "id"
+    init(id: String = UUID().uuidString,
+         title: String = defaultTitle,
+         date: Date) {
+        self.id = id
+        self.title = title
+        self.date = date
     }
     
     func reinit(title: String, date: Date) -> Reminder {
-        return Reminder(value: [
-            "id": id,
-            "title": title,
-            "date": date
-        ] as [String : Any])
+        return Reminder(id: self.id, title: title, date: date)
     }
 }

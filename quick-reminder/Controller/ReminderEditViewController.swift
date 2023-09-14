@@ -41,13 +41,12 @@ class ReminderEditViewController: UIViewController {
         if let text = reminderEditView.titleTextField.text, !text.isEmpty {
             title = text
         }
+        let time = reminderEditView.datePicker.date
+        let date = notificationDateCalculator.calculate(from: time)
         
-        var date = reminderEditView.datePicker.date
-        date = notificationDateCalculator.calculate(from: date)
-        
-        let newReminder = reminder.reinit(title: title, date: date)
-        ReminderRepository.shared.updateReminder(newReminder)
-        
+        let updatedReminder = reminder.reinit(title: title, date: date)
+        let previousVC = navigationController?.viewControllers[(navigationController?.viewControllers.count)!-2] as? ReminderListViewController
+        try? previousVC?.updateReminder(reminder: updatedReminder)
         navigationController?.popViewController(animated: true)
     }
 
