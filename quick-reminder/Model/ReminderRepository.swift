@@ -38,7 +38,7 @@ final class ReminderRepository: ReminderRepositoryDelegate {
 
     func deleteReminder(_ reminder: Reminder) {
         let id = reminder.id
-        let reminderDTO = realm.object(ofType: ReminderDTO.self, forPrimaryKey: id)!
+        guard let reminderDTO = realm.object(ofType: ReminderDTO.self, forPrimaryKey: id) else { return }
         try? realm.write {
             realm.delete(reminderDTO)
         }
