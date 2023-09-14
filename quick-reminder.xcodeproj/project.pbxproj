@@ -190,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				A6C9B9312AB327F4009F71A5 /* Model */,
-				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
 				A6C9B92A2AB321CE009F71A5 /* Controller */,
 				A6C9B92D2AB32203009F71A5 /* View */,
 			);
@@ -262,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				A6C9B9302AB322B4009F71A5 /* ReminderList */,
+				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
