@@ -7,6 +7,15 @@
 
 import Foundation
 
+extension Notification.Name {
+    /// ReminderListにReminderが追加された時にpostされる通知。
+    static let didAddReminder = Notification.Name("ReminderList.didAddReminder")
+    /// ReminderListからReminderが削除された時にpostされる通知。
+    static let didDeleteReminder = Notification.Name("ReminderList.didDeleteReminder")
+    /// ReminderList内のReminderが更新された時にpostされる通知。
+    static let didUpdateReminder = Notification.Name("ReminderList.didUpdateReminder")
+}
+
 /// Reminder配列の管理を行う。
 ///
 /// 格納されたリマインダーは、
@@ -63,14 +72,14 @@ final class ReminderList {
         try validator.validateNotContained(reminders: reminders, newReminder: reminder)
         repository.addReminder(reminder)
         reminders.append(reminder)
-        notificationCenter.post(name: .init("didAddReminder"), object: nil, userInfo: ["reminder": reminder])
+        notificationCenter.post(name: .didAddReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
     /// 与えられたインデックスのReminderをリストから削除する。
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         repository.deleteReminder(reminder)
-        notificationCenter.post(name: .init("didDeleteReminder"), object: nil, userInfo: ["reminder": reminder])
+        notificationCenter.post(name: .didDeleteReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
     /// 与えられたReminderをリストから削除する。
@@ -86,7 +95,7 @@ final class ReminderList {
         let index = try getIndex(reminder: reminder)
         repository.updateReminder(reminder)
         reminders[index] = reminder
-        notificationCenter.post(name: .init("didUpdateReminder"), object: nil, userInfo: ["reminder": reminder])
+        notificationCenter.post(name: .didUpdateReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
     /// (n, x)のペアのシーケンスを返す。nはゼロから始まる連続した整数を表し、xはReminderListの要素を表す。

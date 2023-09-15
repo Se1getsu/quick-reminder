@@ -53,7 +53,7 @@ class ReminderListViewController: UIViewController {
         reminderListView.reminderTableView.delegate = self
         
         reminderList.notificationCenter.addObserver(
-            forName: .init("didAddReminder"),
+            forName: .didAddReminder,
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
@@ -64,7 +64,7 @@ class ReminderListViewController: UIViewController {
             }
         )
         reminderList.notificationCenter.addObserver(
-            forName: .init("didDeleteReminder"),
+            forName: .didDeleteReminder,
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
@@ -74,7 +74,7 @@ class ReminderListViewController: UIViewController {
             }
         )
         reminderList.notificationCenter.addObserver(
-            forName: .init("didUpdateReminder"),
+            forName: .didUpdateReminder,
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
