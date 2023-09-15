@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             ReminderListView(),
             NoReminderView(),
             NotificationHandler(),
+            NotificationDateCalculator(DateProvider()),
             DateProvider(),
             OldReminderRemover(DateProvider())
         )

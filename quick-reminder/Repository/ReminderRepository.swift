@@ -17,7 +17,7 @@ protocol ReminderRepositoryDelegate {
 }
 
 /// Realmを用いてReminderのCRUD操作を行う。
-final class ReminderRepository: ReminderRepositoryDelegate {
+struct ReminderRepository: ReminderRepositoryDelegate {
     private let realm: Realm
 
     init() {

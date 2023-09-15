@@ -8,16 +8,11 @@
 import Foundation
 
 /// 時刻から、リマインダーの通知日時を計算する。
-final class NotificationDateCalculator {
-    static var shared: NotificationDateCalculator!
+struct NotificationDateCalculator {
     private let dateProvider: DateProviderProtocol
     
-    private init(_ dateProvider: DateProviderProtocol) {
+    init(_ dateProvider: DateProviderProtocol) {
         self.dateProvider = dateProvider
-    }
-    
-    static func setUp(_ dateProvider: DateProviderProtocol) {
-        shared = NotificationDateCalculator(dateProvider)
     }
     
     /// 指定された時間から、通知を行う日時を計算する。

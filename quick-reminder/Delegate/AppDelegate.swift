@@ -31,9 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        // Dependency injection
-        NotificationDateCalculator.setUp(DateProvider())
-        
         return true
     }
 

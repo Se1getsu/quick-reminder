@@ -13,7 +13,7 @@ class ReminderListViewController: UIViewController {
     private let reminderListView: ReminderListView!
     private let noReminderView: NoReminderView!
     private let notificationHandler: NotificationHandlerProtocol!
-    private let notificationDateCalculator = NotificationDateCalculator.shared!
+    private let notificationDateCalculator: NotificationDateCalculator!
     private let dateProvider: DateProviderProtocol!
     private let oldReminderRemover: OldReminderRemoverProtocol!
     
@@ -29,12 +29,14 @@ class ReminderListViewController: UIViewController {
          _ reminderListView: ReminderListView,
          _ noReminderView: NoReminderView,
          _ notificationHandler: NotificationHandlerProtocol,
+         _ notificationDateCalculator: NotificationDateCalculator,
          _ dateProvider: DateProviderProtocol,
          _ oldReminderRemover: OldReminderRemoverProtocol) {
         self.reminderList = reminderList
         self.reminderListView = reminderListView
         self.noReminderView = noReminderView
         self.notificationHandler = notificationHandler
+        self.notificationDateCalculator = notificationDateCalculator
         self.dateProvider = dateProvider
         self.oldReminderRemover = oldReminderRemover
         super.init(nibName: nil, bundle: nil)
@@ -119,7 +121,10 @@ class ReminderListViewController: UIViewController {
     ///
     /// - parameter reminder: ReminderEditViewで編集を行うReminder。
     func pushToReminderEditVC(reminder: Reminder) {
-        let vc = ReminderEditViewController()
+        let vc = ReminderEditViewController(
+            ReminderEditView(),
+            NotificationDateCalculator(DateProvider())
+        )
         vc.setup(reminder: reminder)
         navigationController?.pushViewController(vc, animated: true)
     }

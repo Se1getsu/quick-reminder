@@ -10,8 +10,19 @@ import UIKit
 class ReminderEditViewController: UIViewController {
     
     private var reminder: Reminder!
-    private let reminderEditView = ReminderEditView()
-    private let notificationDateCalculator = NotificationDateCalculator.shared!
+    private var reminderEditView: ReminderEditView!
+    private var notificationDateCalculator: NotificationDateCalculator!
+    
+    init(_ reminderEditView: ReminderEditView,
+         _ notificationDateCalculator: NotificationDateCalculator) {
+        self.reminderEditView = reminderEditView
+        self.notificationDateCalculator = notificationDateCalculator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func setup(reminder: Reminder) {
         self.reminder = reminder
