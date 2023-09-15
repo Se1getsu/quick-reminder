@@ -18,7 +18,7 @@ class ReminderEditView: UIView {
     let titleTextField: UITextField = {
         let titleTextField = UITextField()
         titleTextField.borderStyle = .roundedRect
-        titleTextField.backgroundColor = .white
+        titleTextField.backgroundColor = R.color.textFieldBackground()
         return titleTextField
     }()
     
@@ -38,7 +38,7 @@ class ReminderEditView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray5
+        backgroundColor = R.color.reminderEditViewBackground()
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleTextField.translatesAutoresizingMaskIntoConstraints = false

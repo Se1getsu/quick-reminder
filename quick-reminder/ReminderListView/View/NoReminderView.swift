@@ -14,14 +14,14 @@ class NoReminderView: UIView {
         label.text = "画面右上の「＋」ボタンを押して\n新規リマインダーを作成します。"
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.textColor = .systemGray
+        label.textColor = R.color.noReminderViewText()
         
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray5
+        backgroundColor = R.color.noReminderViewBackground()
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
