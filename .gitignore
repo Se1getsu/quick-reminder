@@ -5,3 +5,5 @@
 
 Pods/*
 Carthage/Build/
+
+*.generated.swift

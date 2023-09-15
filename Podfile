@@ -7,5 +7,6 @@ target 'quick-reminder' do
 
   # Pods for quick-reminder
   pod 'RealmSwift'
+  pod 'R.swift'
 
 end
