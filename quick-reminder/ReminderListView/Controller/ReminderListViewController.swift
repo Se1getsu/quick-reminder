@@ -17,7 +17,7 @@ class ReminderListViewController: UIViewController {
     private let dateProvider: DateProviderProtocol!
     private let oldReminderRemover: OldReminderRemoverProtocol!
     
-    /// テーブルビューに表示する各リマインダーの通知時刻のフォーマッタ
+    /// テーブルビューに表示する各リマインダーの通知時刻のフォーマッタ。
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")

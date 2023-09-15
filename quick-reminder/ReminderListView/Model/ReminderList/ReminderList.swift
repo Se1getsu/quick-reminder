@@ -26,7 +26,7 @@ final class ReminderList {
             reminders = sorter.sorted(reminders)
         }
     }
-    /// Reminderリストの要素数
+    /// Reminderリストの要素数。
     var count: Int { reminders.count }
     /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { reminders.isEmpty }
@@ -40,12 +40,12 @@ final class ReminderList {
         fetchReminders()
     }
     
-    /// リポジトリからデータをフェッチすることでリストを初期化する
+    /// リポジトリからデータをフェッチすることでリストを初期化する。
     func fetchReminders() {
         reminders = repository.getAllReminders()
     }
     
-    /// 与えられたインデックスのReminderを返す
+    /// 与えられたインデックスのReminderを返す。
     func getReminder(index: Int) -> Reminder {
         return reminders[index]
     }
@@ -58,7 +58,7 @@ final class ReminderList {
         return reminders.firstIndex { $0.id == reminder.id }!
     }
     
-    /// 与えられたReminderをリストに追加する
+    /// 与えられたReminderをリストに追加する。
     func addReminder(reminder: Reminder) throws {
         try validator.validateNotContained(reminders: reminders, newReminder: reminder)
         repository.addReminder(reminder)
@@ -66,14 +66,14 @@ final class ReminderList {
         notificationCenter.post(name: .init("didAddReminder"), object: nil, userInfo: ["reminder": reminder])
     }
     
-    /// 与えられたインデックスのReminderをリストから削除する
+    /// 与えられたインデックスのReminderをリストから削除する。
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         repository.deleteReminder(reminder)
         notificationCenter.post(name: .init("didDeleteReminder"), object: nil, userInfo: ["reminder": reminder])
     }
     
-    /// 与えられたReminderをリストから削除する
+    /// 与えられたReminderをリストから削除する。
     func deleteReminder(reminder: Reminder) throws {
         let index = try getIndex(reminder: reminder)
         deleteReminder(index: index)

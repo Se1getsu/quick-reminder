@@ -9,6 +9,7 @@ import UIKit
 
 class ReminderListView: UIView {
     
+    /// リマインダーリストを表示するためのテーブルビュー。
     let reminderTableView: UITableView = {
         let reminderTableView = UITableView()
         reminderTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")

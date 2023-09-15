@@ -23,8 +23,8 @@ final class NotificationDateCalculator {
     /// 指定された時間から、通知を行う日時を計算する。
     ///
     /// この関数は、指定された時刻が、現在時刻から24時間までの範囲内になるように、日付を調整して返す。
-    /// - parameter date: 通知を行う時刻のデータを持つ日時
-    /// - returns: 計算結果となる日時
+    /// - parameter date: 通知を行う時刻のデータを持つ日時。
+    /// - returns: 計算結果となる日時。
     func calculate(from date: Date) -> Date {
         let calendar = Calendar.current
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)

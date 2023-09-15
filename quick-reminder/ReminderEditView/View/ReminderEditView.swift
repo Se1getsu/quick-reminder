@@ -28,6 +28,7 @@ class ReminderEditView: UIView {
         return dateLabel
     }()
     
+    /// リマインダーの通知時刻を設定するためのUI。
     let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.locale = Locale(identifier: "ja_JP")
