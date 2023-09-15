@@ -13,12 +13,13 @@ class ReminderListView: UIView {
     let reminderTableView: UITableView = {
         let reminderTableView = UITableView()
         reminderTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        reminderTableView.backgroundColor = R.color.reminderListTableViewBackground()
         return reminderTableView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = R.color.reminderListTableViewBackground()
         
         reminderTableView.translatesAutoresizingMaskIntoConstraints = false
         
