@@ -28,6 +28,8 @@ final class ReminderList {
     }
     /// Reminderリストの要素数
     var count: Int { reminders.count }
+    /// Reminderリストが空かを表すブール値。
+    var isEmpty: Bool { reminders.isEmpty }
     
     init(_ repository: ReminderRepositoryDelegate,
          _ sorter: ReminderSorterProtocol,

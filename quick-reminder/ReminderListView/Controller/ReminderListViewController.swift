@@ -11,6 +11,7 @@ class ReminderListViewController: UIViewController {
     
     private let reminderList: ReminderList!
     private let reminderListView: ReminderListView!
+    private let noReminderView: NoReminderView!
     private let notificationHandler: NotificationHandlerProtocol!
     private let notificationDateCalculator = NotificationDateCalculator.shared!
     private let dateProvider: DateProviderProtocol!
@@ -26,11 +27,13 @@ class ReminderListViewController: UIViewController {
     
     init(_ reminderList: ReminderList,
          _ reminderListView: ReminderListView,
+         _ noReminderView: NoReminderView,
          _ notificationHandler: NotificationHandlerProtocol,
          _ dateProvider: DateProviderProtocol,
          _ oldReminderRemover: OldReminderRemoverProtocol) {
         self.reminderList = reminderList
         self.reminderListView = reminderListView
+        self.noReminderView = noReminderView
         self.notificationHandler = notificationHandler
         self.dateProvider = dateProvider
         self.oldReminderRemover = oldReminderRemover
@@ -44,7 +47,6 @@ class ReminderListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "登録中のリマインダー"
-        view = reminderListView
         setupNavigationBar()
         
         reminderListView.reminderTableView.dataSource = self
@@ -55,7 +57,7 @@ class ReminderListViewController: UIViewController {
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
-                self.reloadTableView()
+                self.reloadView()
                 notificationHandler.registerNotification(
                     reminder: notification.userInfo!["reminder"] as! Reminder
                 )
@@ -76,7 +78,7 @@ class ReminderListViewController: UIViewController {
             object: nil,
             queue: nil,
             using: { [unowned self] notification in
-                self.reloadTableView()
+                self.reloadView()
                 notificationHandler.registerNotification(
                     reminder: notification.userInfo!["reminder"] as! Reminder
                 )
@@ -86,7 +88,7 @@ class ReminderListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         oldReminderRemover.removeOldReminders(in: reminderList)
-        reloadTableView()
+        reloadView()
     }
     
     private func setupNavigationBar() {
@@ -103,9 +105,14 @@ class ReminderListViewController: UIViewController {
         pushToReminderEditVC(reminder: reminder)
     }
     
-    /// テーブルビューのデータの表示を更新する。
-    func reloadTableView() {
-        reminderListView.reminderTableView.reloadData()
+    /// viewを更新する。
+    func reloadView() {
+        if reminderList.isEmpty {
+            view = noReminderView
+        } else {
+            view = reminderListView
+            reminderListView.reminderTableView.reloadData()
+        }
     }
     
     /// ReminderEditViewに画面遷移する。
@@ -153,9 +160,13 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, view, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, reminderListView, completionHandler) in
             self.reminderList.deleteReminder(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if reminderList.isEmpty {
+                self.reloadView()
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")

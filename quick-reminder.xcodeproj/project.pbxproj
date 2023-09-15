@@ -29,6 +29,7 @@
 		A6C9B9232AB205E8009F71A5 /* RemiderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9222AB205E8009F71A5 /* RemiderDTO.swift */; };
 		A6C9B9282AB2DF0B009F71A5 /* ReminderListValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9272AB2DF0B009F71A5 /* ReminderListValidator.swift */; };
 		A6C9B9332AB32AE1009F71A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9322AB32AE1009F71A5 /* Extensions.swift */; };
+		A6C9B9352AB35C5E009F71A5 /* NoReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		A6C9B9222AB205E8009F71A5 /* RemiderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiderDTO.swift; sourceTree = "<group>"; };
 		A6C9B9272AB2DF0B009F71A5 /* ReminderListValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListValidator.swift; sourceTree = "<group>"; };
 		A6C9B9322AB32AE1009F71A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReminderView.swift; sourceTree = "<group>"; };
 		EC4729F079294252B4FE8A00 /* Pods-quick-reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.release.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B418A32AAB361C006A7053 /* ReminderListView.swift */,
+				A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				A6C9B9232AB205E8009F71A5 /* RemiderDTO.swift in Sources */,
 				A6B418AB2AAD85D5006A7053 /* ReminderEditViewController.swift in Sources */,
 				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,
+				A6C9B9352AB35C5E009F71A5 /* NoReminderView.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
 				A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */,
 				A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */,
