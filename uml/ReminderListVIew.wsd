@@ -1,0 +1,54 @@
+@startuml Models
+
+
+namespace ReminderListView.Model #FFFFEC {
+    class ReminderList
+    class ReminderListSorterProtocol <<P, #ffccee)>>
+    class ReminderListSorter
+    class ReminderListValidatorProtocol <<P, #ffccee)>>
+    class ReminderListValidator
+    class OldReminderRemoverProtocol <<P, #ffccee)>>
+    class OldReminderRemover
+    ReminderList "1" o-- "*" Model.Reminder
+    ReminderList *-- Repository.ReminderRepositoryDelegate
+    ReminderList *-- ReminderListSorterProtocol
+    ReminderList *-- ReminderListValidatorProtocol
+    ReminderListSorter ..|> ReminderListSorterProtocol
+    ReminderListValidator ..|> ReminderListValidatorProtocol
+    OldReminderRemover ..|> OldReminderRemoverProtocol
+    OldReminderRemoverProtocol --> ReminderList : 引数
+}
+namespace ReminderListView.Controller #FFFFEC {
+    class ReminderListViewController <<UIViewController>>
+    class NotificationHandlerProtocol <<P, #ffccee)>>
+    class NotificationHandler
+    ReminderListViewController o-- ReminderListView.Model.ReminderList
+    ReminderListViewController *- ReminderListView.View.ReminderListView
+    ReminderListViewController *- ReminderListView.View.NoReminderView
+    ReminderListViewController o-- NotificationHandlerProtocol
+    ReminderListViewController o-- Model.NotificationDateCalculator
+    ReminderListViewController o--- Util.DateProviderProtocol
+    ReminderListViewController o-- ReminderListView.Model.OldReminderRemoverProtocol
+    ReminderListViewController -u-> ReminderEditView.Controller.ReminderEditViewController: 画面遷移
+    NotificationHandler ..|> NotificationHandlerProtocol
+}
+namespace ReminderListView.View #FFFFEC {
+    class ReminderListView <<UIView>>
+    class NoReminderView <<UIView>>
+    ReminderListView -[hidden]-> NoReminderView
+}
+
+' 依存先
+namespace Util #ECEFF4 {
+    class DateProviderProtocol <<P, #ffccee)>>
+}
+namespace Repository #ECEFF4 {
+    class ReminderRepositoryDelegate <<P, #ffccee)>>
+}
+namespace Model #ECEFF4 {
+    class Reminder <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>>
+}
+namespace ReminderEditView.Controller #E9FFFF {
+    class ReminderEditViewController <<UIViewController>>
+}

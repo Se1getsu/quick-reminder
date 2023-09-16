@@ -1,0 +1,17 @@
+@startuml Models
+
+namespace ReminderEditView.Controller #E9FFFF {
+    class ReminderEditViewController <<UIViewController>>
+    ReminderEditViewController o-- Model.Reminder
+    ReminderEditViewController *-l- ReminderEditView.View.ReminderEditView
+    ReminderEditViewController o-- Model.NotificationDateCalculator
+    ReminderEditViewController <-u- ReminderListView.Controller.ReminderListViewController: 画面遷移
+}
+namespace ReminderEditView.View #E9FFFF {
+    class ReminderEditView <<UIView>>
+}
+
+namespace Model #ECEFF4 {
+    class Reminder <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>>
+}

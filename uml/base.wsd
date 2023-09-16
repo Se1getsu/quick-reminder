@@ -1,0 +1,25 @@
+@startuml Models
+
+namespace Repository #ECEFF4 {
+    class ReminderRepositoryDelegate <<P, #ffccee)>>
+    class ReminderRepository
+    class ReminderDTO
+    ReminderRepository ..|> ReminderRepositoryDelegate
+    ReminderRepository --> ReminderDTO: 生成
+    ReminderRepositoryDelegate -r[hidden]-> ReminderDTO
+    ReminderDTO -d-> Model.Reminder: 　変換　
+}
+
+namespace Model #ECEFF4 {
+    class Reminder <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>>
+    Reminder -r[hidden]-> NotificationDateCalculator
+    NotificationDateCalculator o-- Util.DateProviderProtocol
+    NotificationDateCalculator -r[hidden]-> Util.DateProvider
+}
+
+namespace Util #ECEFF4 {
+    class DateProviderProtocol <<P, #ffccee)>>
+    class DateProvider
+    DateProvider ..|> DateProviderProtocol
+}
