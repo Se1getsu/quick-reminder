@@ -181,17 +181,17 @@
 			isa = PBXGroup;
 			children = (
 				A60367D32AAF2EFF00FB5CB0 /* Dummy */,
-				A6B418C42AAEF66D006A7053 /* Util */,
+				A6B418C42AAEF66D006A7053 /* Model */,
 			);
 			path = "quick-reminderTests";
 			sourceTree = "<group>";
 		};
-		A6B418C42AAEF66D006A7053 /* Util */ = {
+		A6B418C42AAEF66D006A7053 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */,
 			);
-			path = Util;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A6C9B9292AB32196009F71A5 /* ReminderListView */ = {
