@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReminderEditView: UIView {
+final class ReminderEditView: UIView {
     
     private let titleLabel: UILabel = {
         var titleLabel = UILabel()

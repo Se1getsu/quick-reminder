@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReminderListViewController: UIViewController {
+final class ReminderListViewController: UIViewController {
     
     private var reminderList: ReminderList!
     private let reminderListView: ReminderListView!
