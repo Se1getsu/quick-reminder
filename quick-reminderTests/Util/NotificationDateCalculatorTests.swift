@@ -18,8 +18,8 @@ final class NotificationDateCalculatorTests: XCTestCase {
     
     func testCalculation(nowDate: Date, targetTime: Date, expected: Date) throws {
         let dateProvider = MockDateProvider(now: nowDate)
-        NotificationDateCalculator.setUp(dateProvider)
-        let result = NotificationDateCalculator.shared.calculate(from: targetTime)
+        let notificationDateCalculator = NotificationDateCalculator(dateProvider)
+        let result = notificationDateCalculator.calculate(from: targetTime)
         XCTAssertEqual(result, expected)
     }
     
