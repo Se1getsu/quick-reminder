@@ -9,7 +9,7 @@ import UIKit
 
 class ReminderListViewController: UIViewController {
     
-    private let reminderList: ReminderList!
+    private var reminderList: ReminderList!
     private let reminderListView: ReminderListView!
     private let noReminderView: NoReminderView!
     private let notificationHandler: NotificationHandlerProtocol!
@@ -89,7 +89,7 @@ class ReminderListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        oldReminderRemover.removeOldReminders(in: reminderList)
+        oldReminderRemover.removeOldReminders(in: &reminderList)
         reloadView()
     }
     

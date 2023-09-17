@@ -13,7 +13,7 @@ protocol ReminderSorterProtocol {
 }
 
 /// ReminderListのソートを行う。
-final class ReminderSorter: ReminderSorterProtocol {
+struct ReminderSorter: ReminderSorterProtocol {
     
     /// 与えられたReminder配列をソートしたものを返す。
     func sorted(_ reminders: [Reminder]) -> [Reminder] {
