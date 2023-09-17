@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoReminderView: UIView {
+final class NoReminderView: UIView {
 
     private let label: UILabel = {
         var label = UILabel()

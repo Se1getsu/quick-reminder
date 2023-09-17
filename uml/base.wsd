@@ -2,7 +2,7 @@
 
 namespace Repository #ECEFF4 {
     class ReminderRepositoryDelegate <<P, #ffccee)>>
-    class ReminderRepository
+    class ReminderRepository  <<S, #ffeecc)>>
     class ReminderDTO
     ReminderRepository ..|> ReminderRepositoryDelegate
     ReminderRepository --> ReminderDTO: 生成
@@ -20,6 +20,6 @@ namespace Model #ECEFF4 {
 
 namespace Util #ECEFF4 {
     class DateProviderProtocol <<P, #ffccee)>>
-    class DateProvider
+    class DateProvider <<S, #ffeecc)>>
     DateProvider ..|> DateProviderProtocol
 }
