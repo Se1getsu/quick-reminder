@@ -1,6 +1,7 @@
 @startuml Models
 
 namespace ReminderListView.Model #FFFFEC {
+    class ReminderListProtocol <<P, #ffccee)>>
     class ReminderList
     class ReminderSorterProtocol <<P, #ffccee)>>
     class ReminderSorter  <<S, #ffeecc)>>
@@ -12,16 +13,17 @@ namespace ReminderListView.Model #FFFFEC {
     ReminderList *-- Repository.ReminderRepositoryDelegate
     ReminderList *-- ReminderSorterProtocol
     ReminderList *-- ReminderListValidatorProtocol
+    ReminderList .u.|> ReminderListProtocol
     ReminderSorter ..|> ReminderSorterProtocol
     ReminderListValidator ..|> ReminderListValidatorProtocol
     OldReminderRemover ..|> OldReminderRemoverProtocol
-    OldReminderRemoverProtocol --> ReminderList : 引数
+    OldReminderRemoverProtocol --> ReminderListProtocol : 引数
 }
 namespace ReminderListView.Controller #FFFFEC {
     class ReminderListViewController <<UIViewController>>
     class NotificationHandlerProtocol <<P, #ffccee)>>
     class NotificationHandler <<S, #ffeecc)>>
-    ReminderListViewController o-- ReminderListView.Model.ReminderList
+    ReminderListViewController o-- ReminderListView.Model.ReminderListProtocol
     ReminderListViewController *- ReminderListView.View.ReminderListView
     ReminderListViewController *- ReminderListView.View.NoReminderView
     ReminderListViewController o-- NotificationHandlerProtocol
