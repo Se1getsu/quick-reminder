@@ -37,7 +37,7 @@ struct OldReminderRemover: OldReminderRemoverProtocol {
     /// 与えられたReminderが通知から12時間以上経過しているかを判定する。
     private func isReminderOld(_ reminder: Reminder) -> Bool {
         let deadline = Calendar.current.date(byAdding: .hour, value: -12, to: dateProvider.now)!
-        return reminder.date < deadline
+        return reminder.date <= deadline
     }
     
 }
