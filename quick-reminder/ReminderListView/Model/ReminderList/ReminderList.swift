@@ -16,13 +16,29 @@ extension Notification.Name {
     static let didUpdateReminder = Notification.Name("ReminderList.didUpdateReminder")
 }
 
+/// Reminder配列の管理を行うためのメソッド。
+protocol ReminderListProtocol {
+    var notificationCenter: NotificationCenter { get }
+    var count: Int { get }
+    var isEmpty: Bool { get }
+    
+    func fetchReminders()
+    func getReminder(index: Int) -> Reminder
+    func getIndex(reminder: Reminder) throws -> Int
+    func addReminder(reminder: Reminder) throws
+    func deleteReminder(index: Int)
+    func deleteReminder(reminder: Reminder) throws
+    func updateReminder(reminder: Reminder) throws
+    func enumerated() -> EnumeratedSequence<[Reminder]>
+}
+
 /// Reminder配列の管理を行う。
 ///
 /// 格納されたリマインダーは、
 /// - 与えられたリポジトリと同期する。
 /// - 与えられたソーターによって、自動的にソートされる。
 /// - 与えられたバリデータによって、妥当性が確認される。
-final class ReminderList {
+final class ReminderList: ReminderListProtocol {
     
     let notificationCenter = NotificationCenter()
     

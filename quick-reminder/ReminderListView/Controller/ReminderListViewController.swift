@@ -9,7 +9,7 @@ import UIKit
 
 final class ReminderListViewController: UIViewController {
     
-    private var reminderList: ReminderList!
+    private var reminderList: ReminderListProtocol!
     private let reminderListView: ReminderListView!
     private let noReminderView: NoReminderView!
     private let notificationHandler: NotificationHandlerProtocol!
@@ -25,7 +25,7 @@ final class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ reminderList: ReminderList,
+    init(_ reminderList: ReminderListProtocol,
          _ reminderListView: ReminderListView,
          _ noReminderView: NoReminderView,
          _ notificationHandler: NotificationHandlerProtocol,
