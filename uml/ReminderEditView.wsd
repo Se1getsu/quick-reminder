@@ -11,6 +11,10 @@ namespace ReminderEditView.View #E9FFFF {
     class ReminderEditView <<UIView>>
 }
 
+' 依存先
+namespace ReminderListView.Controller #FFFFEC {
+    class ReminderListViewController <<UIViewController>>
+}
 namespace Model #ECEFF4 {
     class Reminder <<S, #ffeecc)>>
     class NotificationDateCalculator <<S, #ffeecc)>>
