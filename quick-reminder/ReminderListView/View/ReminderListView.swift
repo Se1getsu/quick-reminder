@@ -12,6 +12,7 @@ final class ReminderListView: UIView {
     /// リマインダーリストを表示するためのテーブルビュー。
     let reminderTableView: UITableView = {
         let reminderTableView = UITableView()
+        reminderTableView.accessibilityIdentifier = "Reminder List Table View"
         reminderTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         reminderTableView.backgroundColor = R.color.reminderListTableViewBackground()
         return reminderTableView

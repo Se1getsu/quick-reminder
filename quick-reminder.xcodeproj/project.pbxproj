@@ -11,6 +11,9 @@
 		A60367D52AAF2F1E00FB5CB0 /* MockDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */; };
 		A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525B2AB817340098F12E /* MockReminderList.swift */; };
 		A65F525E2AB818E60098F12E /* OldReminderRemoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */; };
+		A65F52662AB827C50098F12E /* quick_reminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52652AB827C50098F12E /* quick_reminderUITests.swift */; };
+		A65F52682AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52672AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift */; };
+		A65F52762AB94ADE0098F12E /* UITestMockReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52752AB94ADE0098F12E /* UITestMockReminderRepository.swift */; };
 		A66A22C42AB0413F007FE11D /* ReminderSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A22C32AB0413F007FE11D /* ReminderSorter.swift */; };
 		A66A22C62AB08044007FE11D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66A22C52AB08044007FE11D /* NotificationHandler.swift */; };
 		A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */; };
@@ -41,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A65F52692AB827C50098F12E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6B418702AA8C0D9006A7053 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6B418772AA8C0D9006A7053;
+			remoteInfo = "quick-reminder";
+		};
 		A6B418BF2AAEF08D006A7053 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A6B418702AA8C0D9006A7053 /* Project object */;
@@ -56,6 +66,10 @@
 		A60367D42AAF2F1E00FB5CB0 /* MockDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateProvider.swift; sourceTree = "<group>"; };
 		A65F525B2AB817340098F12E /* MockReminderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderList.swift; sourceTree = "<group>"; };
 		A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemoverTests.swift; sourceTree = "<group>"; };
+		A65F52632AB827C50098F12E /* quick-reminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A65F52652AB827C50098F12E /* quick_reminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_reminderUITests.swift; sourceTree = "<group>"; };
+		A65F52672AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_reminderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A65F52752AB94ADE0098F12E /* UITestMockReminderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestMockReminderRepository.swift; sourceTree = "<group>"; };
 		A66A22C32AB0413F007FE11D /* ReminderSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSorter.swift; sourceTree = "<group>"; };
 		A66A22C52AB08044007FE11D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		A6B418782AA8C0D9006A7053 /* quick-reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quick-reminder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +104,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A65F52602AB827C50098F12E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6B418752AA8C0D9006A7053 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,11 +147,21 @@
 			path = Dummy;
 			sourceTree = "<group>";
 		};
+		A65F52642AB827C50098F12E /* quick-reminderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A65F52652AB827C50098F12E /* quick_reminderUITests.swift */,
+				A65F52672AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift */,
+			);
+			path = "quick-reminderUITests";
+			sourceTree = "<group>";
+		};
 		A6B4186F2AA8C0D9006A7053 = {
 			isa = PBXGroup;
 			children = (
 				A6B4187A2AA8C0D9006A7053 /* quick-reminder */,
 				A6B418BC2AAEF08D006A7053 /* quick-reminderTests */,
+				A65F52642AB827C50098F12E /* quick-reminderUITests */,
 				A6B418792AA8C0D9006A7053 /* Products */,
 				F3C6ACBD5BC14213B295D163 /* Pods */,
 				6FF4AFAE413AD7FB490CFB49 /* Frameworks */,
@@ -142,6 +173,7 @@
 			children = (
 				A6B418782AA8C0D9006A7053 /* quick-reminder.app */,
 				A6B418BB2AAEF08D006A7053 /* quick-reminderTests.xctest */,
+				A65F52632AB827C50098F12E /* quick-reminderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,6 +299,7 @@
 			children = (
 				A6C9B9222AB205E8009F71A5 /* RemiderDTO.swift */,
 				A6B4189F2AAAB984006A7053 /* ReminderRepository.swift */,
+				A65F52752AB94ADE0098F12E /* UITestMockReminderRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -353,6 +386,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A65F52622AB827C50098F12E /* quick-reminderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A65F526B2AB827C50098F12E /* Build configuration list for PBXNativeTarget "quick-reminderUITests" */;
+			buildPhases = (
+				A65F525F2AB827C50098F12E /* Sources */,
+				A65F52602AB827C50098F12E /* Frameworks */,
+				A65F52612AB827C50098F12E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A65F526A2AB827C50098F12E /* PBXTargetDependency */,
+			);
+			name = "quick-reminderUITests";
+			productName = "quick-reminderUITests";
+			productReference = A65F52632AB827C50098F12E /* quick-reminderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		A6B418772AA8C0D9006A7053 /* quick-reminder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6B4188C2AA8C0D9006A7053 /* Build configuration list for PBXNativeTarget "quick-reminder" */;
@@ -401,6 +452,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					A65F52622AB827C50098F12E = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = A6B418772AA8C0D9006A7053;
+					};
 					A6B418772AA8C0D9006A7053 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -425,11 +480,19 @@
 			targets = (
 				A6B418772AA8C0D9006A7053 /* quick-reminder */,
 				A6B418BA2AAEF08D006A7053 /* quick-reminderTests */,
+				A65F52622AB827C50098F12E /* quick-reminderUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A65F52612AB827C50098F12E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6B418762AA8C0D9006A7053 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,6 +574,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A65F525F2AB827C50098F12E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65F52682AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift in Sources */,
+				A65F52662AB827C50098F12E /* quick_reminderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6B418742AA8C0D9006A7053 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +602,7 @@
 				A6C9B9352AB35C5E009F71A5 /* NoReminderView.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
 				A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */,
+				A65F52762AB94ADE0098F12E /* UITestMockReminderRepository.swift in Sources */,
 				A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */,
 				A6C9B9332AB32AE1009F71A5 /* Extensions.swift in Sources */,
 				A6C9B9282AB2DF0B009F71A5 /* ReminderListValidator.swift in Sources */,
@@ -555,6 +628,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A65F526A2AB827C50098F12E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6B418772AA8C0D9006A7053 /* quick-reminder */;
+			targetProxy = A65F52692AB827C50098F12E /* PBXContainerItemProxy */;
+		};
 		A6B418C02AAEF08D006A7053 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A6B418772AA8C0D9006A7053 /* quick-reminder */;
@@ -574,6 +652,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A65F526C2AB827C50098F12E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7RTLG93ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kakimoto.quick-reminderUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "quick-reminder";
+			};
+			name = Debug;
+		};
+		A65F526D2AB827C50098F12E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7RTLG93ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kakimoto.quick-reminderUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "quick-reminder";
+			};
+			name = Release;
+		};
 		A6B4188A2AA8C0D9006A7053 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -783,6 +897,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A65F526B2AB827C50098F12E /* Build configuration list for PBXNativeTarget "quick-reminderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A65F526C2AB827C50098F12E /* Debug */,
+				A65F526D2AB827C50098F12E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A6B418732AA8C0D9006A7053 /* Build configuration list for PBXProject "quick-reminder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

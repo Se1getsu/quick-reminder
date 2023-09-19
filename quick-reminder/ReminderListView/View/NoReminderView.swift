@@ -11,6 +11,7 @@ final class NoReminderView: UIView {
 
     private let label: UILabel = {
         var label = UILabel()
+        label.accessibilityIdentifier = "No Reminder Description Label"
         label.text = "画面右上の「＋」ボタンを押して\n新規リマインダーを作成します。"
         label.numberOfLines = 2
         label.textAlignment = .center

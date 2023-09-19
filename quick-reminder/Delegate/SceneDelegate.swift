@@ -16,9 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        
+        // オプション：UITest用のモックリポジトリを使用する。
+        let useUITestMockRepository = ProcessInfo.processInfo.arguments.contains("-useUITestMockRepository")
+        
         let rootVC = ReminderListViewController(
             ReminderList(
-                ReminderRepository(),
+                useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
                 ReminderSorter(),
                 ReminderListValidator()
             ),
@@ -30,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             OldReminderRemover(DateProvider())
         )
         window?.rootViewController = UINavigationController(rootViewController: rootVC)
+        
         window?.makeKeyAndVisible()
     }
 
