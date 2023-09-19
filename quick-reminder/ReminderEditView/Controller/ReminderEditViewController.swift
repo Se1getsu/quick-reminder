@@ -42,7 +42,7 @@ final class ReminderEditViewController: UIViewController {
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = {
             let barButton = UIBarButtonItem(
-                title: "完了",
+                title: "保存",
                 style: .done,
                 target: self,
                 action: #selector(doneButtonTapped))
@@ -51,7 +51,7 @@ final class ReminderEditViewController: UIViewController {
         }()
     }
     
-    /// ナビゲーションバーの完了ボタンがタップされた時の処理。
+    /// ナビゲーションバーの保存ボタンがタップされた時の処理。
     @objc func doneButtonTapped() {
         var title = Reminder.defaultTitle
         if let text = reminderEditView.titleTextField.text, !text.isEmpty {
