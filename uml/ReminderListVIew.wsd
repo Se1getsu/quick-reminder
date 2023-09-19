@@ -2,13 +2,13 @@
 
 namespace ReminderListView.Model #FFFFEC {
     class ReminderListProtocol <<P, #ffccee)>>
-    class ReminderList
+    class ReminderList #FFE5FF
     class ReminderSorterProtocol <<P, #ffccee)>>
     class ReminderSorter  <<S, #ffeecc)>>
     class ReminderListValidatorProtocol <<P, #ffccee)>>
     class ReminderListValidator  <<S, #ffeecc)>>
     class OldReminderRemoverProtocol <<P, #ffccee)>>
-    class OldReminderRemover  <<S, #ffeecc)>>
+    class OldReminderRemover  <<S, #ffeecc)>> #FFE5FF
     ReminderList "1" o-- "*" Model.Reminder
     ReminderList *-- Repository.ReminderRepositoryDelegate
     ReminderList *-- ReminderSorterProtocol
@@ -48,7 +48,7 @@ namespace Repository #ECEFF4 {
 }
 namespace Model #ECEFF4 {
     class Reminder <<S, #ffeecc)>>
-    class NotificationDateCalculator <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>> #FFE5FF
 }
 namespace ReminderEditView.Controller #E9FFFF {
     class ReminderEditViewController <<UIViewController>>

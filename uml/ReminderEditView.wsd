@@ -17,5 +17,5 @@ namespace ReminderListView.Controller #FFFFEC {
 }
 namespace Model #ECEFF4 {
     class Reminder <<S, #ffeecc)>>
-    class NotificationDateCalculator <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>> #FFE5FF
 }
