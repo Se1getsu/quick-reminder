@@ -40,11 +40,15 @@ final class ReminderEditViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "完了",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonTapped))
+        navigationItem.rightBarButtonItem = {
+            let barButton = UIBarButtonItem(
+                title: "完了",
+                style: .done,
+                target: self,
+                action: #selector(doneButtonTapped))
+            barButton.accessibilityIdentifier = "Reminder Edit Save Button"
+            return barButton
+        }()
     }
     
     /// ナビゲーションバーの完了ボタンがタップされた時の処理。
