@@ -92,6 +92,30 @@ final class quick_reminderUITests: XCTestCase {
         XCTAssertEqual(cell.staticTexts.element(boundBy: 0).label, "サンプル文字列")
         XCTAssertTrue(cell.staticTexts.element(boundBy: 1).firstMatch.label.contains("12:34"))
     }
+    
+    func test_リマインダー削除() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-useUITestMockRepository")
+        app.launch()
+        
+        // 新規作成
+        let addButton = app.buttons["Add Reminder Bar Button"].firstMatch
+        addButton.tap()
+        let saveButton = app.navigationBars.buttons["Reminder Edit Save Button"].firstMatch
+        saveButton.tap()
+
+        // 削除
+        let reminderListTableView = app.tables["Reminder List Table View"].firstMatch
+        let cell = reminderListTableView.cells.element(boundBy: 0)
+        cell.swipeLeft()
+        cell.buttons["ゴミ箱"].tap()
+        XCTAssertEqual(reminderListTableView.cells.count, 0)
+        
+        // リマインダーがない時の説明表示が出るかを確認
+        let noReminderLabel = app.staticTexts["No Reminder Description Label"].firstMatch
+        XCTAssertTrue(noReminderLabel.exists)
+        XCTAssertTrue(noReminderLabel.isHittable)
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
