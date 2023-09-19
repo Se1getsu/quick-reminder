@@ -17,6 +17,7 @@ final class ReminderEditView: UIView {
     
     let titleTextField: UITextField = {
         let titleTextField = UITextField()
+        titleTextField.accessibilityIdentifier = "Reminder Title Text Field"
         titleTextField.borderStyle = .roundedRect
         titleTextField.backgroundColor = R.color.textFieldBackground()
         return titleTextField
@@ -31,6 +32,7 @@ final class ReminderEditView: UIView {
     /// リマインダーの通知時刻を設定するためのUI。
     let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
+        datePicker.accessibilityIdentifier = "Reminder Time Date Picker"
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.datePickerMode = .time
         return datePicker

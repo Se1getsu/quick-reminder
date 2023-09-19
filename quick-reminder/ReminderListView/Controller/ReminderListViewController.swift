@@ -94,10 +94,14 @@ final class ReminderListViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = {
+            let barButton = UIBarButtonItem(
+                barButtonSystemItem: .add,
+                target: self,
+                action: #selector(addButtonTapped))
+            barButton.accessibilityIdentifier = "Add Reminder Bar Button"
+            return barButton
+        }()
     }
     
     /// ナビゲーションバーの＋ボタンが押された時の処理。
