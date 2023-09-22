@@ -156,6 +156,13 @@
 			path = "quick-reminderUITests";
 			sourceTree = "<group>";
 		};
+		A691BF072ABD40E2003C0AD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A6B4186F2AA8C0D9006A7053 = {
 			isa = PBXGroup;
 			children = (
@@ -181,12 +188,13 @@
 		A6B4187A2AA8C0D9006A7053 /* quick-reminder */ = {
 			isa = PBXGroup;
 			children = (
-				A6C9B92F2AB3227B009F71A5 /* Repository */,
 				A6B4188F2AA8C4C4006A7053 /* Model */,
+				A691BF072ABD40E2003C0AD1 /* View */,
 				A6C9B9292AB32196009F71A5 /* ReminderListView */,
 				A6C9B92B2AB321EF009F71A5 /* ReminderEditView */,
 				A6B418B62AADF3D1006A7053 /* Util */,
-				A6B418942AA8C842006A7053 /* Delegate */,
+				A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */,
+				A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */,
 				A6C9B9362AB4056B009F71A5 /* Images.xcassets */,
 				A6C9B9382AB4058B009F71A5 /* Colors.xcassets */,
 				A6B418862AA8C0D9006A7053 /* LaunchScreen.storyboard */,
@@ -199,19 +207,13 @@
 		A6B4188F2AA8C4C4006A7053 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6C9B9302AB322B4009F71A5 /* ReminderList */,
+				A6C9B92F2AB3227B009F71A5 /* Repository */,
 				A6B418A12AAADFF5006A7053 /* Reminder.swift */,
 				A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */,
+				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A6B418942AA8C842006A7053 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				A6B4187D2AA8C0D9006A7053 /* SceneDelegate.swift */,
-				A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */,
-			);
-			path = Delegate;
 			sourceTree = "<group>";
 		};
 		A6B418B62AADF3D1006A7053 /* Util */ = {
@@ -244,7 +246,6 @@
 		A6C9B9292AB32196009F71A5 /* ReminderListView */ = {
 			isa = PBXGroup;
 			children = (
-				A6C9B9312AB327F4009F71A5 /* Model */,
 				A6C9B92A2AB321CE009F71A5 /* Controller */,
 				A6C9B92D2AB32203009F71A5 /* View */,
 			);
@@ -312,15 +313,6 @@
 				A66A22C32AB0413F007FE11D /* ReminderSorter.swift */,
 			);
 			path = ReminderList;
-			sourceTree = "<group>";
-		};
-		A6C9B9312AB327F4009F71A5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A6C9B9302AB322B4009F71A5 /* ReminderList */,
-				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A6FDD6E62AB7236100A624EB /* ReminderListView */ = {
