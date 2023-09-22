@@ -9,13 +9,12 @@ import UIKit
 
 final class ReminderEditViewController: UIViewController {
     
+    private var reminderEditView = ReminderEditView()
+    
     private var reminder: Reminder!
-    private var reminderEditView: ReminderEditView!
     private var notificationDateCalculator: NotificationDateCalculator!
     
-    init(_ reminderEditView: ReminderEditView,
-         _ notificationDateCalculator: NotificationDateCalculator) {
-        self.reminderEditView = reminderEditView
+    init(_ notificationDateCalculator: NotificationDateCalculator) {
         self.notificationDateCalculator = notificationDateCalculator
         super.init(nibName: nil, bundle: nil)
     }
