@@ -48,7 +48,7 @@ final class ReminderList: ReminderListProtocol {
     
     private var reminders: [Reminder] = [] {
         didSet {
-            reminders = sorter.sorted(reminders)
+            reminders = sorter.sorted(reminders: reminders)
         }
     }
     /// Reminderリストの要素数。
@@ -56,9 +56,9 @@ final class ReminderList: ReminderListProtocol {
     /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { reminders.isEmpty }
     
-    init(_ repository: ReminderRepositoryProtocol,
-         _ sorter: ReminderSorterProtocol,
-         _ validator: ReminderListValidatorProtocol) {
+    init(repository: ReminderRepositoryProtocol,
+         sorter: ReminderSorterProtocol,
+         validator: ReminderListValidatorProtocol) {
         self.repository = repository
         self.validator = validator
         self.sorter = sorter
@@ -79,13 +79,13 @@ final class ReminderList: ReminderListProtocol {
     ///
     /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func getIndex(reminder: Reminder) throws -> Int {
-        try validator.validateContains(reminders: reminders, newReminder: reminder)
+        try validator.validateContains(reminder, in: reminders)
         return reminders.firstIndex { $0.id == reminder.id }!
     }
     
     /// 与えられたReminderをリストに追加する。
     func addReminder(reminder: Reminder) throws {
-        try validator.validateNotContained(reminders: reminders, newReminder: reminder)
+        try validator.validateNotContains(reminder, in: reminders)
         repository.addReminder(reminder)
         reminders.append(reminder)
         notificationCenter.post(name: .didAddReminder, object: nil, userInfo: ["reminder": reminder])

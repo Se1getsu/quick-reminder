@@ -11,7 +11,7 @@ import Foundation
 struct NotificationDateCalculator {
     private let dateProvider: DateProviderProtocol
     
-    init(_ dateProvider: DateProviderProtocol) {
+    init(dateProvider: DateProviderProtocol) {
         self.dateProvider = dateProvider
     }
     

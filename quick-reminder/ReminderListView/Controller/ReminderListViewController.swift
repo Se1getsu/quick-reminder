@@ -26,11 +26,11 @@ final class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(_ reminderList: ReminderListProtocol,
-         _ notificationHandler: NotificationHandlerProtocol,
-         _ notificationDateCalculator: NotificationDateCalculator,
-         _ dateProvider: DateProviderProtocol,
-         _ oldReminderRemover: OldReminderRemoverProtocol) {
+    init(reminderList: ReminderListProtocol,
+         notificationHandler: NotificationHandlerProtocol,
+         notificationDateCalculator: NotificationDateCalculator,
+         dateProvider: DateProviderProtocol,
+         oldReminderRemover: OldReminderRemoverProtocol) {
         self.reminderList = reminderList
         self.notificationHandler = notificationHandler
         self.notificationDateCalculator = notificationDateCalculator
@@ -123,7 +123,7 @@ final class ReminderListViewController: UIViewController {
     /// - parameter reminder: ReminderEditViewで編集を行うReminder。
     func pushToReminderEditVC(reminder: Reminder) {
         let vc = ReminderEditViewController(
-            NotificationDateCalculator(DateProvider())
+            notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
         )
         vc.setup(reminder: reminder)
         navigationController?.pushViewController(vc, animated: true)
