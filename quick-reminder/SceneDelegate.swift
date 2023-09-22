@@ -21,15 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let useUITestMockRepository = ProcessInfo.processInfo.arguments.contains("-useUITestMockRepository")
         
         let rootVC = ReminderListViewController(
-            ReminderList(
+            reminderList: ReminderList(
                 repository: useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
                 sorter: ReminderSorter(),
                 validator: ReminderListValidator()
             ),
-            NotificationHandler(),
-            NotificationDateCalculator(dateProvider: DateProvider()),
-            DateProvider(),
-            OldReminderRemover(dateProvider: DateProvider())
+            notificationHandler: NotificationHandler(),
+            notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider()),
+            dateProvider: DateProvider(),
+            oldReminderRemover: OldReminderRemover(dateProvider: DateProvider())
         )
         window?.rootViewController = UINavigationController(rootViewController: rootVC)
         
