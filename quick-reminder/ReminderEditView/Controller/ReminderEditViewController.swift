@@ -14,7 +14,7 @@ final class ReminderEditViewController: UIViewController {
     private var reminder: Reminder!
     private var notificationDateCalculator: NotificationDateCalculator!
     
-    init(_ notificationDateCalculator: NotificationDateCalculator) {
+    init(notificationDateCalculator: NotificationDateCalculator) {
         self.notificationDateCalculator = notificationDateCalculator
         super.init(nibName: nil, bundle: nil)
     }

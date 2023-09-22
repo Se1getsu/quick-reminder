@@ -123,7 +123,7 @@ final class ReminderListViewController: UIViewController {
     /// - parameter reminder: ReminderEditViewで編集を行うReminder。
     func pushToReminderEditVC(reminder: Reminder) {
         let vc = ReminderEditViewController(
-            NotificationDateCalculator(dateProvider: DateProvider())
+            notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
         )
         vc.setup(reminder: reminder)
         navigationController?.pushViewController(vc, animated: true)
