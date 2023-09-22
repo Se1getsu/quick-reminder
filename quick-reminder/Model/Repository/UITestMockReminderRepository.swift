@@ -10,7 +10,7 @@ import Foundation
 /// ReminderRepositoryのモック。UITest用で使用する。
 ///
 /// アプリ起動時に `-useUITestMockRepository` オプションを付加することで使用できる。
-class UITestMockReminderRepository: ReminderRepositoryDelegate {
+class UITestMockReminderRepository: ReminderRepositoryProtocol {
     private var reminders = [Reminder]()
 
     func addReminder(_ reminder: Reminder) {
