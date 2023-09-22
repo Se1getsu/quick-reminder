@@ -78,13 +78,13 @@ class ReminderListTests: XCTestCase {
     
     func testAddReminder_成功() {
         let newReminder = Reminder(id: "123", title: "Test Reminder", date: Date())
-        validator.validateNotContainedError = nil
+        validator.validateNotContainsError = nil
         sorter.sortedReminders = [newReminder]
         
         // リマインダーを追加
         XCTAssertNoThrow(try reminderList.addReminder(reminder: newReminder))
         
-        XCTAssertTrue(validator.validateNotContainedCalled)
+        XCTAssertTrue(validator.validateNotContainsCalled)
         XCTAssertEqual(repository.addedReminders.count, 1)
         XCTAssertEqual(sorter.givenReminders?.count, 1)
         XCTAssertEqual(reminderList.count, 1)
@@ -98,7 +98,7 @@ class ReminderListTests: XCTestCase {
     func testAddReminder_失敗() {
         let newReminder = Reminder(id: "123", title: "Test Reminder", date: Date())
         let throwError = MyError.SampleError
-        validator.validateNotContainedError = throwError
+        validator.validateNotContainsError = throwError
         sorter.sortedReminders = [newReminder]
         
         // リマインダーの追加に失敗
@@ -111,7 +111,7 @@ class ReminderListTests: XCTestCase {
     func testDeleteReminder() {
         // 適当なリマインダーを追加
         let newReminder = Reminder(id: "123", title: "Test Reminder", date: Date())
-        validator.validateNotContainedError = nil
+        validator.validateNotContainsError = nil
         sorter.sortedReminders = [newReminder]
         XCTAssertNoThrow(try reminderList.addReminder(reminder: newReminder))
         
@@ -133,7 +133,7 @@ class ReminderListTests: XCTestCase {
     func testUpdateReminder_成功() {
         // 適当なリマインダーを追加
         let newReminder = Reminder(id: "123", title: "Test Reminder", date: Date())
-        validator.validateNotContainedError = nil
+        validator.validateNotContainsError = nil
         sorter.sortedReminders = [newReminder]
         XCTAssertNoThrow(try reminderList.addReminder(reminder: newReminder))
         

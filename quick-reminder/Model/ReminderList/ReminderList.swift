@@ -79,13 +79,13 @@ final class ReminderList: ReminderListProtocol {
     ///
     /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func getIndex(reminder: Reminder) throws -> Int {
-        try validator.validateContains(reminders: reminders, newReminder: reminder)
+        try validator.validateContains(reminder, in: reminders)
         return reminders.firstIndex { $0.id == reminder.id }!
     }
     
     /// 与えられたReminderをリストに追加する。
     func addReminder(reminder: Reminder) throws {
-        try validator.validateNotContained(reminders: reminders, newReminder: reminder)
+        try validator.validateNotContains(reminder, in: reminders)
         repository.addReminder(reminder)
         reminders.append(reminder)
         notificationCenter.post(name: .didAddReminder, object: nil, userInfo: ["reminder": reminder])

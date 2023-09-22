@@ -9,19 +9,19 @@ import Foundation
 @testable import quick_reminder
 
 class MockReminderListValidator: ReminderListValidatorProtocol {
-    private(set) var validateNotContainedCalled = false
+    private(set) var validateNotContainsCalled = false
     private(set) var validateContainsCalled = false
-    var validateNotContainedError: Error?
+    var validateNotContainsError: Error?
     var validateContainsError: Error?
     
-    func validateNotContained(reminders: [Reminder], newReminder reminder: Reminder) throws {
-        validateNotContainedCalled = true
-        if let error = validateNotContainedError {
+    func validateNotContains(_ reminder: Reminder, in reminders: [Reminder]) throws {
+        validateNotContainsCalled = true
+        if let error = validateNotContainsError {
             throw error
         }
     }
     
-    func validateContains(reminders: [Reminder], newReminder reminder: Reminder) throws {
+    func validateContains(_ reminder: Reminder, in reminders: [Reminder]) throws {
         validateContainsCalled = true
         if let error = validateContainsError {
             throw error
