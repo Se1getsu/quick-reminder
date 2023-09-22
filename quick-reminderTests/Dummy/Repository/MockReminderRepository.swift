@@ -8,7 +8,7 @@
 import Foundation
 @testable import quick_reminder
 
-class MockReminderRepository: ReminderRepositoryDelegate {
+class MockReminderRepository: ReminderRepositoryProtocol {
     private(set) var addedReminders: [Reminder] = []
     private(set) var updatedReminders: [Reminder] = []
     private(set) var deletedReminders: [Reminder] = []

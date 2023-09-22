@@ -10,7 +10,7 @@ namespace ReminderListView.Model #FFFFEC {
     class OldReminderRemoverProtocol <<P, #ffccee)>>
     class OldReminderRemover  <<S, #ffeecc)>> #FFE5FF
     ReminderList "1" o-- "*" Model.Reminder
-    ReminderList *-- Repository.ReminderRepositoryDelegate
+    ReminderList *-- Repository.ReminderRepositoryProtocol
     ReminderList *-- ReminderSorterProtocol
     ReminderList *-- ReminderListValidatorProtocol
     ReminderList .u.|> ReminderListProtocol
@@ -44,7 +44,7 @@ namespace Util #ECEFF4 {
     class DateProviderProtocol <<P, #ffccee)>>
 }
 namespace Repository #ECEFF4 {
-    class ReminderRepositoryDelegate <<P, #ffccee)>>
+    class ReminderRepositoryProtocol <<P, #ffccee)>>
 }
 namespace Model #ECEFF4 {
     class Reminder <<S, #ffeecc)>>

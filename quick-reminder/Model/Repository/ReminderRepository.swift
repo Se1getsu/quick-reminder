@@ -8,7 +8,7 @@
 import RealmSwift
 
 /// ReminderのCRUD操作のために、DBとやり取りを行うメソッド。
-protocol ReminderRepositoryDelegate {
+protocol ReminderRepositoryProtocol {
     func addReminder(_ reminder: Reminder)
     func updateReminder(_ reminder: Reminder)
     func deleteReminder(_ reminder: Reminder)
@@ -17,7 +17,7 @@ protocol ReminderRepositoryDelegate {
 }
 
 /// Realmを用いてReminderのCRUD操作を行う。
-struct ReminderRepository: ReminderRepositoryDelegate {
+struct ReminderRepository: ReminderRepositoryProtocol {
     private let realm: Realm
 
     init() {

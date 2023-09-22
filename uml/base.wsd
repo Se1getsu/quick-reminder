@@ -1,12 +1,12 @@
 @startuml Models
 
 namespace Repository #ECEFF4 {
-    class ReminderRepositoryDelegate <<P, #ffccee)>>
+    class ReminderRepositoryProtocol <<P, #ffccee)>>
     class ReminderRepository  <<S, #ffeecc)>>
     class ReminderDTO
-    ReminderRepository ..|> ReminderRepositoryDelegate
+    ReminderRepository ..|> ReminderRepositoryProtocol
     ReminderRepository --> ReminderDTO: 生成
-    ReminderRepositoryDelegate -r[hidden]-> ReminderDTO
+    ReminderRepositoryProtocol -r[hidden]-> ReminderDTO
     ReminderDTO -d-> Model.Reminder: 　変換　
 }
 

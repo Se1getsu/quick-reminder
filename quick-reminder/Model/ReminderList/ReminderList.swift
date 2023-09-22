@@ -42,7 +42,7 @@ final class ReminderList: ReminderListProtocol {
     
     let notificationCenter = NotificationCenter()
     
-    private let repository: ReminderRepositoryDelegate!
+    private let repository: ReminderRepositoryProtocol!
     private let sorter: ReminderSorterProtocol!
     private let validator: ReminderListValidatorProtocol!
     
@@ -56,7 +56,7 @@ final class ReminderList: ReminderListProtocol {
     /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { reminders.isEmpty }
     
-    init(_ repository: ReminderRepositoryDelegate,
+    init(_ repository: ReminderRepositoryProtocol,
          _ sorter: ReminderSorterProtocol,
          _ validator: ReminderListValidatorProtocol) {
         self.repository = repository
