@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             NotificationHandler(),
             NotificationDateCalculator(dateProvider: DateProvider()),
             DateProvider(),
-            OldReminderRemover(DateProvider())
+            OldReminderRemover(dateProvider: DateProvider())
         )
         window?.rootViewController = UINavigationController(rootViewController: rootVC)
         

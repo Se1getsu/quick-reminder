@@ -27,7 +27,7 @@ final class OldReminderRemoverTests: XCTestCase {
         ]
         (reminderList as! MockReminderList).count = 1
 
-        let remover = OldReminderRemover(dateProvider)
+        let remover = OldReminderRemover(dateProvider: dateProvider)
         remover.removeOldReminders(in: &reminderList)
 
         XCTAssertEqual((reminderList as! MockReminderList).reminders.count, 1)
@@ -45,7 +45,7 @@ final class OldReminderRemoverTests: XCTestCase {
         ]
         (reminderList as! MockReminderList).count = 1
 
-        let remover = OldReminderRemover(dateProvider)
+        let remover = OldReminderRemover(dateProvider: dateProvider)
         remover.removeOldReminders(in: &reminderList)
 
         XCTAssertEqual((reminderList as! MockReminderList).count, 0)
