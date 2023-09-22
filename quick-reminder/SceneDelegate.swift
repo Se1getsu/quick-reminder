@@ -26,8 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 ReminderSorter(),
                 ReminderListValidator()
             ),
-            ReminderListView(),
-            NoReminderView(),
             NotificationHandler(),
             NotificationDateCalculator(DateProvider()),
             DateProvider(),
