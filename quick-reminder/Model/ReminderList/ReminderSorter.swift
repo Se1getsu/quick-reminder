@@ -9,14 +9,14 @@ import Foundation
 
 /// ReminderListのソートのためのメソッド。
 protocol ReminderSorterProtocol {
-    func sorted(_ reminders: [Reminder]) -> [Reminder]
+    func sorted(reminders: [Reminder]) -> [Reminder]
 }
 
 /// ReminderListのソートを行う。
 struct ReminderSorter: ReminderSorterProtocol {
     
     /// 与えられたReminder配列をソートしたものを返す。
-    func sorted(_ reminders: [Reminder]) -> [Reminder] {
+    func sorted(reminders: [Reminder]) -> [Reminder] {
         return reminders.sorted { $0.date < $1.date }
     }
     

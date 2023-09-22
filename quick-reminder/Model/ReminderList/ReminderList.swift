@@ -48,7 +48,7 @@ final class ReminderList: ReminderListProtocol {
     
     private var reminders: [Reminder] = [] {
         didSet {
-            reminders = sorter.sorted(reminders)
+            reminders = sorter.sorted(reminders: reminders)
         }
     }
     /// Reminderリストの要素数。

@@ -13,7 +13,7 @@ class MockReminderSorter: ReminderSorterProtocol {
     private(set) var givenReminders: [Reminder]?
     var sortedReminders: [Reminder] = []
     
-    func sorted(_ reminders: [Reminder]) -> [Reminder] {
+    func sorted(reminders: [Reminder]) -> [Reminder] {
         givenReminders = reminders
         return sortedReminders
     }
