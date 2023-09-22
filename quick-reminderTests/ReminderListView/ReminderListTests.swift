@@ -27,7 +27,7 @@ class ReminderListTests: XCTestCase {
         repository = MockReminderRepository()
         sorter = MockReminderSorter()
         validator = MockReminderListValidator()
-        reminderList = ReminderList(repository, sorter, validator)
+        reminderList = ReminderList(repository: repository, sorter: sorter, validator: validator)
         
         reminderList.notificationCenter.addObserver(
             forName: .didAddReminder,

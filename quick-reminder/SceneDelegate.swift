@@ -22,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let rootVC = ReminderListViewController(
             ReminderList(
-                useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
-                ReminderSorter(),
-                ReminderListValidator()
+                repository: useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
+                sorter: ReminderSorter(),
+                validator: ReminderListValidator()
             ),
             NotificationHandler(),
             NotificationDateCalculator(DateProvider()),

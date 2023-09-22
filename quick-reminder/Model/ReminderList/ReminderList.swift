@@ -56,9 +56,9 @@ final class ReminderList: ReminderListProtocol {
     /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { reminders.isEmpty }
     
-    init(_ repository: ReminderRepositoryProtocol,
-         _ sorter: ReminderSorterProtocol,
-         _ validator: ReminderListValidatorProtocol) {
+    init(repository: ReminderRepositoryProtocol,
+         sorter: ReminderSorterProtocol,
+         validator: ReminderListValidatorProtocol) {
         self.repository = repository
         self.validator = validator
         self.sorter = sorter
