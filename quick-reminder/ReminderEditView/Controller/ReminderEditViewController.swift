@@ -7,7 +7,15 @@
 
 import UIKit
 
+/// リマインダーの編集結果に対して処理を行うメソッド。
+protocol ReminderEditDelegate: AnyObject {
+    func didEditReminder(editedReminder: Reminder)
+}
+
 final class ReminderEditViewController: UIViewController {
+    
+    /// リマインダー編集画面のデリゲートとして動作するオブジェクト。
+    weak var delegate: ReminderEditDelegate?
     
     private var reminderEditView = ReminderEditView()
     
@@ -59,9 +67,8 @@ final class ReminderEditViewController: UIViewController {
         let time = reminderEditView.datePicker.date
         let date = notificationDateCalculator.calculate(from: time)
         
-        let updatedReminder = reminder.reinit(title: title, date: date)
-        let previousVC = navigationController?.viewControllers[(navigationController?.viewControllers.count)!-2] as? ReminderListViewController
-        try? previousVC?.updateReminder(reminder: updatedReminder)
+        let editedReminder = reminder.reinit(title: title, date: date)
+        delegate?.didEditReminder(editedReminder: editedReminder)
         navigationController?.popViewController(animated: true)
     }
 

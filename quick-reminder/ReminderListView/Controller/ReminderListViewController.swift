@@ -126,16 +126,16 @@ final class ReminderListViewController: UIViewController {
             notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
         )
         vc.setup(reminder: reminder)
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    /// ReminderListのリマインダーを更新する。
-    ///
-    /// ReminderEditViewControllerでの編集結果を受け取る目的で使用される。
-    func updateReminder(reminder: Reminder) throws {
-        try reminderList.updateReminder(reminder: reminder)
-    }
 
+}
+
+extension ReminderListViewController: ReminderEditDelegate {
+    func didEditReminder(editedReminder reminder: Reminder) {
+        try? reminderList.updateReminder(reminder: reminder)
+    }
 }
 
 extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
