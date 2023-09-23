@@ -127,7 +127,9 @@ final class ReminderListViewController: UIViewController {
         )
         vc.setup(reminder: reminder)
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        navigationController?.present(navVC, animated: true)
     }
 
 }
