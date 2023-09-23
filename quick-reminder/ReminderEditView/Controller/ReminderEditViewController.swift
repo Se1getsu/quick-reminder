@@ -56,6 +56,20 @@ final class ReminderEditViewController: UIViewController {
             barButton.accessibilityIdentifier = "Reminder Edit Save Button"
             return barButton
         }()
+        navigationItem.leftBarButtonItem = {
+            let barButton = UIBarButtonItem(
+                title: "キャンセル",
+                style: .done,
+                target: self,
+                action: #selector(cancelButtonTapped))
+            barButton.accessibilityIdentifier = "Reminder Edit Cancel Button"
+            return barButton
+        }()
+    }
+    
+    /// ナビゲーションバーのキャンセルボタンがタップされた時の処理。
+    @objc func cancelButtonTapped() {
+        dismiss(animated: true)
     }
     
     /// ナビゲーションバーの保存ボタンがタップされた時の処理。
@@ -69,7 +83,7 @@ final class ReminderEditViewController: UIViewController {
         
         let editedReminder = reminder.reinit(title: title, date: date)
         delegate?.didEditReminder(editedReminder: editedReminder)
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
 
 }

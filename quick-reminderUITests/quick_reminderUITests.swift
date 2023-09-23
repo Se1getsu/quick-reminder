@@ -44,8 +44,8 @@ final class quick_reminderUITests: XCTestCase {
         XCTAssertTrue(timeDatePicker.exists)
         XCTAssertTrue(timeDatePicker.isHittable)
         
-        // 戻るボタンの存在を確認
-        let backButton = app.navigationBars.buttons.element(boundBy: 0)
+        // キャンセルボタンの存在を確認
+        let backButton = app.buttons["Reminder Edit Cancel Button"].firstMatch
         XCTAssertTrue(backButton.exists)
         XCTAssertTrue(backButton.isHittable)
         
@@ -79,7 +79,7 @@ final class quick_reminderUITests: XCTestCase {
         let coordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.1))
         coordinate.tap()
         
-        // 戻るボタンを押す
+        // 保存ボタンを押す
         let saveButton = app.navigationBars.buttons["Reminder Edit Save Button"].firstMatch
         XCTAssertTrue(saveButton.exists)
         XCTAssertTrue(saveButton.isHittable)
