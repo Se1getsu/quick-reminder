@@ -1,21 +1,39 @@
 @startuml Models
 
-namespace Repository #ECEFF4 {
+namespace Model #ECEFF4 {
+    class ReminderListProtocol <<P, #ffccee)>>
+    class ReminderList #FFE5FF
+    class ReminderSorterProtocol <<P, #ffccee)>>
+    class ReminderSorter  <<S, #ffeecc)>>
+    class ReminderListValidatorProtocol <<P, #ffccee)>>
+    class ReminderListValidator  <<S, #ffeecc)>>
+
     class ReminderRepositoryProtocol <<P, #ffccee)>>
     class ReminderRepository  <<S, #ffeecc)>>
     class ReminderDTO
+
+    class Reminder <<S, #ffeecc)>>
+    class NotificationDateCalculator <<S, #ffeecc)>> #FFE5FF
+    class OldReminderRemoverProtocol <<P, #ffccee)>>
+    class OldReminderRemover  <<S, #ffeecc)>> #FFE5FF
+
+    ReminderList "\n1" o-- "*" Reminder
+    ReminderList *-- ReminderRepositoryProtocol
+    ReminderList *-- ReminderSorterProtocol
+    ReminderList *-- ReminderListValidatorProtocol
+    ReminderList .u.|> ReminderListProtocol
+    ReminderSorter ..|> ReminderSorterProtocol
+    ReminderListValidator ..|> ReminderListValidatorProtocol
+
     ReminderRepository ..|> ReminderRepositoryProtocol
     ReminderRepository --> ReminderDTO: 生成
     ReminderRepositoryProtocol -r[hidden]-> ReminderDTO
     ReminderDTO -d-> Model.Reminder: 　変換　
-}
 
-namespace Model #ECEFF4 {
-    class Reminder <<S, #ffeecc)>>
-    class NotificationDateCalculator <<S, #ffeecc)>> #FFE5FF
-    Reminder -r[hidden]-> NotificationDateCalculator
+    Reminder -l[hidden]-> NotificationDateCalculator
     NotificationDateCalculator o-- Util.DateProviderProtocol
-    NotificationDateCalculator -r[hidden]-> Util.DateProvider
+    OldReminderRemover ..|> OldReminderRemoverProtocol
+    OldReminderRemoverProtocol -r-> ReminderListProtocol : 引数
 }
 
 namespace Util #ECEFF4 {
