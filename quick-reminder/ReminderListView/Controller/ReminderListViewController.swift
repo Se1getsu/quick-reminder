@@ -104,8 +104,7 @@ final class ReminderListViewController: UIViewController {
     /// ナビゲーションバーの＋ボタンが押された時の処理。
     @objc func addButtonTapped() {
         let reminder = Reminder(date: notificationDateCalculator.calculate(from: dateProvider.now))
-        try! reminderList.addReminder(reminder: reminder)
-        pushToReminderEditVC(reminder: reminder)
+        pushToReminderEditVC(reminder: reminder, editMode: .create)
     }
     
     /// viewを更新する。
@@ -121,11 +120,12 @@ final class ReminderListViewController: UIViewController {
     /// ReminderEditViewに画面遷移する。
     ///
     /// - parameter reminder: ReminderEditViewで編集を行うReminder。
-    func pushToReminderEditVC(reminder: Reminder) {
+    /// - parameter editMode: 編集モード。
+    func pushToReminderEditVC(reminder: Reminder, editMode: ReminderEditViewController.EditMode) {
         let vc = ReminderEditViewController(
             notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
         )
-        vc.setup(reminder: reminder)
+        vc.setup(reminder: reminder, editMode: editMode)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
@@ -135,6 +135,10 @@ final class ReminderListViewController: UIViewController {
 }
 
 extension ReminderListViewController: ReminderEditDelegate {
+    func createReminder(_ reminder: Reminder) {
+        try? reminderList.addReminder(reminder: reminder)
+    }
+    
     func didEditReminder(editedReminder reminder: Reminder) {
         try? reminderList.updateReminder(reminder: reminder)
     }
@@ -163,7 +167,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        pushToReminderEditVC(reminder: reminderList.getReminder(index: indexPath.row))
+        pushToReminderEditVC(reminder: reminderList.getReminder(index: indexPath.row), editMode: .update)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
