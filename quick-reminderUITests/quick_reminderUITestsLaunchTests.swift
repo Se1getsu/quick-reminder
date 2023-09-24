@@ -2,7 +2,7 @@
 //  quick_reminderUITestsLaunchTests.swift
 //  quick-reminderUITests
 //
-//  Created by 垣本 桃弥 on 2023/09/18.
+//  Created by Seigetsu on 2023/09/18.
 //
 
 import XCTest
