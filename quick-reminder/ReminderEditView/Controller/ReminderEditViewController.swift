@@ -9,6 +9,7 @@ import UIKit
 
 /// リマインダーの編集結果に対して処理を行うメソッド。
 protocol ReminderEditDelegate: AnyObject {
+    func createReminder(_ reminder: Reminder)
     func didEditReminder(editedReminder: Reminder)
 }
 
@@ -99,8 +100,11 @@ final class ReminderEditViewController: UIViewController {
         let time = reminderEditView.datePicker.date
         let date = notificationDateCalculator.calculate(from: time)
         
-        let editedReminder = reminder.reinit(title: title, date: date)
-        delegate?.didEditReminder(editedReminder: editedReminder)
+        let newReminder = reminder.reinit(title: title, date: date)
+        switch editMode! {
+        case .create:   delegate?.createReminder(newReminder)
+        case .update:   delegate?.didEditReminder(editedReminder: newReminder)
+        }
         dismiss(animated: true)
     }
 

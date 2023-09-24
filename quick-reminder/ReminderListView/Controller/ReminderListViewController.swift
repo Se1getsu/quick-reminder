@@ -104,7 +104,6 @@ final class ReminderListViewController: UIViewController {
     /// ナビゲーションバーの＋ボタンが押された時の処理。
     @objc func addButtonTapped() {
         let reminder = Reminder(date: notificationDateCalculator.calculate(from: dateProvider.now))
-        try! reminderList.addReminder(reminder: reminder)
         pushToReminderEditVC(reminder: reminder, editMode: .create)
     }
     
@@ -136,6 +135,10 @@ final class ReminderListViewController: UIViewController {
 }
 
 extension ReminderListViewController: ReminderEditDelegate {
+    func createReminder(_ reminder: Reminder) {
+        try? reminderList.addReminder(reminder: reminder)
+    }
+    
     func didEditReminder(editedReminder reminder: Reminder) {
         try? reminderList.updateReminder(reminder: reminder)
     }
