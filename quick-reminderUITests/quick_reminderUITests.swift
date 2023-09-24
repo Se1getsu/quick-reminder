@@ -44,12 +44,12 @@ final class quick_reminderUITests: XCTestCase {
         XCTAssertTrue(timeDatePicker.exists)
         XCTAssertTrue(timeDatePicker.isHittable)
         
-        // キャンセルボタンの存在を確認
-        let backButton = app.buttons["Reminder Edit Cancel Button"].firstMatch
-        XCTAssertTrue(backButton.exists)
-        XCTAssertTrue(backButton.isHittable)
+        // 保存ボタンの存在を確認
+        let saveButton = app.buttons["Reminder Edit Save Button"].firstMatch
+        XCTAssertTrue(saveButton.exists)
+        XCTAssertTrue(saveButton.isHittable)
         
-        backButton.tap()
+        saveButton.tap()
         
         // テーブルビューにセルが追加されたことをチェック
         let reminderListTableView = app.tables["Reminder List Table View"].firstMatch
