@@ -20,7 +20,7 @@ final class OldReminderRemoverTests: XCTestCase {
         let nowDate   = formatter.date(from: "2023/10/10 14:30:00")!
         let before12h = formatter.date(from: "2023/10/10 02:31:00")!
         
-        let dateProvider = MockDateProvider(now: nowDate)
+        let dateProvider = StubDateProvider(now: nowDate)
         var reminderList: ReminderListProtocol = MockReminderList()
         (reminderList as! MockReminderList).reminders = [
             Reminder(date: before12h)
@@ -38,7 +38,7 @@ final class OldReminderRemoverTests: XCTestCase {
         let nowDate   = formatter.date(from: "2023/10/10 14:30:00")!
         let before12h = formatter.date(from: "2023/10/10 02:30:00")!
         
-        let dateProvider = MockDateProvider(now: nowDate)
+        let dateProvider = StubDateProvider(now: nowDate)
         var reminderList: ReminderListProtocol = MockReminderList()
         (reminderList as! MockReminderList).reminders = [
             Reminder(date: before12h)
