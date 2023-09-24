@@ -44,12 +44,12 @@ final class quick_reminderUITests: XCTestCase {
         XCTAssertTrue(timeDatePicker.exists)
         XCTAssertTrue(timeDatePicker.isHittable)
         
-        // キャンセルボタンの存在を確認
-        let backButton = app.buttons["Reminder Edit Cancel Button"].firstMatch
-        XCTAssertTrue(backButton.exists)
-        XCTAssertTrue(backButton.isHittable)
+        // 保存ボタンの存在を確認
+        let saveButton = app.buttons["Reminder Edit Save Button"].firstMatch
+        XCTAssertTrue(saveButton.exists)
+        XCTAssertTrue(saveButton.isHittable)
         
-        backButton.tap()
+        saveButton.tap()
         
         // テーブルビューにセルが追加されたことをチェック
         let reminderListTableView = app.tables["Reminder List Table View"].firstMatch
@@ -91,6 +91,40 @@ final class quick_reminderUITests: XCTestCase {
         let cell = reminderListTableView.cells.element(boundBy: 0)
         XCTAssertEqual(cell.staticTexts.element(boundBy: 0).label, "サンプル文字列")
         XCTAssertTrue(cell.staticTexts.element(boundBy: 1).firstMatch.label.contains("12:34"))
+    }
+    
+    func test_リマインダー編集_キャンセル() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-useUITestMockRepository")
+        app.launch()
+        
+        // 新規作成
+        let addButton = app.buttons["Add Reminder Bar Button"].firstMatch
+        addButton.tap()
+        
+        // 編集
+        let titleTextField = app.textFields["Reminder Title Text Field"].firstMatch
+        titleTextField.tap()
+        titleTextField.typeText("テスト")
+        
+        // キャンセルボタンを押す
+        let cancelButton = app.navigationBars.buttons["Reminder Edit Cancel Button"].firstMatch
+        XCTAssertTrue(cancelButton.exists)
+        XCTAssertTrue(cancelButton.isHittable)
+        cancelButton.tap()
+        sleep(1)
+        
+        // 変更内容を破棄ボタンを押す
+        let discardButton = app.buttons["Reminder Edit Discard Button"].firstMatch
+        XCTAssertTrue(discardButton.exists)
+        XCTAssertTrue(discardButton.isHittable)
+        discardButton.tap()
+        sleep(1)
+        
+        // リマインダーがない時の説明表示が出るかを確認
+        let noReminderLabel = app.staticTexts["No Reminder Description Label"].firstMatch
+        XCTAssertTrue(noReminderLabel.exists)
+        XCTAssertTrue(noReminderLabel.isHittable)
     }
     
     func test_リマインダー削除() throws {
