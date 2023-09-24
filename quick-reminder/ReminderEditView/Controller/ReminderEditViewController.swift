@@ -61,8 +61,7 @@ final class ReminderEditViewController: UIViewController {
         setupNavigationBar()
         
         reminderEditView.titleTextField.placeholder = Reminder.defaultTitle
-        reminderEditView.titleTextField.text = reminder.title == Reminder.defaultTitle ? "" : reminder.title
-        reminderEditView.datePicker.date = reminder.date
+        setUpReminderOnView()
     }
     
     private func setupNavigationBar() {
@@ -86,8 +85,39 @@ final class ReminderEditViewController: UIViewController {
         }()
     }
     
+    /// リマインダーの情報をビューにセットアップする処理。
+    private func setUpReminderOnView() {
+        reminderEditView.titleTextField.text = reminder.title == Reminder.defaultTitle ? "" : reminder.title
+        reminderEditView.datePicker.date = reminder.date
+    }
+    
+    /// ビューがセットアップされてから変更されたかを返す。
+    private func didChangeReminderOnView() -> Bool {
+        // タイトル
+        var title = Reminder.defaultTitle
+        if let text = reminderEditView.titleTextField.text, !text.isEmpty {
+            title = text
+        }
+        if title != reminder.title { return true }
+        
+        // 通知時間
+        let originalTime = reminder.date
+        let editedTime = reminderEditView.datePicker.date
+        let calendar = Calendar.current
+        let originalComponents = calendar.dateComponents([.hour, .minute], from: originalTime)
+        let editedComponents = calendar.dateComponents([.hour, .minute], from: editedTime)
+        if originalComponents != editedComponents { return true }
+        
+        return false
+    }
+    
     /// ナビゲーションバーのキャンセルボタンがタップされた時の処理。
     @objc func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        if !didChangeReminderOnView() {
+            discardChanges()
+            return
+        }
+        
         let message = {
             switch editMode! {
             case .create:   return "この新規リマインダーを破棄しますか？"
@@ -97,9 +127,7 @@ final class ReminderEditViewController: UIViewController {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
         
-        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive, handler: { (action) -> Void in
-            self.discardChanges()
-        })
+        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive, handler: { _ in self.discardChanges() })
         let cancel = UIAlertAction(title: "編集を続ける", style: .cancel)
         
         alert.addAction(delete)
