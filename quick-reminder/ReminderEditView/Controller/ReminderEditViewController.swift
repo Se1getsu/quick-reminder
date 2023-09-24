@@ -80,14 +80,35 @@ final class ReminderEditViewController: UIViewController {
                 title: "キャンセル",
                 style: .plain,
                 target: self,
-                action: #selector(cancelButtonTapped))
+                action: #selector(cancelButtonTapped(_:)))
             barButton.accessibilityIdentifier = "Reminder Edit Cancel Button"
             return barButton
         }()
     }
     
     /// ナビゲーションバーのキャンセルボタンがタップされた時の処理。
-    @objc func cancelButtonTapped() {
+    @objc func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        let message = {
+            switch editMode! {
+            case .create:   return "この新規リマインダーを破棄しますか？"
+            case .update:   return "この変更を破棄しますか？"
+            }
+        }()
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+        
+        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive, handler: { (action) -> Void in
+            self.discardChanges()
+        })
+        let cancel = UIAlertAction(title: "編集を続ける", style: .cancel)
+        
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        self.present(alert, animated: true)
+    }
+    
+    /// 「変更内容を破棄」ボタンがタップされた時の処理。
+    private func discardChanges() {
         dismiss(animated: true)
     }
     
