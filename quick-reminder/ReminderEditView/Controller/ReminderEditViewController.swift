@@ -128,6 +128,7 @@ final class ReminderEditViewController: UIViewController {
         alert.popoverPresentationController?.barButtonItem = sender
         
         let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive, handler: { _ in self.discardChanges() })
+        delete.accessibilityIdentifier = "Reminder Edit Discard Button"
         let cancel = UIAlertAction(title: "編集を続ける", style: .cancel)
         
         alert.addAction(delete)
