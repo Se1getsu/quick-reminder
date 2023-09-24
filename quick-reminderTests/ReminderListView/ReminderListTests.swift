@@ -2,7 +2,7 @@
 //  ReminderListTests.swift
 //  quick-reminderTests
 //
-//  Created by 垣本 桃弥 on 2023/09/17.
+//  Created by Seigetsu on 2023/09/17.
 //
 
 import XCTest
