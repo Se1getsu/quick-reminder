@@ -8,12 +8,11 @@
 import Foundation
 @testable import quick_reminder
 
-import Foundation
-
 class MockReminderList: ReminderListProtocol {
     
     var reminders: [Reminder] = []
     var getReminderReturn: Reminder = Reminder(id: "", title: "", date: Date())
+    private(set) var getReminderIndices = [Int]()
     private(set) var deletedIndices = [Int]()
     
     var notificationCenter: NotificationCenter = NotificationCenter()
@@ -24,6 +23,7 @@ class MockReminderList: ReminderListProtocol {
     }
     
     func getReminder(index: Int) -> Reminder {
+        getReminderIndices.append(index)
         return getReminderReturn
     }
     
