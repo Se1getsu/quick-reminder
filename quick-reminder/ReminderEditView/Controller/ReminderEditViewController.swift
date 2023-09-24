@@ -14,12 +14,20 @@ protocol ReminderEditDelegate: AnyObject {
 
 final class ReminderEditViewController: UIViewController {
     
+    enum EditMode {
+        /// リマインダーを新規作成するための編集モード。
+        case create
+        /// 既存のリマインダーを更新するための編集モード。
+        case update
+    }
+    
     /// リマインダー編集画面のデリゲートとして動作するオブジェクト。
     weak var delegate: ReminderEditDelegate?
     
     private var reminderEditView = ReminderEditView()
     
     private var reminder: Reminder!
+    private var editMode: EditMode!
     private var notificationDateCalculator: NotificationDateCalculator!
     
     init(notificationDateCalculator: NotificationDateCalculator) {
@@ -31,13 +39,23 @@ final class ReminderEditViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(reminder: Reminder) {
+    /// リマインダー編集に必要な情報をセットアップする。
+    ///
+    /// - parameter reminder: 編集対象のリマインダー。
+    /// - parameter editMode: 編集モード。
+    func setup(reminder: Reminder, editMode: EditMode) {
         self.reminder = reminder
+        self.editMode = editMode
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "編集"
+        title = {
+            switch editMode! {
+            case .create:   return "新規作成"
+            case .update:   return "編集"
+            }
+        }()
         view = reminderEditView
         setupNavigationBar()
         
@@ -59,7 +77,7 @@ final class ReminderEditViewController: UIViewController {
         navigationItem.leftBarButtonItem = {
             let barButton = UIBarButtonItem(
                 title: "キャンセル",
-                style: .done,
+                style: .plain,
                 target: self,
                 action: #selector(cancelButtonTapped))
             barButton.accessibilityIdentifier = "Reminder Edit Cancel Button"
