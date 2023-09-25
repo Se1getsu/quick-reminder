@@ -14,7 +14,6 @@ protocol OldReminderRemoverProtocol {
 
 /// ReminderListに含まれる、通知から12時間以上経過したリマインダーを削除する。
 struct OldReminderRemover: OldReminderRemoverProtocol {
-    
     let dateProvider: DateProviderProtocol!
     
     init(dateProvider: DateProviderProtocol) {
@@ -26,7 +25,7 @@ struct OldReminderRemover: OldReminderRemoverProtocol {
         let indexesToRemove = reminderList.enumerated().filter { _, reminder in
             isReminderOld(reminder)
         }.map { index, _ in
-            return index
+            index
         }
         
         indexesToRemove.reversed().forEach { index in
@@ -39,5 +38,4 @@ struct OldReminderRemover: OldReminderRemoverProtocol {
         let deadline = Calendar.current.date(byAdding: .hour, value: -12, to: dateProvider.now)!
         return reminder.date <= deadline
     }
-    
 }

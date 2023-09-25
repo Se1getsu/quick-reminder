@@ -14,10 +14,8 @@ protocol ReminderSorterProtocol {
 
 /// ReminderListのソートを行う。
 struct ReminderSorter: ReminderSorterProtocol {
-    
     /// 与えられたReminder配列をソートしたものを返す。
     func sorted(reminders: [Reminder]) -> [Reminder] {
-        return reminders.sorted { $0.date < $1.date }
+        reminders.sorted { $0.date < $1.date }
     }
-    
 }

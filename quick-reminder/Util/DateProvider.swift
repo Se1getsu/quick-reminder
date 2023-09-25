@@ -16,8 +16,6 @@ protocol DateProviderProtocol {
 /// 現在時刻 `Date()` を計算するプロパティを提供する。
 struct DateProvider: DateProviderProtocol {
     var now: Date {
-        get {
-            return Date()
-        }
+        Date()
     }
 }

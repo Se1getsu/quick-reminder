@@ -14,7 +14,6 @@ protocol ReminderEditDelegate: AnyObject {
 }
 
 final class ReminderEditViewController: UIViewController {
-    
     enum EditMode {
         /// リマインダーを新規作成するための編集モード。
         case create
@@ -127,7 +126,7 @@ final class ReminderEditViewController: UIViewController {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
         
-        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive, handler: { _ in self.discardChanges() })
+        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive) { _ in self.discardChanges() }
         delete.accessibilityIdentifier = "Reminder Edit Discard Button"
         let cancel = UIAlertAction(title: "編集を続ける", style: .cancel)
         
@@ -157,5 +156,4 @@ final class ReminderEditViewController: UIViewController {
         }
         dismiss(animated: true)
     }
-
 }

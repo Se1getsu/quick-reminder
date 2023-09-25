@@ -15,7 +15,6 @@ protocol ReminderListValidatorProtocol {
 
 /// ReminderListの操作における妥当性確認を行う。
 struct ReminderListValidator: ReminderListValidatorProtocol {
-    
     enum ValidationError: Error {
         case alreadyContained(id: String)
         case notFound(id: String)
@@ -36,5 +35,4 @@ struct ReminderListValidator: ReminderListValidatorProtocol {
             throw ValidationError.notFound(id: reminder.id)
         }
     }
-    
 }
