@@ -8,7 +8,6 @@
 import UIKit
 
 final class ReminderListViewController: UIViewController {
-    
     private let reminderListView = ReminderListView()
     private let noReminderView = NoReminderView()
     
@@ -51,38 +50,23 @@ final class ReminderListViewController: UIViewController {
         reminderListView.reminderTableView.dataSource = self
         reminderListView.reminderTableView.delegate = self
         
-        reminderList.notificationCenter.addObserver(
-            forName: .didAddReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                self.reloadView()
-                notificationHandler.registerNotification(
-                    reminder: notification.userInfo!["reminder"] as! Reminder
-                )
-            }
-        )
-        reminderList.notificationCenter.addObserver(
-            forName: .didDeleteReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                notificationHandler.removeNotification(
-                    reminder: notification.userInfo!["reminder"] as! Reminder
-                )
-            }
-        )
-        reminderList.notificationCenter.addObserver(
-            forName: .didUpdateReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                self.reloadView()
-                notificationHandler.registerNotification(
-                    reminder: notification.userInfo!["reminder"] as! Reminder
-                )
-            }
-        )
+        reminderList.notificationCenter.addObserver(forName: .didAddReminder, object: nil, queue: nil) { [unowned self] notification in
+            self.reloadView()
+            notificationHandler.registerNotification(
+                reminder: notification.userInfo!["reminder"] as! Reminder
+            )
+        }
+        reminderList.notificationCenter.addObserver(forName: .didDeleteReminder, object: nil, queue: nil) { [unowned self] notification in
+            notificationHandler.removeNotification(
+                reminder: notification.userInfo!["reminder"] as! Reminder
+            )
+        }
+        reminderList.notificationCenter.addObserver(forName: .didUpdateReminder, object: nil, queue: nil) { [unowned self] notification in
+            self.reloadView()
+            notificationHandler.registerNotification(
+                reminder: notification.userInfo!["reminder"] as! Reminder
+            )
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,7 +115,6 @@ final class ReminderListViewController: UIViewController {
         navVC.modalPresentationStyle = .fullScreen
         navigationController?.present(navVC, animated: true)
     }
-
 }
 
 extension ReminderListViewController: ReminderEditDelegate {
@@ -145,9 +128,8 @@ extension ReminderListViewController: ReminderEditDelegate {
 }
 
 extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reminderList.count
+        reminderList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -171,7 +153,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] (action, reminderListView, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] _, _, completionHandler in
             self.reminderList.deleteReminder(index: indexPath.row)
             if reminderList.isEmpty {
                 self.reloadView()
@@ -183,5 +165,4 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
         deleteAction.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
 }

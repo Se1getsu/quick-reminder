@@ -55,5 +55,4 @@ struct ReminderRepository: ReminderRepositoryProtocol {
         let reminderDTO = realm.object(ofType: ReminderDTO.self, forPrimaryKey: id)
         return reminderDTO?.convertToReminder()
     }
-    
 }

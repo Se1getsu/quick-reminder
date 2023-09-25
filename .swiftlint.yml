@@ -1,0 +1,34 @@
+opt_in_rules:
+  - file_name
+  - first_where
+  - implicit_return
+  - last_where
+  - legacy_random
+  - private_action
+  - private_outlet
+  - toggle_bool
+  - trailing_closure
+  - unneeded_parentheses_in_closure_argument
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+
+disabled_rules:
+  - trailing_whitespace
+  - vertical_whitespace
+  - line_length
+  - force_cast
+  - force_try
+  - identifier_name
+  - cyclomatic_complexity
+  - function_body_length
+  - type_name
+  - large_tuple
+  - file_length
+  - todo
+
+included:
+  - quick-reminder
+
+excluded:
+  - Pods
+  - quick-reminder/R.generated.swift

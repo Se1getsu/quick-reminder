@@ -39,7 +39,6 @@ protocol ReminderListProtocol {
 /// - 与えられたソーターによって、自動的にソートされる。
 /// - 与えられたバリデータによって、妥当性が確認される。
 final class ReminderList: ReminderListProtocol {
-    
     let notificationCenter = NotificationCenter()
     
     private let repository: ReminderRepositoryProtocol!
@@ -72,7 +71,7 @@ final class ReminderList: ReminderListProtocol {
     
     /// 与えられたインデックスのReminderを返す。
     func getReminder(index: Int) -> Reminder {
-        return reminders[index]
+        reminders[index]
     }
     
     /// 与えられたReminderがどのindexで管理されているかを返す。
@@ -116,7 +115,6 @@ final class ReminderList: ReminderListProtocol {
     
     /// (n, x)のペアのシーケンスを返す。nはゼロから始まる連続した整数を表し、xはReminderListの要素を表す。
     func enumerated() -> EnumeratedSequence<[Reminder]> {
-        return reminders.enumerated()
+        reminders.enumerated()
     }
-    
 }

@@ -1,5 +1,5 @@
 //
-//  RemiderDTO.swift
+//  ReminderDTO.swift
 //  quick-reminder
 //
 //  Created by Seigetsu on 2023/09/13.
@@ -14,7 +14,7 @@ final class ReminderDTO: Object {
     @objc dynamic var date: Date = Date()
     
     override static func primaryKey() -> String? {
-        return "id"
+        "id"
     }
     
     convenience init(from reminder: Reminder) {
@@ -26,6 +26,6 @@ final class ReminderDTO: Object {
     
     /// 自身をReminderに変換したものを返す。
     func convertToReminder() -> Reminder {
-        return Reminder(id: id, title: title, date: date)
+        Reminder(id: id, title: title, date: date)
     }
 }

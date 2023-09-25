@@ -8,7 +8,6 @@
 import UIKit
 
 final class ReminderEditView: UIView {
-    
     private let titleLabel: UILabel = {
         var titleLabel = UILabel()
         titleLabel.text = "内容"
@@ -71,5 +70,4 @@ final class ReminderEditView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

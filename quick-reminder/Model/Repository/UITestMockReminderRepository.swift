@@ -27,11 +27,10 @@ class UITestMockReminderRepository: ReminderRepositoryProtocol {
     }
 
     func getAllReminders() -> [Reminder] {
-        return reminders
+        reminders
     }
 
     func getReminder(withID id: String) -> Reminder? {
-        return reminders.filter { $0.id == id }.first
+        reminders.first { $0.id == id }
     }
-    
 }

@@ -24,6 +24,6 @@ struct Reminder {
     }
     
     func reinit(title: String, date: Date) -> Reminder {
-        return Reminder(id: self.id, title: title, date: date)
+        Reminder(id: self.id, title: title, date: date)
     }
 }

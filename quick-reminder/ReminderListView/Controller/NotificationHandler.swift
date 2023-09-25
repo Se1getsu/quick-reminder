@@ -18,7 +18,6 @@ protocol NotificationHandlerProtocol {
 
 /// Reminderのプッシュ通知を登録・削除する。
 struct NotificationHandler: NotificationHandlerProtocol {
-    
     func registerNotification(reminder: Reminder) {
         let identifier = reminder.id
         let content = UNMutableNotificationContent()
@@ -34,7 +33,7 @@ struct NotificationHandler: NotificationHandlerProtocol {
             trigger: trigger)
 
         // 通知リクエストを登録
-        UNUserNotificationCenter.current().add(request){ (error : Error?) in
+        UNUserNotificationCenter.current().add(request) { (error: Error?) in
              if let error = error {
                   print(error.localizedDescription)
              }
@@ -47,5 +46,4 @@ struct NotificationHandler: NotificationHandlerProtocol {
         // 通知リクエストを削除
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
-    
 }

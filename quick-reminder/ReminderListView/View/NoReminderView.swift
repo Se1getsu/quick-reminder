@@ -8,7 +8,6 @@
 import UIKit
 
 final class NoReminderView: UIView {
-
     private let label: UILabel = {
         var label = UILabel()
         label.accessibilityIdentifier = "No Reminder Description Label"
@@ -38,5 +37,4 @@ final class NoReminderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

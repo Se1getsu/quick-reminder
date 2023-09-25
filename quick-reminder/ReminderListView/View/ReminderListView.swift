@@ -8,7 +8,6 @@
 import UIKit
 
 final class ReminderListView: UIView {
-    
     /// リマインダーリストを表示するためのテーブルビュー。
     let reminderTableView: UITableView = {
         let reminderTableView = UITableView()
@@ -37,5 +36,4 @@ final class ReminderListView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
