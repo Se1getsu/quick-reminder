@@ -36,7 +36,6 @@
 		A6C9B9352AB35C5E009F71A5 /* NoReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */; };
 		A6C9B9372AB4056B009F71A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C9B9362AB4056B009F71A5 /* Images.xcassets */; };
 		A6C9B9392AB4058B009F71A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C9B9382AB4058B009F71A5 /* Colors.xcassets */; };
-		A6FDD6DA2AB42BCC00A624EB /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6D92AB42BCC00A624EB /* R.generated.swift */; };
 		A6FDD6E22AB71DC600A624EB /* MockReminderSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E12AB71DC600A624EB /* MockReminderSorter.swift */; };
 		A6FDD6E42AB71E7D00A624EB /* MockReminderListValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E32AB71E7D00A624EB /* MockReminderListValidator.swift */; };
 		A6FDD6E82AB7238500A624EB /* ReminderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E72AB7238500A624EB /* ReminderListTests.swift */; };
@@ -95,7 +94,6 @@
 		A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReminderView.swift; sourceTree = "<group>"; };
 		A6C9B9362AB4056B009F71A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A6C9B9382AB4058B009F71A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		A6FDD6D92AB42BCC00A624EB /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "quick-reminder/R.generated.swift"; sourceTree = SOURCE_ROOT; };
 		A6FDD6E12AB71DC600A624EB /* MockReminderSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderSorter.swift; sourceTree = "<group>"; };
 		A6FDD6E32AB71E7D00A624EB /* MockReminderListValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderListValidator.swift; sourceTree = "<group>"; };
 		A6FDD6E72AB7238500A624EB /* ReminderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTests.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				A6B4187B2AA8C0D9006A7053 /* AppDelegate.swift */,
 				A6C9B9362AB4056B009F71A5 /* Images.xcassets */,
 				A6C9B9382AB4058B009F71A5 /* Colors.xcassets */,
-				A6FDD6D92AB42BCC00A624EB /* R.generated.swift */,
 				A6B418862AA8C0D9006A7053 /* LaunchScreen.storyboard */,
 				A6B418892AA8C0D9006A7053 /* Info.plist */,
 			);
@@ -401,7 +398,6 @@
 			buildConfigurationList = A6B4188C2AA8C0D9006A7053 /* Build configuration list for PBXNativeTarget "quick-reminder" */;
 			buildPhases = (
 				E7C725113539C77CFDF960D0 /* [CP] Check Pods Manifest.lock */,
-				A6FDCBE22AB4295900CA9097 /* ShellScript */,
 				A6B418742AA8C0D9006A7053 /* Sources */,
 				A6B418752AA8C0D9006A7053 /* Frameworks */,
 				A6B418762AA8C0D9006A7053 /* Resources */,
@@ -524,25 +520,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		A6FDCBE22AB4295900CA9097 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				$SRCROOT/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
 		D3E2391D8604747C2AAB11AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -604,7 +581,6 @@
 				A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */,
 				A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */,
 				A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */,
-				A6FDD6DA2AB42BCC00A624EB /* R.generated.swift in Sources */,
 				A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */,
 				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,
 				A6C9B9232AB205E8009F71A5 /* ReminderDTO.swift in Sources */,

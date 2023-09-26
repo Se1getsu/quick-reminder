@@ -143,7 +143,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
         content.text = title
         content.secondaryText = dateText
         cell.contentConfiguration = content
-        cell.backgroundColor = reminder.date <= dateProvider.now ? R.color.inactiveReminderCellBackground() : R.color.activeReminderCellBackground()
+        cell.backgroundColor = reminder.date <= dateProvider.now ? UIColor(resource: .inactiveReminderCellBackground) : UIColor(resource: .activeReminderCellBackground)
         return cell
     }
     
