@@ -142,7 +142,10 @@ final class quick_reminderUITests: XCTestCase {
         let reminderListTableView = app.tables["Reminder List Table View"].firstMatch
         let cell = reminderListTableView.cells.element(boundBy: 0)
         cell.swipeLeft()
-        cell.buttons["ゴミ箱"].tap()
+        let deleteButton = cell.buttons.firstMatch
+        XCTAssertTrue(deleteButton.exists)
+        XCTAssertTrue(deleteButton.isHittable)
+        deleteButton.tap()
         XCTAssertEqual(reminderListTableView.cells.count, 0)
         
         // リマインダーがない時の説明表示が出るかを確認
