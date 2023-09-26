@@ -13,7 +13,6 @@ Cocoa MVC アーキテクチャの実践として作成した、個人開発ア�
 # Installation
 ```bash
 $ git clone https://github.com/Se1getsu/quick-reminder.git
-$ cd quick-reminder/
+$ cd quick-reminder
 $ pod install
 ```
-Xcode上に赤文字で表示される `R.generated.swift` はビルド時に自動生成されます。
