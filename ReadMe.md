@@ -7,6 +7,9 @@ Cocoa MVC アーキテクチャの実践として作成した、個人開発ア�
   - 翌日の現在までの範囲で設定可能。
 - 通知済みのリマインダーは灰色で表示され、12時間後には自動的に削除される。
 
+# Requirement
+- Xcode 15.0 以降
+
 # Installation
 ```bash
 $ git clone https://github.com/Se1getsu/quick-reminder.git
