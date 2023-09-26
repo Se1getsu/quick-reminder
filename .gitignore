@@ -7,8 +7,5 @@ xcuserdata/
 Pods/*
 Carthage/Build/
 
-# R.swift
-*.generated.swift
-
 # PlantUML
 out/*

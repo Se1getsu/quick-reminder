@@ -13,12 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Navigation bar customize
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.backgroundColor = R.color.navigationBar()
+        navigationBarAppearance.backgroundColor = UIColor(resource: .navigationBar)
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: R.color.navigationBarTitleText()!]
-        UINavigationBar.appearance().tintColor = R.color.barButtonTintColor()
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(resource: .navigationBarTitleText)]
+        UINavigationBar.appearance().tintColor = UIColor(resource: .barButtonTint)
         
         // Notification
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
