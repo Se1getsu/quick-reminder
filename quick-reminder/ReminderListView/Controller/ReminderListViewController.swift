@@ -107,9 +107,10 @@ final class ReminderListViewController: UIViewController {
     /// - parameter editMode: 編集モード。
     func pushToReminderEditVC(reminder: Reminder, editMode: ReminderEditViewController.EditMode) {
         let vc = ReminderEditViewController(
+            reminder: reminder,
+            editMode: editMode,
             notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
         )
-        vc.setup(reminder: reminder, editMode: editMode)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
