@@ -30,22 +30,21 @@ final class ReminderEditViewController: UIViewController {
     private var editMode: EditMode!
     private var notificationDateCalculator: NotificationDateCalculator!
     
-    init(notificationDateCalculator: NotificationDateCalculator) {
-        self.notificationDateCalculator = notificationDateCalculator
+    struct Dependency {
+        let notificationDateCalculator: NotificationDateCalculator
+    }
+    
+    /// - parameter reminder: 編集対象のリマインダー。
+    /// - parameter editMode: 編集モード。
+    init(dependency: Dependency, reminder: Reminder, editMode: EditMode) {
+        self.reminder = reminder
+        self.editMode = editMode
+        self.notificationDateCalculator = dependency.notificationDateCalculator
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    /// リマインダー編集に必要な情報をセットアップする。
-    ///
-    /// - parameter reminder: 編集対象のリマインダー。
-    /// - parameter editMode: 編集モード。
-    func setup(reminder: Reminder, editMode: EditMode) {
-        self.reminder = reminder
-        self.editMode = editMode
     }
     
     override func viewDidLoad() {

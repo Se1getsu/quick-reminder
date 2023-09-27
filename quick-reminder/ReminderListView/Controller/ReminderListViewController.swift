@@ -17,6 +17,14 @@ final class ReminderListViewController: UIViewController {
     private let dateProvider: DateProviderProtocol!
     private let oldReminderRemover: OldReminderRemoverProtocol!
     
+    struct Dependency {
+        let reminderList: ReminderListProtocol
+        let notificationHandler: NotificationHandlerProtocol
+        let notificationDateCalculator: NotificationDateCalculator
+        let dateProvider: DateProviderProtocol
+        let oldReminderRemover: OldReminderRemoverProtocol
+    }
+    
     /// テーブルビューに表示する各リマインダーの通知時刻のフォーマッタ。
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -25,16 +33,12 @@ final class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
-    init(reminderList: ReminderListProtocol,
-         notificationHandler: NotificationHandlerProtocol,
-         notificationDateCalculator: NotificationDateCalculator,
-         dateProvider: DateProviderProtocol,
-         oldReminderRemover: OldReminderRemoverProtocol) {
-        self.reminderList = reminderList
-        self.notificationHandler = notificationHandler
-        self.notificationDateCalculator = notificationDateCalculator
-        self.dateProvider = dateProvider
-        self.oldReminderRemover = oldReminderRemover
+    init(dependency: Dependency) {
+        self.reminderList = dependency.reminderList
+        self.notificationHandler = dependency.notificationHandler
+        self.notificationDateCalculator = dependency.notificationDateCalculator
+        self.dateProvider = dependency.dateProvider
+        self.oldReminderRemover = dependency.oldReminderRemover
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -107,9 +111,12 @@ final class ReminderListViewController: UIViewController {
     /// - parameter editMode: 編集モード。
     func pushToReminderEditVC(reminder: Reminder, editMode: ReminderEditViewController.EditMode) {
         let vc = ReminderEditViewController(
-            notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
+            dependency: .init(
+                notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
+            ),
+            reminder: reminder,
+            editMode: editMode
         )
-        vc.setup(reminder: reminder, editMode: editMode)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
