@@ -30,12 +30,16 @@ final class ReminderEditViewController: UIViewController {
     private var editMode: EditMode!
     private var notificationDateCalculator: NotificationDateCalculator!
     
+    struct Dependency {
+        let notificationDateCalculator: NotificationDateCalculator
+    }
+    
     /// - parameter reminder: 編集対象のリマインダー。
     /// - parameter editMode: 編集モード。
-    init(reminder: Reminder, editMode: EditMode, notificationDateCalculator: NotificationDateCalculator) {
+    init(dependency: Dependency, reminder: Reminder, editMode: EditMode) {
         self.reminder = reminder
         self.editMode = editMode
-        self.notificationDateCalculator = notificationDateCalculator
+        self.notificationDateCalculator = dependency.notificationDateCalculator
         super.init(nibName: nil, bundle: nil)
     }
     
