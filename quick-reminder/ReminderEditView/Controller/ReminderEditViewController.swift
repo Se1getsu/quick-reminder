@@ -34,7 +34,7 @@ final class ReminderEditViewController: UIViewController {
         let notificationDateCalculator: NotificationDateCalculator
     }
     
-    /// - parameter reminder: 編集対象のリマインダー。新規作成の場合は初期設定のリマインダー。
+    /// - parameter reminder: 編集対象のリマインダー。
     /// - parameter editMode: 編集モード。
     init(dependency: Dependency, reminder: Reminder, editMode: EditMode) {
         self.reminder = reminder
