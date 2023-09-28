@@ -16,9 +16,33 @@ protocol ReminderEditDelegate: AnyObject {
 final class ReminderEditViewController: UIViewController {
     enum EditMode {
         /// リマインダーを新規作成するための編集モード。
-        case create
+        case create(defaultReminder: Reminder)
         /// 既存のリマインダーを更新するための編集モード。
-        case update
+        case update(currentReminder: Reminder)
+        
+        /// セットされているリマインダー。
+        var reminder: Reminder {
+            switch self {
+            case .create(defaultReminder: let defaultReminder): return defaultReminder
+            case .update(currentReminder: let currentReminder): return currentReminder
+            }
+        }
+        
+        /// ナビゲーションバーのタイトル。
+        var title: String {
+            switch self {
+            case .create:   return "新規作成"
+            case .update:   return "編集"
+            }
+        }
+        
+        /// キャンセル時のアラートメッセージ。
+        var cancelAlertMessage: String {
+            switch self {
+            case .create:   return "この新規リマインダーを破棄しますか？"
+            case .update:   return "この変更を破棄しますか？"
+            }
+        }
     }
     
     /// リマインダー編集画面のデリゲートとして動作するオブジェクト。
@@ -26,7 +50,6 @@ final class ReminderEditViewController: UIViewController {
     
     private var reminderEditView = ReminderEditView()
     
-    private var reminder: Reminder!
     private var editMode: EditMode!
     private var notificationDateCalculator: NotificationDateCalculator!
     
@@ -34,10 +57,8 @@ final class ReminderEditViewController: UIViewController {
         let notificationDateCalculator: NotificationDateCalculator
     }
     
-    /// - parameter reminder: 編集対象のリマインダー。新規作成の場合は初期設定のリマインダー。
     /// - parameter editMode: 編集モード。
-    init(dependency: Dependency, reminder: Reminder, editMode: EditMode) {
-        self.reminder = reminder
+    init(dependency: Dependency, editMode: EditMode) {
         self.editMode = editMode
         self.notificationDateCalculator = dependency.notificationDateCalculator
         super.init(nibName: nil, bundle: nil)
@@ -49,12 +70,7 @@ final class ReminderEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = {
-            switch editMode! {
-            case .create:   return "新規作成"
-            case .update:   return "編集"
-            }
-        }()
+        title = editMode.title
         view = reminderEditView
         setupNavigationBar()
         
@@ -85,12 +101,15 @@ final class ReminderEditViewController: UIViewController {
     
     /// リマインダーの情報をビューにセットアップする処理。
     private func setUpReminderOnView() {
+        let reminder = editMode.reminder
         reminderEditView.titleTextField.text = reminder.title == Reminder.defaultTitle ? "" : reminder.title
         reminderEditView.datePicker.date = reminder.date
     }
     
     /// ビューがセットアップされてから変更されたかを返す。
     private func didChangeReminderOnView() -> Bool {
+        let reminder = editMode.reminder
+        
         // タイトル
         var title = Reminder.defaultTitle
         if let text = reminderEditView.titleTextField.text, !text.isEmpty {
@@ -116,13 +135,7 @@ final class ReminderEditViewController: UIViewController {
             return
         }
         
-        let message = {
-            switch editMode! {
-            case .create:   return "この新規リマインダーを破棄しますか？"
-            case .update:   return "この変更を破棄しますか？"
-            }
-        }()
-        let alert = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: editMode.cancelAlertMessage, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
         
         let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive) { _ in self.discardChanges() }
@@ -148,7 +161,7 @@ final class ReminderEditViewController: UIViewController {
         let time = reminderEditView.datePicker.date
         let date = notificationDateCalculator.calculate(from: time)
         
-        let newReminder = reminder.reinit(title: title, date: date)
+        let newReminder = editMode.reminder.reinit(title: title, date: date)
         switch editMode! {
         case .create:   delegate?.createReminder(newReminder)
         case .update:   delegate?.didEditReminder(editedReminder: newReminder)
