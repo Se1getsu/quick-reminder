@@ -92,7 +92,7 @@ final class ReminderListViewController: UIViewController {
     /// ナビゲーションバーの＋ボタンが押された時の処理。
     @objc func addButtonTapped() {
         let reminder = Reminder(date: notificationDateCalculator.calculate(from: dateProvider.now))
-        pushToReminderEditVC(reminder: reminder, editMode: .create)
+        pushToReminderEditVC(editMode: .create(defaultReminder: reminder))
     }
     
     /// viewを更新する。
@@ -107,14 +107,12 @@ final class ReminderListViewController: UIViewController {
     
     /// ReminderEditViewに画面遷移する。
     ///
-    /// - parameter reminder: ReminderEditViewで編集を行うReminder。新規作成の場合は初期設定のリマインダー。
     /// - parameter editMode: 編集モード。
-    func pushToReminderEditVC(reminder: Reminder, editMode: ReminderEditViewController.EditMode) {
+    func pushToReminderEditVC(editMode: ReminderEditViewController.EditMode) {
         let vc = ReminderEditViewController(
             dependency: .init(
                 notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
             ),
-            reminder: reminder,
             editMode: editMode
         )
         vc.delegate = self
@@ -156,7 +154,8 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        pushToReminderEditVC(reminder: reminderList.getReminder(index: indexPath.row), editMode: .update)
+        let reminder = reminderList.getReminder(index: indexPath.row)
+        pushToReminderEditVC(editMode: .update(currentReminder: reminder))
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
