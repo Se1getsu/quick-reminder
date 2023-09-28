@@ -107,7 +107,7 @@ final class ReminderListViewController: UIViewController {
     
     /// ReminderEditViewに画面遷移する。
     ///
-    /// - parameter reminder: ReminderEditViewで編集を行うReminder。
+    /// - parameter reminder: ReminderEditViewで編集を行うReminder。新規作成の場合は初期設定のリマインダー。
     /// - parameter editMode: 編集モード。
     func pushToReminderEditVC(reminder: Reminder, editMode: ReminderEditViewController.EditMode) {
         let vc = ReminderEditViewController(
