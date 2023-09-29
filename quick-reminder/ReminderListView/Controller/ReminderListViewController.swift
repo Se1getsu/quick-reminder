@@ -28,7 +28,7 @@ final class ReminderListViewController: UIViewController {
     /// テーブルビューに表示する各リマインダーの通知時刻のフォーマッタ。
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = "M/d HH:mm"
         return dateFormatter
     }()
