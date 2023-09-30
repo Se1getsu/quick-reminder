@@ -19,16 +19,41 @@ extension Notification.Name {
 /// Reminder配列の管理を行うためのメソッド。
 protocol ReminderListProtocol {
     var notificationCenter: NotificationCenter { get }
+    /// Reminderリストの要素数。
     var count: Int { get }
+    /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { get }
     
+    /// リポジトリからデータをフェッチすることでリストを初期化する。
     func fetchReminders()
+    
+    /// 与えられたインデックスのReminderを返す。
     func getReminder(index: Int) -> Reminder
+    
+    /// 与えられたReminderがどのindexで管理されているかを返す。
+    ///
+    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func getIndex(reminder: Reminder) throws -> Int
+    
+    /// 与えられたReminderをリストに追加する。
+    ///
+    /// 与えられたReminderと一致するIDのReminderが既に含まれている場合、エラーを投げる。
     func addReminder(reminder: Reminder) throws
+    
+    /// 与えられたインデックスのReminderをリストから削除する。
     func deleteReminder(index: Int)
+    
+    /// 与えられたReminderをリストから削除する。
+    ///
+    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func deleteReminder(reminder: Reminder) throws
+    
+    /// リスト内のReminderを更新する。
+    ///
+    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func updateReminder(reminder: Reminder) throws
+    
+    /// (n, x)のペアのシーケンスを返す。nはゼロから始まる連続した整数を表し、xはReminderListの要素を表す。
     func enumerated() -> EnumeratedSequence<[Reminder]>
 }
 
@@ -50,9 +75,7 @@ final class ReminderList: ReminderListProtocol {
             reminders = sorter.sorted(reminders: reminders)
         }
     }
-    /// Reminderリストの要素数。
     var count: Int { reminders.count }
-    /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { reminders.isEmpty }
     
     init(repository: ReminderRepositoryProtocol,
@@ -64,25 +87,19 @@ final class ReminderList: ReminderListProtocol {
         fetchReminders()
     }
     
-    /// リポジトリからデータをフェッチすることでリストを初期化する。
     func fetchReminders() {
         reminders = repository.getAllReminders()
     }
     
-    /// 与えられたインデックスのReminderを返す。
     func getReminder(index: Int) -> Reminder {
         reminders[index]
     }
     
-    /// 与えられたReminderがどのindexで管理されているかを返す。
-    ///
-    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func getIndex(reminder: Reminder) throws -> Int {
         try validator.validateContains(reminder, in: reminders)
         return reminders.firstIndex { $0.id == reminder.id }!
     }
     
-    /// 与えられたReminderをリストに追加する。
     func addReminder(reminder: Reminder) throws {
         try validator.validateNotContains(reminder, in: reminders)
         repository.addReminder(reminder)
@@ -90,22 +107,17 @@ final class ReminderList: ReminderListProtocol {
         notificationCenter.post(name: .didAddReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
-    /// 与えられたインデックスのReminderをリストから削除する。
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         repository.deleteReminder(reminder)
         notificationCenter.post(name: .didDeleteReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
-    /// 与えられたReminderをリストから削除する。
     func deleteReminder(reminder: Reminder) throws {
         let index = try getIndex(reminder: reminder)
         deleteReminder(index: index)
     }
     
-    /// リスト内のReminderを更新する。
-    ///
-    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
     func updateReminder(reminder: Reminder) throws {
         let index = try getIndex(reminder: reminder)
         repository.updateReminder(reminder)
@@ -113,7 +125,6 @@ final class ReminderList: ReminderListProtocol {
         notificationCenter.post(name: .didUpdateReminder, object: nil, userInfo: ["reminder": reminder])
     }
     
-    /// (n, x)のペアのシーケンスを返す。nはゼロから始まる連続した整数を表し、xはReminderListの要素を表す。
     func enumerated() -> EnumeratedSequence<[Reminder]> {
         reminders.enumerated()
     }
