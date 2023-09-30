@@ -9,6 +9,7 @@ import Foundation
 
 /// ReminderListに含まれる古いリマインダーを削除するためのメソッド。
 protocol OldReminderRemoverProtocol {
+    /// ReminderListに含まれる、通知から12時間以上経過したリマインダーを削除する。
     func removeOldReminders(in: inout ReminderListProtocol)
 }
 
@@ -20,7 +21,6 @@ struct OldReminderRemover: OldReminderRemoverProtocol {
         self.dateProvider = dateProvider
     }
     
-    /// ReminderListに含まれる、通知から12時間以上経過したリマインダーを削除する。
     func removeOldReminders(in reminderList: inout ReminderListProtocol) {
         let indexesToRemove = reminderList.enumerated().filter { _, reminder in
             isReminderOld(reminder)

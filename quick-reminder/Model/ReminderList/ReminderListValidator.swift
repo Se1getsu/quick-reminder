@@ -9,7 +9,14 @@ import Foundation
 
 /// ReminderListの操作における妥当性確認のためのメソッド。
 protocol ReminderListValidatorProtocol {
+    /// 与えられたReminder配列内に与えられたReminderとIDが一致するものを含まないことを確認する。
+    ///
+    /// 一致するReminderが見つかった場合、エラーを投げる。
     func validateNotContains(_: Reminder, in: [Reminder]) throws
+    
+    /// 与えられたReminder配列内に与えられたReminderとIDが一致するものを含むことを確認する。
+    ///
+    /// 一致するReminderが見つからなかった場合、エラーを投げる。
     func validateContains(_: Reminder, in: [Reminder]) throws
 }
 
@@ -20,16 +27,12 @@ struct ReminderListValidator: ReminderListValidatorProtocol {
         case notFound(id: String)
     }
     
-    /// 与えられたReminder配列内に与えられたReminderとIDが一致するものを含まないことを確認する。
-    /// - Throws: 一致するReminderが見つかった場合、`ReminderListValidator.ValidationError.alreadyContained` エラーを投げる。
     func validateNotContains(_ reminder: Reminder, in reminders: [Reminder]) throws {
         if reminders.contains(where: { $0.id == reminder.id }) {
             throw ValidationError.alreadyContained(id: reminder.id)
         }
     }
     
-    /// 与えられたReminder配列内に与えられたReminderとIDが一致するものを含むことを確認する。
-    /// - Throws: 一致するReminderが見つからなかった場合、`ReminderListValidator.ValidationError.notFound` エラーを投げる。
     func validateContains(_ reminder: Reminder, in reminders: [Reminder]) throws {
         if !reminders.contains(where: { $0.id == reminder.id }) {
             throw ValidationError.notFound(id: reminder.id)
