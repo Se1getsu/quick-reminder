@@ -105,17 +105,20 @@ final class ReminderListViewController: UIViewController {
         }
     }
     
-    /// ReminderEditViewに画面遷移する。
-    ///
+    /// リマインダー編集画面に遷移する。
     /// - parameter editMode: 編集モード。
-    func moveToReminderEditVC(editMode: ReminderEditViewController.EditMode) {
-        let vc = ReminderEditViewController(
+    func moveToReminderEditVC(editMode: ReminderEditPresenter.EditMode) {
+        let vc = ReminderEditViewController()
+        let vcPresenter = ReminderEditPresenter(
             dependency: .init(
                 notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider())
             ),
+            view: vc,
             editMode: editMode
         )
-        vc.delegate = self
+        vcPresenter.delegate = self
+        vc.inject(presenter: vcPresenter)
+        
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         navigationController?.present(navVC, animated: true)
