@@ -92,6 +92,7 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     
     func viewWillAppear() {
         oldReminderRemover.removeOldReminders(in: &reminderList)
+        view.reloadView()
     }
     
     func didTapAddButton() {
