@@ -97,8 +97,8 @@ class ReminderEditViewController: UIViewController {
             action: #selector(cancelButtonTapped(_:)))
         cancelBarButton?.accessibilityIdentifier = "Reminder Edit Cancel Button"
         
-        navigationItem.leftBarButtonItem = saveBarButton
-        navigationItem.rightBarButtonItem = cancelBarButton
+        navigationItem.leftBarButtonItem = cancelBarButton
+        navigationItem.rightBarButtonItem = saveBarButton
     }
     
     /// 編集キャンセルのボタンがタップされた時の処理。
