@@ -255,6 +255,7 @@
 				A6B418A12AAADFF5006A7053 /* Reminder.swift */,
 				A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */,
 				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
+				A66A22C52AB08044007FE11D /* NotificationHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				A6B418922AA8C6A7006A7053 /* mvc_ReminderListViewController.swift */,
-				A66A22C52AB08044007FE11D /* NotificationHandler.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
