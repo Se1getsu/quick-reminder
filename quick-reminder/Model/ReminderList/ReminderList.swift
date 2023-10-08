@@ -29,9 +29,6 @@ protocol ReminderListProtocol {
     /// リポジトリからデータをフェッチすることでリストを初期化する。
     func fetchReminders()
     
-    /// 与えられたインデックスのReminderを返す。
-    func getReminder(index: Int) -> Reminder
-    
     /// 与えられたReminderがどのindexで管理されているかを返す。
     ///
     /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
@@ -91,10 +88,6 @@ final class ReminderList: ReminderListProtocol {
     
     func fetchReminders() {
         reminders = repository.getAllReminders()
-    }
-    
-    func getReminder(index: Int) -> Reminder {
-        reminders[index]
     }
     
     func getIndex(reminder: Reminder) throws -> Int {

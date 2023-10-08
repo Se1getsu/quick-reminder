@@ -92,6 +92,7 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     
     func viewWillAppear() {
         oldReminderRemover.removeOldReminders(in: &reminderList)
+        view.reloadView()
     }
     
     func didTapAddButton() {
@@ -100,7 +101,7 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     }
     
     func didTapReminder(index: Int) {
-        let reminder = reminderList.getReminder(index: index)
+        let reminder = reminderList.reminders[index]
         view.moveToReminderEditVC(editMode: .update(currentReminder: reminder), delegate: self)
     }
     
