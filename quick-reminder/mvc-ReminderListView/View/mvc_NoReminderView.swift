@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NoReminderView: UIView {
+final class mvc_NoReminderView: UIView {
     private let label: UILabel = {
         var label = UILabel()
         label.accessibilityIdentifier = "No Reminder Description Label"

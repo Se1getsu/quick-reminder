@@ -19,6 +19,8 @@ extension Notification.Name {
 /// Reminder配列の管理を行うためのメソッド。
 protocol ReminderListProtocol {
     var notificationCenter: NotificationCenter { get }
+    /// 格納しているReminderの配列。
+    var reminders: [Reminder] { get }
     /// Reminderリストの要素数。
     var count: Int { get }
     /// Reminderリストが空かを表すブール値。
@@ -70,7 +72,7 @@ final class ReminderList: ReminderListProtocol {
     private let sorter: ReminderSorterProtocol!
     private let validator: ReminderListValidatorProtocol!
     
-    private var reminders: [Reminder] = [] {
+    private(set) var reminders: [Reminder] = [] {
         didSet {
             reminders = sorter.sorted(reminders: reminders)
         }
