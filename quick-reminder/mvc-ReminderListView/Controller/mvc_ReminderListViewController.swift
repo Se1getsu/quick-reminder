@@ -143,7 +143,7 @@ extension mvc_ReminderListViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let reminder = reminderList.getReminder(index: indexPath.row)
+        let reminder = reminderList.reminders[indexPath.row]
         let title = reminder.title
         let dateText = dateFormatter.string(from: reminder.date)
         
@@ -157,7 +157,7 @@ extension mvc_ReminderListViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let reminder = reminderList.getReminder(index: indexPath.row)
+        let reminder = reminderList.reminders[indexPath.row]
         moveToReminderEditVC(editMode: .update(currentReminder: reminder))
     }
     
