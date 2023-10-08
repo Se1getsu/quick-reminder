@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ReminderListView: UIView {
+final class mvc_ReminderListView: UIView {
     /// リマインダーリストを表示するためのテーブルビュー。
     let reminderTableView: UITableView = {
         let reminderTableView = UITableView()

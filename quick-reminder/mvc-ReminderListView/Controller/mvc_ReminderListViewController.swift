@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class ReminderListViewController: UIViewController {
-    private let reminderListView = ReminderListView()
-    private let noReminderView = NoReminderView()
+final class mvc_ReminderListViewController: UIViewController {
+    private let reminderListView = mvc_ReminderListView()
+    private let noReminderView = mvc_NoReminderView()
     
-    private var reminderList: ReminderListProtocol!
-    private let notificationHandler: NotificationHandlerProtocol!
-    private let notificationDateCalculator: NotificationDateCalculator!
-    private let dateProvider: DateProviderProtocol!
-    private let oldReminderRemover: OldReminderRemoverProtocol!
+    private var reminderList: ReminderListProtocol
+    private let notificationHandler: NotificationHandlerProtocol
+    private let notificationDateCalculator: NotificationDateCalculator
+    private let dateProvider: DateProviderProtocol
+    private let oldReminderRemover: OldReminderRemoverProtocol
     
     struct Dependency {
         let reminderList: ReminderListProtocol
@@ -125,7 +125,7 @@ final class ReminderListViewController: UIViewController {
     }
 }
 
-extension ReminderListViewController: ReminderEditDelegate {
+extension mvc_ReminderListViewController: ReminderEditDelegate {
     func createReminder(_ reminder: Reminder) {
         try? reminderList.addReminder(reminder: reminder)
     }
@@ -135,7 +135,7 @@ extension ReminderListViewController: ReminderEditDelegate {
     }
 }
 
-extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
+extension mvc_ReminderListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         reminderList.count
     }

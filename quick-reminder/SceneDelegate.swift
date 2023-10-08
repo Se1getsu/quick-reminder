@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let rootVC = ReminderListViewController(
             dependency: .init(
+                dateProvider: DateProvider()
+            )
+        )
+        let vcPresenter = ReminderListPresenter(
+            dependency: .init(
                 reminderList: ReminderList(
                     repository: useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
                     sorter: ReminderSorter(),
@@ -29,10 +34,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider()),
                 dateProvider: DateProvider(),
                 oldReminderRemover: OldReminderRemover(dateProvider: DateProvider())
-            )
+            ),
+            view: rootVC
         )
-        window?.rootViewController = UINavigationController(rootViewController: rootVC)
+        rootVC.inject(presenter: vcPresenter)
         
+        window?.rootViewController = UINavigationController(rootViewController: rootVC)
         window?.makeKeyAndVisible()
     }
 
