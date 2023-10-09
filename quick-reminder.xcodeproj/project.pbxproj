@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		549D8097DD1BB75850638B52 /* Pods_quick_reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */; };
+		A6015EAE2ACC227B00844148 /* ReminderEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6015EAD2ACC227B00844148 /* ReminderEditViewController.swift */; };
+		A6015EB02ACC229600844148 /* ReminderEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6015EAF2ACC229600844148 /* ReminderEditPresenter.swift */; };
 		A60367D52AAF2F1E00FB5CB0 /* StubDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60367D42AAF2F1E00FB5CB0 /* StubDateProvider.swift */; };
 		A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525B2AB817340098F12E /* MockReminderList.swift */; };
 		A65F525E2AB818E60098F12E /* OldReminderRemoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */; };
@@ -24,8 +26,6 @@
 		A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A12AAADFF5006A7053 /* Reminder.swift */; };
 		A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A32AAB361C006A7053 /* ReminderListView.swift */; };
 		A6B418A72AACA989006A7053 /* ReminderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418A62AACA989006A7053 /* ReminderList.swift */; };
-		A6B418AB2AAD85D5006A7053 /* ReminderEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418AA2AAD85D5006A7053 /* ReminderEditViewController.swift */; };
-		A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418AC2AAD8C40006A7053 /* ReminderEditView.swift */; };
 		A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */; };
 		A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */; };
 		A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */; };
@@ -62,6 +62,8 @@
 /* Begin PBXFileReference section */
 		494859C06A2E17347F629B0C /* Pods-quick-reminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-quick-reminder.debug.xcconfig"; path = "Target Support Files/Pods-quick-reminder/Pods-quick-reminder.debug.xcconfig"; sourceTree = "<group>"; };
 		81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_quick_reminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6015EAD2ACC227B00844148 /* ReminderEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEditViewController.swift; sourceTree = "<group>"; };
+		A6015EAF2ACC229600844148 /* ReminderEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEditPresenter.swift; sourceTree = "<group>"; };
 		A60367D42AAF2F1E00FB5CB0 /* StubDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDateProvider.swift; sourceTree = "<group>"; };
 		A65F525B2AB817340098F12E /* MockReminderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderList.swift; sourceTree = "<group>"; };
 		A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemoverTests.swift; sourceTree = "<group>"; };
@@ -81,8 +83,6 @@
 		A6B418A12AAADFF5006A7053 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A6B418A32AAB361C006A7053 /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
 		A6B418A62AACA989006A7053 /* ReminderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderList.swift; sourceTree = "<group>"; };
-		A6B418AA2AAD85D5006A7053 /* ReminderEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEditViewController.swift; sourceTree = "<group>"; };
-		A6B418AC2AAD8C40006A7053 /* ReminderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEditView.swift; sourceTree = "<group>"; };
 		A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationDateCalculator.swift; path = "quick-reminder/Model/NotificationDateCalculator.swift"; sourceTree = SOURCE_ROOT; };
 		A6B418BB2AAEF08D006A7053 /* quick-reminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDateCalculatorTests.swift; sourceTree = "<group>"; };
@@ -133,6 +133,22 @@
 				81F7C97D343FB1B29DA8DA50 /* Pods_quick_reminder.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6015EA62ACC221800844148 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A6015EAF2ACC229600844148 /* ReminderEditPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A6015EA72ACC222E00844148 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6015EAD2ACC227B00844148 /* ReminderEditViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A60367D32AAF2EFF00FB5CB0 /* Dummy */ = {
@@ -261,18 +277,10 @@
 		A6C9B92B2AB321EF009F71A5 /* ReminderEditView */ = {
 			isa = PBXGroup;
 			children = (
-				A6C9B92C2AB321FF009F71A5 /* Controller */,
-				A6C9B92E2AB3220A009F71A5 /* View */,
+				A6015EA72ACC222E00844148 /* View */,
+				A6015EA62ACC221800844148 /* Presenter */,
 			);
 			path = ReminderEditView;
-			sourceTree = "<group>";
-		};
-		A6C9B92C2AB321FF009F71A5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A6B418AA2AAD85D5006A7053 /* ReminderEditViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		A6C9B92D2AB32203009F71A5 /* View */ = {
@@ -280,14 +288,6 @@
 			children = (
 				A6B418A32AAB361C006A7053 /* ReminderListView.swift */,
 				A6C9B9342AB35C5E009F71A5 /* NoReminderView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A6C9B92E2AB3220A009F71A5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A6B418AC2AAD8C40006A7053 /* ReminderEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -578,13 +578,13 @@
 				A66A22C42AB0413F007FE11D /* ReminderSorter.swift in Sources */,
 				A6B418A42AAB361C006A7053 /* ReminderListView.swift in Sources */,
 				A6B418A72AACA989006A7053 /* ReminderList.swift in Sources */,
-				A6B418AD2AAD8C40006A7053 /* ReminderEditView.swift in Sources */,
 				A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */,
 				A6B418932AA8C6A7006A7053 /* ReminderListViewController.swift in Sources */,
 				A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */,
 				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,
 				A6C9B9232AB205E8009F71A5 /* ReminderDTO.swift in Sources */,
-				A6B418AB2AAD85D5006A7053 /* ReminderEditViewController.swift in Sources */,
+				A6015EAE2ACC227B00844148 /* ReminderEditViewController.swift in Sources */,
+				A6015EB02ACC229600844148 /* ReminderEditPresenter.swift in Sources */,
 				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,
 				A6C9B9352AB35C5E009F71A5 /* NoReminderView.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
