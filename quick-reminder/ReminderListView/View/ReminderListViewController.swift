@@ -26,6 +26,17 @@ class ReminderListViewController: UIViewController {
         return dateFormatter
     }()
     
+    /// 表示するリマインダーがない時に表示するラベル。
+    private let noReminderLabel: UILabel = {
+        var label = UILabel()
+        label.accessibilityIdentifier = "No Reminder Description Label"
+        label.text = "画面右上の「＋」ボタンを押して\n新規リマインダーを作成します。"
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.textColor = UIColor(resource: .noReminderViewText)
+        return label
+    }()
+    
     private var presenter: ReminderListPresenterInput!
     
     private let dateProvider: DateProviderProtocol
@@ -54,11 +65,16 @@ class ReminderListViewController: UIViewController {
         setupNavigationBar()
         presenter.viewDidLoad()
         
+        noReminderLabel.translatesAutoresizingMaskIntoConstraints = false
         reminderTableView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(noReminderLabel)
         view.addSubview(reminderTableView)
         
         NSLayoutConstraint.activate([
+            noReminderLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            noReminderLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            noReminderLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             reminderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reminderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             reminderTableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -72,7 +88,6 @@ class ReminderListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
-        reloadView()
     }
     
     private func setupNavigationBar() {
@@ -135,7 +150,12 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
 
 extension ReminderListViewController: ReminderListPresenterOutput {
     func reloadView() {
-        reminderTableView.reloadData()
+        let isEmpty = presenter.remindersToDisplay.isEmpty
+        noReminderLabel.isHidden = !isEmpty
+        reminderTableView.isHidden = isEmpty
+        if !isEmpty {
+            reminderTableView.reloadData()
+        }
     }
     
     func moveToReminderEditVC(editMode: ReminderEditPresenter.EditMode, delegate: ReminderEditDelegate) {
