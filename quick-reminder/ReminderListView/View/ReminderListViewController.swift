@@ -1,9 +1,9 @@
 //
 //  ReminderListViewController.swift
 //  quick-reminder
-//
+//  
 //  Created by Seigetsu on 2023/10/08
-//
+//  
 //
 
 import UIKit
@@ -138,7 +138,7 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
             if presenter.remindersToDisplay.isEmpty {
                 reloadView()
             } else {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+//                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             completionHandler(true)
         }

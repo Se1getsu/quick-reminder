@@ -1,9 +1,9 @@
 //
 //  ReminderListPresenter.swift
 //  quick-reminder
-//  
+//
 //  Created by Seigetsu on 2023/10/08
-//  
+//
 //
 
 import Foundation
@@ -71,23 +71,7 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     }
     
     func viewDidLoad() {
-        reminderList.notificationCenter.addObserver(forName: .didAddReminder, object: nil, queue: nil) { [unowned self] notification in
-            view.reloadView()
-            notificationHandler.registerNotification(
-                reminder: notification.userInfo!["reminder"] as! Reminder
-            )
-        }
-        reminderList.notificationCenter.addObserver(forName: .didDeleteReminder, object: nil, queue: nil) { [unowned self] notification in
-            notificationHandler.removeNotification(
-                reminder: notification.userInfo!["reminder"] as! Reminder
-            )
-        }
-        reminderList.notificationCenter.addObserver(forName: .didUpdateReminder, object: nil, queue: nil) { [unowned self] notification in
-            view.reloadView()
-            notificationHandler.registerNotification(
-                reminder: notification.userInfo!["reminder"] as! Reminder
-            )
-        }
+        reminderList.delegate = self
     }
     
     func viewWillAppear() {
@@ -107,6 +91,29 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     
     func didSwipeReminderToDelete(index: Int) {
         reminderList.deleteReminder(index: index)
+    }
+}
+
+extension ReminderListPresenter: ReminderListDelegate {
+    func didAddReminder(_ reminder: Reminder) {
+        view.reloadView()
+        notificationHandler.registerNotification(
+            reminder: reminder
+        )
+    }
+    
+    func didDeleteReminder(_ reminder: Reminder) {
+        view.reloadView()
+        notificationHandler.removeNotification(
+            reminder: reminder
+        )
+    }
+    
+    func didUpdateReminder(_ updatedReminder: Reminder) {
+        view.reloadView()
+        notificationHandler.registerNotification(
+            reminder: updatedReminder
+        )
     }
 }
 
