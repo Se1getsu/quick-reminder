@@ -7,15 +7,6 @@
 
 import Foundation
 
-extension Notification.Name {
-    /// ReminderListにReminderが追加された時にpostされる通知。
-    static let didAddReminder = Notification.Name("ReminderList.didAddReminder")
-    /// ReminderListからReminderが削除された時にpostされる通知。
-    static let didDeleteReminder = Notification.Name("ReminderList.didDeleteReminder")
-    /// ReminderList内のReminderが更新された時にpostされる通知。
-    static let didUpdateReminder = Notification.Name("ReminderList.didUpdateReminder")
-}
-
 /// Reminder配列の管理を行うためのメソッド。
 protocol ReminderListProtocol {
     var notificationCenter: NotificationCenter { get }
@@ -25,6 +16,8 @@ protocol ReminderListProtocol {
     var count: Int { get }
     /// Reminderリストが空かを表すブール値。
     var isEmpty: Bool { get }
+    /// Reminderリストのデリゲートとして動作するオブジェクト。
+    var delegate: ReminderListDelegate? { get set }
     
     /// リポジトリからデータをフェッチすることでリストを初期化する。
     func fetchReminders()
@@ -56,6 +49,15 @@ protocol ReminderListProtocol {
     func enumerated() -> EnumeratedSequence<[Reminder]>
 }
 
+protocol ReminderListDelegate: AnyObject {
+    /// ReminderListにReminderが追加された時に呼び出される。
+    func didAddReminder(_ reminder: Reminder)
+    /// ReminderList内のReminderが削除された時に呼び出される。
+    func didDeleteReminder(_ reminder: Reminder)
+    /// ReminderList内のReminderが更新された時に呼び出される。
+    func didUpdateReminder(_ updatedReminder: Reminder)
+}
+
 /// Reminder配列の管理を行う。
 ///
 /// 格納されたリマインダーは、
@@ -65,9 +67,9 @@ protocol ReminderListProtocol {
 final class ReminderList: ReminderListProtocol {
     let notificationCenter = NotificationCenter()
     
-    private let repository: ReminderRepositoryProtocol!
-    private let sorter: ReminderSorterProtocol!
-    private let validator: ReminderListValidatorProtocol!
+    private let repository: ReminderRepositoryProtocol
+    private let sorter: ReminderSorterProtocol
+    private let validator: ReminderListValidatorProtocol
     
     private(set) var reminders: [Reminder] = [] {
         didSet {
@@ -76,6 +78,8 @@ final class ReminderList: ReminderListProtocol {
     }
     var count: Int { reminders.count }
     var isEmpty: Bool { reminders.isEmpty }
+    
+    weak var delegate: ReminderListDelegate?
     
     init(repository: ReminderRepositoryProtocol,
          sorter: ReminderSorterProtocol,
@@ -97,15 +101,18 @@ final class ReminderList: ReminderListProtocol {
     
     func addReminder(reminder: Reminder) throws {
         try validator.validateNotContains(reminder, in: reminders)
+        
         repository.addReminder(reminder)
         reminders.append(reminder)
-        notificationCenter.post(name: .didAddReminder, object: nil, userInfo: ["reminder": reminder])
+        
+        delegate?.didAddReminder(reminder)
     }
     
     func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         repository.deleteReminder(reminder)
-        notificationCenter.post(name: .didDeleteReminder, object: nil, userInfo: ["reminder": reminder])
+        
+        delegate?.didDeleteReminder(reminder)
     }
     
     func deleteReminder(reminder: Reminder) throws {
@@ -115,9 +122,11 @@ final class ReminderList: ReminderListProtocol {
     
     func updateReminder(reminder: Reminder) throws {
         let index = try getIndex(reminder: reminder)
+        
         repository.updateReminder(reminder)
         reminders[index] = reminder
-        notificationCenter.post(name: .didUpdateReminder, object: nil, userInfo: ["reminder": reminder])
+        
+        delegate?.didUpdateReminder(reminder)
     }
     
     func enumerated() -> EnumeratedSequence<[Reminder]> {
