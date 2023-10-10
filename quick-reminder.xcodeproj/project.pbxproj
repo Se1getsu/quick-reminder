@@ -13,6 +13,7 @@
 		A60367D52AAF2F1E00FB5CB0 /* StubDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60367D42AAF2F1E00FB5CB0 /* StubDateProvider.swift */; };
 		A636FAE62AD440D300E234DC /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636FAE52AD440D300E234DC /* ReminderListViewController.swift */; };
 		A636FAE92AD440E900E234DC /* ReminderListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636FAE82AD440E900E234DC /* ReminderListPresenter.swift */; };
+		A636FAEB2AD5439F00E234DC /* ReminderPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636FAEA2AD5439F00E234DC /* ReminderPresentationStyle.swift */; };
 		A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525B2AB817340098F12E /* MockReminderList.swift */; };
 		A65F525E2AB818E60098F12E /* OldReminderRemoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */; };
 		A65F52662AB827C50098F12E /* quick_reminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52652AB827C50098F12E /* quick_reminderUITests.swift */; };
@@ -29,7 +30,7 @@
 		A6B418B52AADF2E8006A7053 /* NotificationDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */; };
 		A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */; };
 		A6B418CD2AAF1F1A006A7053 /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */; };
-		A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */; };
+		A6C9B9202AB1AD24009F71A5 /* OldReminderFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B91F2AB1AD24009F71A5 /* OldReminderFinder.swift */; };
 		A6C9B9232AB205E8009F71A5 /* ReminderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9222AB205E8009F71A5 /* ReminderDTO.swift */; };
 		A6C9B9282AB2DF0B009F71A5 /* ReminderListValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9272AB2DF0B009F71A5 /* ReminderListValidator.swift */; };
 		A6C9B9332AB32AE1009F71A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C9B9322AB32AE1009F71A5 /* Extensions.swift */; };
@@ -66,6 +67,7 @@
 		A60367D42AAF2F1E00FB5CB0 /* StubDateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDateProvider.swift; sourceTree = "<group>"; };
 		A636FAE52AD440D300E234DC /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		A636FAE82AD440E900E234DC /* ReminderListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListPresenter.swift; sourceTree = "<group>"; };
+		A636FAEA2AD5439F00E234DC /* ReminderPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPresentationStyle.swift; sourceTree = "<group>"; };
 		A65F525B2AB817340098F12E /* MockReminderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderList.swift; sourceTree = "<group>"; };
 		A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemoverTests.swift; sourceTree = "<group>"; };
 		A65F52632AB827C50098F12E /* quick-reminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +88,7 @@
 		A6B418BB2AAEF08D006A7053 /* quick-reminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B418C52AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDateCalculatorTests.swift; sourceTree = "<group>"; };
 		A6B418CC2AAF1F1A006A7053 /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
-		A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemover.swift; sourceTree = "<group>"; };
+		A6C9B91F2AB1AD24009F71A5 /* OldReminderFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderFinder.swift; sourceTree = "<group>"; };
 		A6C9B9222AB205E8009F71A5 /* ReminderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDTO.swift; sourceTree = "<group>"; };
 		A6C9B9272AB2DF0B009F71A5 /* ReminderListValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListValidator.swift; sourceTree = "<group>"; };
 		A6C9B9322AB32AE1009F71A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A636FAEE2AD545C200E234DC /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				A636FAEA2AD5439F00E234DC /* ReminderPresentationStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		A65F52642AB827C50098F12E /* quick-reminderUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 		A691BF072ABD40E2003C0AD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A636FAEE2AD545C200E234DC /* Style */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,7 +249,7 @@
 				A6C9B92F2AB3227B009F71A5 /* Repository */,
 				A6B418A12AAADFF5006A7053 /* Reminder.swift */,
 				A6B418B42AADF2E8006A7053 /* NotificationDateCalculator.swift */,
-				A6C9B91F2AB1AD24009F71A5 /* OldReminderRemover.swift */,
+				A6C9B91F2AB1AD24009F71A5 /* OldReminderFinder.swift */,
 				A66A22C52AB08044007FE11D /* NotificationHandler.swift */,
 			);
 			path = Model;
@@ -580,13 +591,14 @@
 				A6B418A02AAAB984006A7053 /* ReminderRepository.swift in Sources */,
 				A6C9B9232AB205E8009F71A5 /* ReminderDTO.swift in Sources */,
 				A6015EAE2ACC227B00844148 /* ReminderEditViewController.swift in Sources */,
+				A636FAEB2AD5439F00E234DC /* ReminderPresentationStyle.swift in Sources */,
 				A6015EB02ACC229600844148 /* ReminderEditPresenter.swift in Sources */,
 				A6B418A22AAADFF5006A7053 /* Reminder.swift in Sources */,
 				A636FAE62AD440D300E234DC /* ReminderListViewController.swift in Sources */,
 				A6B4187C2AA8C0D9006A7053 /* AppDelegate.swift in Sources */,
 				A6B4187E2AA8C0D9006A7053 /* SceneDelegate.swift in Sources */,
 				A65F52762AB94ADE0098F12E /* UITestMockReminderRepository.swift in Sources */,
-				A6C9B9202AB1AD24009F71A5 /* OldReminderRemover.swift in Sources */,
+				A6C9B9202AB1AD24009F71A5 /* OldReminderFinder.swift in Sources */,
 				A6C9B9332AB32AE1009F71A5 /* Extensions.swift in Sources */,
 				A6C9B9282AB2DF0B009F71A5 /* ReminderListValidator.swift in Sources */,
 				A66A22C62AB08044007FE11D /* NotificationHandler.swift in Sources */,

@@ -63,6 +63,7 @@ class ReminderListViewController: UIViewController {
         title = "登録中のリマインダー"
         view.backgroundColor = UIColor(resource: .reminderListTableViewBackground)
         setupNavigationBar()
+        showOrHideReminderTableIfEmpty()
         presenter.viewDidLoad()
         
         noReminderLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +102,13 @@ class ReminderListViewController: UIViewController {
         }()
     }
     
+    /// 空の時はリマインダーテーブルを非表示にする。
+    private func showOrHideReminderTableIfEmpty() {
+        let isEmpty = presenter.remindersToDisplay.isEmpty
+        noReminderLabel.isHidden = !isEmpty
+        reminderTableView.isHidden = isEmpty
+    }
+    
     /// ナビゲーションバーの＋ボタンが押された時の処理。
     @objc func didTapAddButton() {
         presenter.didTapAddButton()
@@ -135,11 +143,6 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "") { [unowned self] _, _, completionHandler in
             presenter.didSwipeReminderToDelete(index: indexPath.row)
-            if presenter.remindersToDisplay.isEmpty {
-                reloadView()
-            } else {
-//                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
@@ -149,13 +152,27 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
 
 
 extension ReminderListViewController: ReminderListPresenterOutput {
-    func reloadView() {
-        let isEmpty = presenter.remindersToDisplay.isEmpty
-        noReminderLabel.isHidden = !isEmpty
-        reminderTableView.isHidden = isEmpty
-        if !isEmpty {
-            reminderTableView.reloadData()
-        }
+    func didAddReminder(_ reminder: Reminder, index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        reminderTableView.insertRows(at: [indexPath], with: .automatic)
+        showOrHideReminderTableIfEmpty()
+    }
+    
+    func didDeleteReminder(index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        reminderTableView.deleteRows(at: [indexPath], with: .automatic)
+        showOrHideReminderTableIfEmpty()
+    }
+    
+    func didMoveReminder(at fromIndex: Int, to toIndex: Int) {
+        let fromIndexPath = IndexPath(row: fromIndex, section: 0)
+        let toIndexPath = IndexPath(row: toIndex, section: 0)
+        reminderTableView.moveRow(at: fromIndexPath, to: toIndexPath)
+    }
+    
+    func reloadReminder(index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        reminderTableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     func moveToReminderEditVC(editMode: ReminderEditPresenter.EditMode, delegate: ReminderEditDelegate) {
