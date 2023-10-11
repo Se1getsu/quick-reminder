@@ -34,9 +34,9 @@ struct NotificationHandler: NotificationHandlerProtocol {
 
         // 通知リクエストを登録
         UNUserNotificationCenter.current().add(request) { (error: Error?) in
-             if let error = error {
-                  print(error.localizedDescription)
-             }
+            if let error = error {
+                print(error.localizedDescription)
+            }
         }
     }
     

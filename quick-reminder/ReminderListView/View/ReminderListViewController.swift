@@ -91,6 +91,11 @@ class ReminderListViewController: UIViewController {
         presenter.viewWillAppear()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = {
             let barButton = UIBarButtonItem(
@@ -131,7 +136,6 @@ extension ReminderListViewController: UITableViewDataSource, UITableViewDelegate
         content.text = title
         content.secondaryText = dateText
         cell.contentConfiguration = content
-        cell.backgroundColor = reminder.date <= dateProvider.now ? UIColor(resource: .inactiveReminderCellBackground) : UIColor(resource: .activeReminderCellBackground)
         return cell
     }
     
@@ -173,6 +177,12 @@ extension ReminderListViewController: ReminderListPresenterOutput {
     func reloadReminder(index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         reminderTableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func updateReminderStyle(index: Int, style: ReminderPresentationStyle) {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let cell = reminderTableView.cellForRow(at: indexPath) else { return }
+        cell.backgroundColor = style.backgroundColor
     }
     
     func moveToReminderEditVC(editMode: ReminderEditPresenter.EditMode, delegate: ReminderEditDelegate) {
