@@ -1,5 +1,5 @@
 //
-//  UITestMockReminderRepository.swift
+//  UITestStubReminderRepository.swift
 //  quick-reminder
 //
 //  Created by Seigetsu on 2023/09/19.
@@ -10,7 +10,7 @@ import Foundation
 /// ReminderRepositoryのモック。UITest用で使用する。
 ///
 /// アプリ起動時に `-useUITestMockRepository` オプションを付加することで使用できる。
-class UITestMockReminderRepository: ReminderRepositoryProtocol {
+class UITestStubReminderRepository: ReminderRepositoryProtocol {
     private var reminders = [Reminder]()
 
     func addReminder(_ reminder: Reminder) {
