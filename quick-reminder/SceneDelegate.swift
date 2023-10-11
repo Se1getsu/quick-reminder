@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 notificationHandler: NotificationHandler(),
                 notificationDateCalculator: NotificationDateCalculator(dateProvider: DateProvider()),
                 dateProvider: DateProvider(),
-                oldReminderRemover: OldReminderRemover(dateProvider: DateProvider())
+                oldReminderFinder: OldReminderFinder(dateProvider: DateProvider())
             ),
             view: rootVC
         )
