@@ -33,12 +33,7 @@ protocol ReminderListProtocol {
     func addReminder(reminder: Reminder) throws
     
     /// 与えられたインデックスのReminderをリストから削除する。
-    func deleteReminder(index: Int)
-    
-    /// 与えられたReminderをリストから削除する。
-    ///
-    /// 与えられたReminderと一致するIDのReminderがなければ、エラーを投げる。
-    func deleteReminder(reminder: Reminder) throws
+    func deleteReminders(indices: [Int])
     
     /// リスト内のReminderを更新する。
     ///
@@ -53,9 +48,11 @@ protocol ReminderListDelegate: AnyObject {
     /// ReminderListにReminderが追加された時に呼び出される。
     func didAddReminder(_ reminder: Reminder)
     /// ReminderList内のReminderが削除された時に呼び出される。
-    func didDeleteReminder(_ reminder: Reminder)
+    func didDeleteReminder(_ reminder: Reminder, index: Int)
+    /// ReminderList内のReminderが別のインデックスに移動した時に呼び出される。
+    func didMoveReminder(at fromIndex: Int, to toIndex: Int)
     /// ReminderList内のReminderが更新された時に呼び出される。
-    func didUpdateReminder(_ updatedReminder: Reminder)
+    func didUpdateReminder(_ updatedReminder: Reminder, newIndex index: Int)
 }
 
 /// Reminder配列の管理を行う。
@@ -108,16 +105,18 @@ final class ReminderList: ReminderListProtocol {
         delegate?.didAddReminder(reminder)
     }
     
-    func deleteReminder(index: Int) {
+    private func deleteReminder(index: Int) {
         let reminder = reminders.remove(at: index)
         repository.deleteReminder(reminder)
         
-        delegate?.didDeleteReminder(reminder)
+        delegate?.didDeleteReminder(reminder, index: index)
     }
     
-    func deleteReminder(reminder: Reminder) throws {
-        let index = try getIndex(reminder: reminder)
-        deleteReminder(index: index)
+    func deleteReminders(indices: [Int]) {
+        // 他のインデックスが変動しないように、逆順のインデックスで削除する。
+        indices.sorted().reversed().forEach { index in
+            deleteReminder(index: index)
+        }
     }
     
     func updateReminder(reminder: Reminder) throws {
@@ -126,7 +125,9 @@ final class ReminderList: ReminderListProtocol {
         repository.updateReminder(reminder)
         reminders[index] = reminder
         
-        delegate?.didUpdateReminder(reminder)
+        let newIndex = try! getIndex(reminder: reminder)
+        delegate?.didMoveReminder(at: index, to: newIndex)
+        delegate?.didUpdateReminder(reminder, newIndex: newIndex)
     }
     
     func enumerated() -> EnumeratedSequence<[Reminder]> {

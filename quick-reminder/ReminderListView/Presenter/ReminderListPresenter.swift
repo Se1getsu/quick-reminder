@@ -18,6 +18,12 @@ protocol ReminderListPresenterInput {
     /// ViewのviewWillAppearで呼び出す処理。
     func viewWillAppear()
     
+    /// ViewのviewDidAppearで呼び出す処理。
+    func viewDidAppear()
+    
+    /// ViewのviewWillDisappearで呼び出す処理。
+    func viewWillDisappear()
+    
     /// リマインダー新規作成ボタンが押された時の処理。
     func didTapAddButton()
     
@@ -29,8 +35,20 @@ protocol ReminderListPresenterInput {
 }
 
 protocol ReminderListPresenterOutput: AnyObject {
-    /// Viewを更新する。
-    func reloadView()
+    /// Modelにリマインダーが追加されたときの処理。
+    func didAddReminder(_ reminder: Reminder, index: Int)
+    
+    /// Modelでリマインダーが削除されたときの処理。
+    func didDeleteReminder(index: Int)
+    
+    /// Modelでリマインダーのインデックスが移動されたときの処理。
+    func didMoveReminder(at fromIndex: Int, to toIndex: Int)
+    
+    /// Modelのリマインダーの情報を再読み込みする。
+    func reloadReminder(index: Int)
+    
+    /// リマインダーの表示スタイルを切り替える。
+    func updateReminderStyle(index: Int, style: ReminderPresentationStyle)
     
     /// リマインダー編集画面に遷移する。
     /// - parameter editMode: 編集モード。
@@ -45,14 +63,16 @@ final class ReminderListPresenter {
     private let notificationHandler: NotificationHandlerProtocol
     private let notificationDateCalculator: NotificationDateCalculator
     private let dateProvider: DateProviderProtocol
-    private let oldReminderRemover: OldReminderRemoverProtocol
+    private let oldReminderFinder: OldReminderFinderProtocol
+    
+    private var reminderStyleUpdateTimer: Timer?
     
     struct Dependency {
         let reminderList: ReminderListProtocol
         let notificationHandler: NotificationHandlerProtocol
         let notificationDateCalculator: NotificationDateCalculator
         let dateProvider: DateProviderProtocol
-        let oldReminderRemover: OldReminderRemoverProtocol
+        let oldReminderFinder: OldReminderFinderProtocol
     }
     
     init(dependency: Dependency, view: ReminderListPresenterOutput) {
@@ -61,7 +81,24 @@ final class ReminderListPresenter {
         self.notificationHandler = dependency.notificationHandler
         self.notificationDateCalculator = dependency.notificationDateCalculator
         self.dateProvider = dependency.dateProvider
-        self.oldReminderRemover = dependency.oldReminderRemover
+        self.oldReminderFinder = dependency.oldReminderFinder
+    }
+    
+    /// リマインダーの表示スタイルを決める処理。
+    private func getReminderStyle(reminder: Reminder) -> ReminderPresentationStyle {
+        if reminder.date > dateProvider.now {
+            .normal
+        } else {
+            .notified
+        }
+    }
+    
+    /// 各リマインダーの表示スタイルを設定する。
+    private func updateReminderStyles() {
+        remindersToDisplay.enumerated().forEach { index, reminder in
+            let style = getReminderStyle(reminder: reminder)
+            view.updateReminderStyle(index: index, style: style)
+        }
     }
 }
 
@@ -74,9 +111,21 @@ extension ReminderListPresenter: ReminderListPresenterInput {
         reminderList.delegate = self
     }
     
+    func viewDidAppear() {
+        updateReminderStyles()
+        reminderStyleUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.updateReminderStyles()
+        }
+    }
+    
+    func viewWillDisappear() {
+        reminderStyleUpdateTimer?.invalidate()
+    }
+    
     func viewWillAppear() {
-        oldReminderRemover.removeOldReminders(in: &reminderList)
-        view.reloadView()
+        let oldReminderIndices = oldReminderFinder.getOldReminderIndices(in: reminderList)
+        reminderList.deleteReminders(indices: oldReminderIndices)
+        updateReminderStyles()
     }
     
     func didTapAddButton() {
@@ -90,30 +139,29 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     }
     
     func didSwipeReminderToDelete(index: Int) {
-        reminderList.deleteReminder(index: index)
+        reminderList.deleteReminders(indices: [index])
     }
 }
 
 extension ReminderListPresenter: ReminderListDelegate {
     func didAddReminder(_ reminder: Reminder) {
-        view.reloadView()
-        notificationHandler.registerNotification(
-            reminder: reminder
-        )
+        notificationHandler.registerNotification(reminder: reminder)
+        let index = try! reminderList.getIndex(reminder: reminder)
+        view.didAddReminder(reminder, index: index)
     }
     
-    func didDeleteReminder(_ reminder: Reminder) {
-        view.reloadView()
-        notificationHandler.removeNotification(
-            reminder: reminder
-        )
+    func didDeleteReminder(_ reminder: Reminder, index: Int) {
+        notificationHandler.removeNotification(reminder: reminder)
+        view.didDeleteReminder(index: index)
     }
     
-    func didUpdateReminder(_ updatedReminder: Reminder) {
-        view.reloadView()
-        notificationHandler.registerNotification(
-            reminder: updatedReminder
-        )
+    func didMoveReminder(at fromIndex: Int, to toIndex: Int) {
+        view.didMoveReminder(at: fromIndex, to: toIndex)
+    }
+    
+    func didUpdateReminder(_ updatedReminder: Reminder, newIndex index: Int) {
+        notificationHandler.registerNotification(reminder: updatedReminder)
+        view.reloadReminder(index: index)
     }
 }
 
