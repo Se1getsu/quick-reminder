@@ -21,6 +21,9 @@ protocol ReminderListPresenterInput {
     /// ViewのviewDidAppearで呼び出す処理。
     func viewDidAppear()
     
+    /// ViewのviewWillDisappearで呼び出す処理。
+    func viewWillDisappear()
+    
     /// リマインダー新規作成ボタンが押された時の処理。
     func didTapAddButton()
     
@@ -61,6 +64,8 @@ final class ReminderListPresenter {
     private let notificationDateCalculator: NotificationDateCalculator
     private let dateProvider: DateProviderProtocol
     private let oldReminderFinder: OldReminderFinderProtocol
+    
+    private var reminderStyleUpdateTimer: Timer?
     
     struct Dependency {
         let reminderList: ReminderListProtocol
@@ -108,6 +113,13 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     
     func viewDidAppear() {
         updateReminderStyles()
+        reminderStyleUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.updateReminderStyles()
+        }
+    }
+    
+    func viewWillDisappear() {
+        reminderStyleUpdateTimer?.invalidate()
     }
     
     func viewWillAppear() {

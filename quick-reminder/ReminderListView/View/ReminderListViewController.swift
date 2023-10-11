@@ -96,6 +96,11 @@ class ReminderListViewController: UIViewController {
         presenter.viewDidAppear()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.viewWillDisappear()
+    }
+    
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = {
             let barButton = UIBarButtonItem(
