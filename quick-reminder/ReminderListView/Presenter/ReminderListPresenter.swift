@@ -18,6 +18,9 @@ protocol ReminderListPresenterInput {
     /// ViewのviewWillAppearで呼び出す処理。
     func viewWillAppear()
     
+    /// ViewのviewDidAppearで呼び出す処理。
+    func viewDidAppear()
+    
     /// リマインダー新規作成ボタンが押された時の処理。
     func didTapAddButton()
     
@@ -40,6 +43,9 @@ protocol ReminderListPresenterOutput: AnyObject {
     
     /// Modelのリマインダーの情報を再読み込みする。
     func reloadReminder(index: Int)
+    
+    /// リマインダーの表示スタイルを切り替える。
+    func updateReminderStyle(index: Int, style: ReminderPresentationStyle)
     
     /// リマインダー編集画面に遷移する。
     /// - parameter editMode: 編集モード。
@@ -72,6 +78,23 @@ final class ReminderListPresenter {
         self.dateProvider = dependency.dateProvider
         self.oldReminderFinder = dependency.oldReminderFinder
     }
+    
+    /// リマインダーの表示スタイルを決める処理。
+    private func getReminderStyle(reminder: Reminder) -> ReminderPresentationStyle {
+        if reminder.date > dateProvider.now {
+            .normal
+        } else {
+            .notified
+        }
+    }
+    
+    /// 各リマインダーの表示スタイルを設定する。
+    private func updateReminderStyles() {
+        remindersToDisplay.enumerated().forEach { index, reminder in
+            let style = getReminderStyle(reminder: reminder)
+            view.updateReminderStyle(index: index, style: style)
+        }
+    }
 }
 
 extension ReminderListPresenter: ReminderListPresenterInput {
@@ -83,9 +106,14 @@ extension ReminderListPresenter: ReminderListPresenterInput {
         reminderList.delegate = self
     }
     
+    func viewDidAppear() {
+        updateReminderStyles()
+    }
+    
     func viewWillAppear() {
         let oldReminderIndices = oldReminderFinder.getOldReminderIndices(in: reminderList)
         reminderList.deleteReminders(indices: oldReminderIndices)
+        updateReminderStyles()
     }
     
     func didTapAddButton() {
