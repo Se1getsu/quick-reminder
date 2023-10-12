@@ -14,7 +14,7 @@
 		A636FAE62AD440D300E234DC /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636FAE52AD440D300E234DC /* ReminderListViewController.swift */; };
 		A636FAE92AD440E900E234DC /* ReminderListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636FAE82AD440E900E234DC /* ReminderListPresenter.swift */; };
 		A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525B2AB817340098F12E /* MockReminderList.swift */; };
-		A65F525E2AB818E60098F12E /* OldReminderRemoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */; };
+		A65F525E2AB818E60098F12E /* OldReminderFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F525D2AB818E60098F12E /* OldReminderFinderTests.swift */; };
 		A65F52662AB827C50098F12E /* quick_reminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52652AB827C50098F12E /* quick_reminderUITests.swift */; };
 		A65F52682AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52672AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift */; };
 		A65F52762AB94ADE0098F12E /* UITestStubReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65F52752AB94ADE0098F12E /* UITestStubReminderRepository.swift */; };
@@ -68,7 +68,7 @@
 		A636FAE52AD440D300E234DC /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		A636FAE82AD440E900E234DC /* ReminderListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListPresenter.swift; sourceTree = "<group>"; };
 		A65F525B2AB817340098F12E /* MockReminderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderList.swift; sourceTree = "<group>"; };
-		A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderRemoverTests.swift; sourceTree = "<group>"; };
+		A65F525D2AB818E60098F12E /* OldReminderFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldReminderFinderTests.swift; sourceTree = "<group>"; };
 		A65F52632AB827C50098F12E /* quick-reminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "quick-reminderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A65F52652AB827C50098F12E /* quick_reminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_reminderUITests.swift; sourceTree = "<group>"; };
 		A65F52672AB827C50098F12E /* quick_reminderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quick_reminderUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				A6FDD6E72AB7238500A624EB /* ReminderListTests.swift */,
-				A65F525D2AB818E60098F12E /* OldReminderRemoverTests.swift */,
+				A65F525D2AB818E60098F12E /* OldReminderFinderTests.swift */,
 			);
 			path = ReminderListView;
 			sourceTree = "<group>";
@@ -601,7 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A65F525E2AB818E60098F12E /* OldReminderRemoverTests.swift in Sources */,
+				A65F525E2AB818E60098F12E /* OldReminderFinderTests.swift in Sources */,
 				A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */,
 				A6FDD6E42AB71E7D00A624EB /* MockReminderListValidator.swift in Sources */,
 				A6FDD6E22AB71DC600A624EB /* MockReminderSorter.swift in Sources */,
