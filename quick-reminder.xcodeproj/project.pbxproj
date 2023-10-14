@@ -37,8 +37,11 @@
 		A6C9B9392AB4058B009F71A5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C9B9382AB4058B009F71A5 /* Colors.xcassets */; };
 		A6F8AD842AD6E50F0024F687 /* ReminderPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD832AD6E50F0024F687 /* ReminderPresentationStyle.swift */; };
 		A6F8AD862AD756190024F687 /* MockReminderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6EE2AB7269B00A624EB /* MockReminderRepository.swift */; };
-		A6F8AD8A2AD824970024F687 /* ReminderListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD892AD824970024F687 /* ReminderListPresenter.swift */; };
-		A6F8AD8C2AD824AB0024F687 /* ReminderEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenter.swift */; };
+		A6F8AD8A2AD824970024F687 /* ReminderListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD892AD824970024F687 /* ReminderListPresenterTests.swift */; };
+		A6F8AD8C2AD824AB0024F687 /* ReminderEditPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenterTests.swift */; };
+		A6F8AD8F2AD827200024F687 /* MockReminderEditOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD8E2AD827200024F687 /* MockReminderEditOutput.swift */; };
+		A6F8AD932AD82C780024F687 /* MockReminderEditDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD922AD82C780024F687 /* MockReminderEditDelegate.swift */; };
+		A6F8AD952ADA39F30024F687 /* MockNotificationDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F8AD942ADA39F30024F687 /* MockNotificationDateCalculator.swift */; };
 		A6FDD6E22AB71DC600A624EB /* MockReminderSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E12AB71DC600A624EB /* MockReminderSorter.swift */; };
 		A6FDD6E42AB71E7D00A624EB /* MockReminderListValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E32AB71E7D00A624EB /* MockReminderListValidator.swift */; };
 		A6FDD6E82AB7238500A624EB /* ReminderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD6E72AB7238500A624EB /* ReminderListTests.swift */; };
@@ -96,8 +99,11 @@
 		A6C9B9362AB4056B009F71A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A6C9B9382AB4058B009F71A5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A6F8AD832AD6E50F0024F687 /* ReminderPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPresentationStyle.swift; sourceTree = "<group>"; };
-		A6F8AD892AD824970024F687 /* ReminderListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderListPresenter.swift; path = "quick-reminderTests/ReminderListPresenter.swift"; sourceTree = SOURCE_ROOT; };
-		A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderEditPresenter.swift; path = "quick-reminderTests/ReminderEditPresenter.swift"; sourceTree = SOURCE_ROOT; };
+		A6F8AD892AD824970024F687 /* ReminderListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderListPresenterTests.swift; path = "quick-reminderTests/ReminderListPresenterTests.swift"; sourceTree = SOURCE_ROOT; };
+		A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderEditPresenterTests.swift; path = "quick-reminderTests/ReminderEditPresenterTests.swift"; sourceTree = SOURCE_ROOT; };
+		A6F8AD8E2AD827200024F687 /* MockReminderEditOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderEditOutput.swift; sourceTree = "<group>"; };
+		A6F8AD922AD82C780024F687 /* MockReminderEditDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderEditDelegate.swift; sourceTree = "<group>"; };
+		A6F8AD942ADA39F30024F687 /* MockNotificationDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationDateCalculator.swift; sourceTree = "<group>"; };
 		A6FDD6E12AB71DC600A624EB /* MockReminderSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderSorter.swift; sourceTree = "<group>"; };
 		A6FDD6E32AB71E7D00A624EB /* MockReminderListValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReminderListValidator.swift; sourceTree = "<group>"; };
 		A6FDD6E72AB7238500A624EB /* ReminderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTests.swift; sourceTree = "<group>"; };
@@ -264,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				A60367D32AAF2EFF00FB5CB0 /* Dummy */,
+				A6F8AD8D2AD826C60024F687 /* Delegate */,
 				A6B418C42AAEF66D006A7053 /* Model */,
 				A6FDD6E62AB7236100A624EB /* Presenter */,
 			);
@@ -326,11 +333,20 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
+		A6F8AD8D2AD826C60024F687 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				A6F8AD8E2AD827200024F687 /* MockReminderEditOutput.swift */,
+				A6F8AD922AD82C780024F687 /* MockReminderEditDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		A6FDD6E62AB7236100A624EB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A6F8AD892AD824970024F687 /* ReminderListPresenter.swift */,
-				A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenter.swift */,
+				A6F8AD892AD824970024F687 /* ReminderListPresenterTests.swift */,
+				A6F8AD8B2AD824AB0024F687 /* ReminderEditPresenterTests.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -347,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				A6FDD6EC2AB7261100A624EB /* ReminderList */,
+				A6F8AD942ADA39F30024F687 /* MockNotificationDateCalculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -607,12 +624,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F8AD952ADA39F30024F687 /* MockNotificationDateCalculator.swift in Sources */,
 				A65F525E2AB818E60098F12E /* OldReminderFinderTests.swift in Sources */,
 				A65F525C2AB817340098F12E /* MockReminderList.swift in Sources */,
+				A6F8AD932AD82C780024F687 /* MockReminderEditDelegate.swift in Sources */,
+				A6F8AD8F2AD827200024F687 /* MockReminderEditOutput.swift in Sources */,
 				A6FDD6E42AB71E7D00A624EB /* MockReminderListValidator.swift in Sources */,
 				A6FDD6E22AB71DC600A624EB /* MockReminderSorter.swift in Sources */,
-				A6F8AD8C2AD824AB0024F687 /* ReminderEditPresenter.swift in Sources */,
-				A6F8AD8A2AD824970024F687 /* ReminderListPresenter.swift in Sources */,
+				A6F8AD8C2AD824AB0024F687 /* ReminderEditPresenterTests.swift in Sources */,
+				A6F8AD8A2AD824970024F687 /* ReminderListPresenterTests.swift in Sources */,
 				A60367D52AAF2F1E00FB5CB0 /* StubDateProvider.swift in Sources */,
 				A6B418C62AAEF6A7006A7053 /* NotificationDateCalculatorTests.swift in Sources */,
 				A6FDD6E82AB7238500A624EB /* ReminderListTests.swift in Sources */,
