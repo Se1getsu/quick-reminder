@@ -16,6 +16,7 @@ class MockReminderList: ReminderListProtocol {
     var getReminderReturn: Reminder = Reminder(id: "", title: "", date: Date())
     private(set) var getReminderIndices = [Int]()
     private(set) var deletedIndices = [Int]()
+    private(set) var updatedReminders = [Reminder]()
     
     var notificationCenter: NotificationCenter = NotificationCenter()
     var count: Int = 0
@@ -53,6 +54,7 @@ class MockReminderList: ReminderListProtocol {
     }
     
     func updateReminder(reminder: Reminder) throws {
+        updatedReminders.append(reminder)
     }
     
     func enumerated() -> EnumeratedSequence<[Reminder]> {
