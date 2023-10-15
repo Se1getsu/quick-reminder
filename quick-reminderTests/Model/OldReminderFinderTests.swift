@@ -1,5 +1,5 @@
 //
-//  OldReminderRemoverTests.swift
+//  OldReminderFinderTests.swift
 //  quick-reminderTests
 //
 //  Created by Seigetsu on 2023/09/18.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import quick_reminder
 
-final class OldReminderRemoverTests: XCTestCase {
+final class OldReminderFinderTests: XCTestCase {
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -21,17 +21,16 @@ final class OldReminderRemoverTests: XCTestCase {
         let before12h = formatter.date(from: "2023/10/10 02:31:00")!
         
         let dateProvider = StubDateProvider(now: nowDate)
-        var reminderList: ReminderListProtocol = MockReminderList()
+        let reminderList: ReminderListProtocol = MockReminderList()
         (reminderList as! MockReminderList).reminders = [
             Reminder(date: before12h)
         ]
         (reminderList as! MockReminderList).count = 1
 
-        let remover = OldReminderRemover(dateProvider: dateProvider)
-        remover.removeOldReminders(in: &reminderList)
-
-        XCTAssertEqual((reminderList as! MockReminderList).reminders.count, 1)
-        XCTAssertTrue((reminderList as! MockReminderList).deletedIndices.isEmpty)
+        let remover = OldReminderFinder(dateProvider: dateProvider)
+        let result = remover.getOldReminderIndices(in: reminderList)
+        
+        XCTAssertTrue(result.isEmpty)
     }
     
     func testRemoveOldReminders_12時間経過() {
@@ -39,17 +38,16 @@ final class OldReminderRemoverTests: XCTestCase {
         let before12h = formatter.date(from: "2023/10/10 02:30:00")!
         
         let dateProvider = StubDateProvider(now: nowDate)
-        var reminderList: ReminderListProtocol = MockReminderList()
+        let reminderList: ReminderListProtocol = MockReminderList()
         (reminderList as! MockReminderList).reminders = [
             Reminder(date: before12h)
         ]
         (reminderList as! MockReminderList).count = 1
 
-        let remover = OldReminderRemover(dateProvider: dateProvider)
-        remover.removeOldReminders(in: &reminderList)
-
-        XCTAssertEqual((reminderList as! MockReminderList).count, 0)
-        XCTAssertEqual((reminderList as! MockReminderList).deletedIndices, [0])
+        let remover = OldReminderFinder(dateProvider: dateProvider)
+        let result = remover.getOldReminderIndices(in: reminderList)
+        
+        XCTAssertEqual(result, [0])
     }
 
 }

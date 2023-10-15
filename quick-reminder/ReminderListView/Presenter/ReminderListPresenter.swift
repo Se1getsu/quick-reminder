@@ -61,7 +61,7 @@ final class ReminderListPresenter {
     
     private var reminderList: ReminderListProtocol
     private let notificationHandler: NotificationHandlerProtocol
-    private let notificationDateCalculator: NotificationDateCalculator
+    private let notificationDateCalculator: NotificationDateCalculatorProtocol
     private let dateProvider: DateProviderProtocol
     private let oldReminderFinder: OldReminderFinderProtocol
     
@@ -70,7 +70,7 @@ final class ReminderListPresenter {
     struct Dependency {
         let reminderList: ReminderListProtocol
         let notificationHandler: NotificationHandlerProtocol
-        let notificationDateCalculator: NotificationDateCalculator
+        let notificationDateCalculator: NotificationDateCalculatorProtocol
         let dateProvider: DateProviderProtocol
         let oldReminderFinder: OldReminderFinderProtocol
     }

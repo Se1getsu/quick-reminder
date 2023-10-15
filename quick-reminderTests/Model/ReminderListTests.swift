@@ -8,15 +8,33 @@
 import XCTest
 @testable import quick_reminder
 
-class ReminderListTests: XCTestCase {
-    
+class ReminderListTests: XCTestCase, ReminderListDelegate {
     var reminderList: ReminderList!
     
     var repository: MockReminderRepository!
     var sorter: MockReminderSorter!
     var validator: MockReminderListValidator!
     
-    var notification: Notification?
+    enum DelegateNotification {
+        case didAddReminder
+        case didDeleteReminder
+        case didMoveReminder
+        case didUpdateReminder
+    }
+    var delegateNotification = [DelegateNotification]()
+    
+    func didAddReminder(_ reminder: quick_reminder.Reminder) {
+        delegateNotification.append(.didAddReminder)
+    }
+    func didDeleteReminder(_ reminder: quick_reminder.Reminder, index: Int) {
+        delegateNotification.append(.didDeleteReminder)
+    }
+    func didMoveReminder(at fromIndex: Int, to toIndex: Int) {
+        delegateNotification.append(.didMoveReminder)
+    }
+    func didUpdateReminder(_ updatedReminder: quick_reminder.Reminder, newIndex index: Int) {
+        delegateNotification.append(.didUpdateReminder)
+    }
     
     enum MyError: Error {
         case SampleError
@@ -28,31 +46,7 @@ class ReminderListTests: XCTestCase {
         sorter = MockReminderSorter()
         validator = MockReminderListValidator()
         reminderList = ReminderList(repository: repository, sorter: sorter, validator: validator)
-        
-        reminderList.notificationCenter.addObserver(
-            forName: .didAddReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                self.notification = notification
-            }
-        )
-        reminderList.notificationCenter.addObserver(
-            forName: .didDeleteReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                self.notification = notification
-            }
-        )
-        reminderList.notificationCenter.addObserver(
-            forName: .didUpdateReminder,
-            object: nil,
-            queue: nil,
-            using: { [unowned self] notification in
-                self.notification = notification
-            }
-        )
+        reminderList.delegate = self
     }
     
     override func tearDown() {
@@ -60,7 +54,7 @@ class ReminderListTests: XCTestCase {
         repository = nil
         sorter = nil
         reminderList = nil
-        notification = nil
+        delegateNotification = []
         super.tearDown()
     }
     
@@ -90,9 +84,8 @@ class ReminderListTests: XCTestCase {
         XCTAssertEqual(reminderList.count, 1)
         
         // 通知を確認
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.name, .didAddReminder)
-        XCTAssertNotNil(notification?.userInfo?["reminder"] as? Reminder)
+        XCTAssertEqual(delegateNotification.count, 1)
+        XCTAssertEqual(delegateNotification[0], .didAddReminder)
     }
     
     func testAddReminder_失敗() {
@@ -105,7 +98,7 @@ class ReminderListTests: XCTestCase {
         XCTAssertThrowsError(try reminderList.addReminder(reminder: newReminder)) { error in
             XCTAssertEqual(error as? ReminderListTests.MyError, throwError)
         }
-        XCTAssertNil(notification)
+        XCTAssertEqual(delegateNotification.count, 0)
     }
     
     func testDeleteReminder() {
@@ -116,18 +109,18 @@ class ReminderListTests: XCTestCase {
         XCTAssertNoThrow(try reminderList.addReminder(reminder: newReminder))
         
         sorter.sortedReminders = []
+        delegateNotification = []
         
         // リマインダーを削除
-        reminderList.deleteReminder(index: 0)
+        reminderList.deleteReminders(indices: [0])
         
         XCTAssertEqual(repository.deletedReminders.count, 1)
         XCTAssertEqual(sorter.givenReminders?.count, 0)
         XCTAssertTrue(reminderList.isEmpty)
         
         // 通知を確認
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.name, .didDeleteReminder)
-        XCTAssertNotNil(notification?.userInfo?["reminder"] as? Reminder)
+        XCTAssertEqual(delegateNotification.count, 1)
+        XCTAssertEqual(delegateNotification[0], .didDeleteReminder)
     }
     
     func testUpdateReminder_成功() {
@@ -140,6 +133,7 @@ class ReminderListTests: XCTestCase {
         let updatedReminder = Reminder(id: "123", title: "Updated Reminder", date: Date())
         validator.validateContainsError = nil
         sorter.sortedReminders = [updatedReminder]
+        delegateNotification = []
         
         // リマインダーを更新
         XCTAssertNoThrow(try reminderList.updateReminder(reminder: updatedReminder))
@@ -147,12 +141,13 @@ class ReminderListTests: XCTestCase {
         XCTAssertTrue(validator.validateContainsCalled)
         XCTAssertEqual(repository.updatedReminders.count, 1)
         XCTAssertEqual(sorter.givenReminders?.count, 1)
-        XCTAssertEqual(reminderList.getReminder(index: 0).title, updatedReminder.title)
+        XCTAssertEqual(reminderList.reminders[0].title, updatedReminder.title)
         
         // 通知を確認
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.name, .didUpdateReminder)
-        XCTAssertNotNil(notification?.userInfo?["reminder"] as? Reminder)
+        XCTAssertEqual(delegateNotification.count, 2)
+        // NOTE: インデックスが合わなくなるので .didMoveReminder が先に通知されるべき。
+        XCTAssertEqual(delegateNotification[0], .didMoveReminder)
+        XCTAssertEqual(delegateNotification[1], .didUpdateReminder)
     }
     
     func testUpdateReminder_失敗() {

@@ -89,10 +89,10 @@ final class ReminderEditPresenter {
     /// リマインダー編集画面のデリゲートとして動作するオブジェクト。
     weak var delegate: ReminderEditDelegate?
     
-    private var notificationDateCalculator: NotificationDateCalculator
+    private var notificationDateCalculator: NotificationDateCalculatorProtocol
     
     struct Dependency {
-        let notificationDateCalculator: NotificationDateCalculator
+        let notificationDateCalculator: NotificationDateCalculatorProtocol
     }
     
     private var editMode: EditMode

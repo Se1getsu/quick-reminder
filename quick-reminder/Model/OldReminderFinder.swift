@@ -10,7 +10,7 @@ import Foundation
 /// ReminderListに含まれる古いリマインダーを削除するためのメソッド。
 protocol OldReminderFinderProtocol {
     /// ReminderListに含まれる、通知から12時間以上経過したリマインダーのインデックスを取得する。
-    func getOldReminderIndices(in: ReminderListProtocol) -> [Int]
+    func getOldReminderIndices(in reminderList: ReminderListProtocol) -> [Int]
 }
 
 /// ReminderListに含まれる、通知から12時間以上経過したリマインダーを削除する。

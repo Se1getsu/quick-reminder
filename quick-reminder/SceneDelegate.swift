@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vcPresenter = ReminderListPresenter(
             dependency: .init(
                 reminderList: ReminderList(
-                    repository: useUITestMockRepository ? UITestMockReminderRepository() : ReminderRepository(),
+                    repository: useUITestMockRepository ? UITestStubReminderRepository() : ReminderRepository(),
                     sorter: ReminderSorter(),
                     validator: ReminderListValidator()
                 ),

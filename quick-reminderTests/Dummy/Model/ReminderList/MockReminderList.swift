@@ -11,9 +11,12 @@ import Foundation
 class MockReminderList: ReminderListProtocol {
     
     var reminders: [Reminder] = []
+    var delegate: ReminderListDelegate?
+    
     var getReminderReturn: Reminder = Reminder(id: "", title: "", date: Date())
     private(set) var getReminderIndices = [Int]()
     private(set) var deletedIndices = [Int]()
+    private(set) var updatedReminders = [Reminder]()
     
     var notificationCenter: NotificationCenter = NotificationCenter()
     var count: Int = 0
@@ -32,7 +35,13 @@ class MockReminderList: ReminderListProtocol {
     }
     
     func addReminder(reminder: Reminder) throws {
+        reminders.append(reminder)
         count += 1
+    }
+    
+    func deleteReminders(indices: [Int]) {
+        deletedIndices.append(contentsOf: indices)
+        count -= indices.count
     }
     
     func deleteReminder(index: Int) {
@@ -45,6 +54,7 @@ class MockReminderList: ReminderListProtocol {
     }
     
     func updateReminder(reminder: Reminder) throws {
+        updatedReminders.append(reminder)
     }
     
     func enumerated() -> EnumeratedSequence<[Reminder]> {
