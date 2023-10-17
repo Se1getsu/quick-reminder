@@ -18,7 +18,6 @@ class MockReminderList: ReminderListProtocol {
     private(set) var deletedIndices = [Int]()
     private(set) var updatedReminders = [Reminder]()
     
-    var notificationCenter: NotificationCenter = NotificationCenter()
     var count: Int = 0
     var isEmpty: Bool = true
     

@@ -9,7 +9,6 @@ import Foundation
 
 /// Reminder配列の管理を行うためのメソッド。
 protocol ReminderListProtocol {
-    var notificationCenter: NotificationCenter { get }
     /// 格納しているReminderの配列。
     var reminders: [Reminder] { get }
     /// Reminderリストの要素数。
@@ -62,8 +61,6 @@ protocol ReminderListDelegate: AnyObject {
 /// - 与えられたソーターによって、自動的にソートされる。
 /// - 与えられたバリデータによって、妥当性が確認される。
 final class ReminderList: ReminderListProtocol {
-    let notificationCenter = NotificationCenter()
-    
     private let repository: ReminderRepositoryProtocol
     private let sorter: ReminderSorterProtocol
     private let validator: ReminderListValidatorProtocol
