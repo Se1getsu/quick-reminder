@@ -112,7 +112,6 @@ extension ReminderListPresenter: ReminderListPresenterInput {
     }
     
     func viewDidAppear() {
-        updateReminderStyles()
         reminderStyleUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.updateReminderStyles()
         }
