@@ -39,21 +39,6 @@ class ReminderListViewController: UIViewController {
     
     private var presenter: ReminderListPresenterInput!
     
-    private let dateProvider: DateProviderProtocol
-    
-    struct Dependency {
-        let dateProvider: DateProviderProtocol
-    }
-    
-    init(dependency: Dependency) {
-        self.dateProvider = dependency.dateProvider
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func inject(presenter: ReminderListPresenterInput) {
         self.presenter = presenter
     }
