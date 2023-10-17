@@ -18,11 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // オプション：UITest用のモックリポジトリを使用する。
         let useUITestMockRepository = ProcessInfo.processInfo.arguments.contains("-useUITestMockRepository")
         
-        let rootVC = ReminderListViewController(
-            dependency: .init(
-                dateProvider: DateProvider()
-            )
-        )
+        let rootVC = ReminderListViewController()
         let vcPresenter = ReminderListPresenter(
             dependency: .init(
                 reminderList: ReminderList(
