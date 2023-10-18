@@ -11,7 +11,7 @@ import UIKit
 class ReminderEditViewController: UIViewController {
     private let titleLabel: UILabel = {
         var titleLabel = UILabel()
-        titleLabel.text = "内容"
+        titleLabel.text = String(localized: "Reminder message")
         return titleLabel
     }()
     
@@ -25,7 +25,7 @@ class ReminderEditViewController: UIViewController {
     
     private let dateLabel: UILabel = {
         var dateLabel = UILabel()
-        dateLabel.text = "通知時刻"
+        dateLabel.text = String(localized: "Notification time")
         return dateLabel
     }()
     
@@ -84,14 +84,14 @@ class ReminderEditViewController: UIViewController {
     /// ナビゲーションバーのセットアップ処理。
     private func setUpNavigationBar() {
         saveBarButton = UIBarButtonItem(
-            title: "保存",
+            title: String(localized: "Save"),
             style: .done,
             target: self,
             action: #selector(saveButtonTapped))
         saveBarButton?.accessibilityIdentifier = "Reminder Edit Save Button"
         
         cancelBarButton = UIBarButtonItem(
-            title: "キャンセル",
+            title: String(localized: "Cancel"),
             style: .plain,
             target: self,
             action: #selector(cancelButtonTapped(_:)))
@@ -136,12 +136,12 @@ extension ReminderEditViewController: ReminderEditPresenterOutput {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = cancelBarButton
         
-        let delete = UIAlertAction(title: "変更内容を破棄", style: .destructive) { _ in
+        let delete = UIAlertAction(title: String(localized: "Discard changes"), style: .destructive) { _ in
             self.presenter.discardButtonOnCancelAlertTapped()
         }
         delete.accessibilityIdentifier = "Reminder Edit Discard Button"
         
-        let cancel = UIAlertAction(title: "編集を続ける", style: .cancel)
+        let cancel = UIAlertAction(title: String(localized: "Continue editing"), style: .cancel)
         
         alert.addAction(delete)
         alert.addAction(cancel)

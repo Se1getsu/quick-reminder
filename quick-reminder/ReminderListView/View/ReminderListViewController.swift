@@ -30,7 +30,7 @@ class ReminderListViewController: UIViewController {
     private let noReminderLabel: UILabel = {
         var label = UILabel()
         label.accessibilityIdentifier = "No Reminder Description Label"
-        label.text = "画面右上の「＋」ボタンを押して\n新規リマインダーを作成します。"
+        label.text = String(localized: "Press the \"+\" button in the upper right corner of the screen to create a new reminder.")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.textColor = UIColor(resource: .noReminderViewText)
@@ -45,7 +45,7 @@ class ReminderListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "登録中のリマインダー"
+        title = String(localized: "Reminder List", comment: "Navigation bar title")
         view.backgroundColor = UIColor(resource: .reminderListTableViewBackground)
         setupNavigationBar()
         showOrHideReminderTableIfEmpty()
@@ -58,8 +58,8 @@ class ReminderListViewController: UIViewController {
         view.addSubview(reminderTableView)
         
         NSLayoutConstraint.activate([
-            noReminderLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            noReminderLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            noReminderLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -12),
+            noReminderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             noReminderLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             reminderTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reminderTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

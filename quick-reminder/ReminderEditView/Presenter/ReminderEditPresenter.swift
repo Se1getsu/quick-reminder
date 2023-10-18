@@ -71,16 +71,16 @@ final class ReminderEditPresenter {
         /// ナビゲーションバーのタイトル。
         var title: String {
             switch self {
-            case .create:   return "新規作成"
-            case .update:   return "編集"
+            case .create:   return String(localized: "Create New", comment: "Navigation bar title")
+            case .update:   return String(localized: "Edit Reminder", comment: "Navigation bar title")
             }
         }
         
         /// キャンセル時のアラートメッセージ。
         var cancelAlertMessage: String {
             switch self {
-            case .create:   return "この新規リマインダーを破棄しますか？"
-            case .update:   return "この変更を破棄しますか？"
+            case .create:   return String(localized: "Discard this new reminder?")
+            case .update:   return String(localized: "Discard changes?")
             }
         }
     }
