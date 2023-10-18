@@ -46,7 +46,7 @@ class ReminderListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String(localized: "Reminder List", comment: "Navigation bar title")
-        view.backgroundColor = UIColor(resource: .reminderListTableViewBackground)
+        view.backgroundColor = UIColor(resource: .noReminderViewBackground)
         setupNavigationBar()
         showOrHideReminderTableIfEmpty()
         presenter.viewDidLoad()
