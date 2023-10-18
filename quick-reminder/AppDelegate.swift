@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(resource: .navigationBarTitleText)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.label]
         UINavigationBar.appearance().tintColor = UIColor(resource: .barButtonTint)
         
         // Notification
