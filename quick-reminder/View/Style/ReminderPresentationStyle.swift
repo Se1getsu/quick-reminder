@@ -19,9 +19,9 @@ enum ReminderPresentationStyle {
     var backgroundColor: UIColor {
         switch self {
         case .normal:
-            UIColor(resource: .activeReminderCellBackground)
+            UIColor.my.primaryBackground
         case .notified:
-            UIColor(resource: .inactiveReminderCellBackground)
+            UIColor.systemGray2
         }
     }
 }

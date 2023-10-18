@@ -14,7 +14,7 @@ class ReminderListViewController: UIViewController {
         let reminderTableView = UITableView()
         reminderTableView.accessibilityIdentifier = "Reminder List Table View"
         reminderTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        reminderTableView.backgroundColor = UIColor(resource: .reminderListTableViewBackground)
+        reminderTableView.backgroundColor = .my.primaryBackground
         return reminderTableView
     }()
     
@@ -33,7 +33,7 @@ class ReminderListViewController: UIViewController {
         label.text = String(localized: "Press the \"+\" button in the upper right corner of the screen to create a new reminder.")
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.textColor = UIColor(resource: .noReminderViewText)
+        label.textColor = .secondaryLabel
         return label
     }()
     
@@ -46,7 +46,7 @@ class ReminderListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String(localized: "Reminder List", comment: "Navigation bar title")
-        view.backgroundColor = UIColor(resource: .reminderListTableViewBackground)
+        view.backgroundColor = .my.secondaryBackground
         setupNavigationBar()
         showOrHideReminderTableIfEmpty()
         presenter.viewDidLoad()

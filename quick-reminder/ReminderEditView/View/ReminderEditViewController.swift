@@ -49,7 +49,7 @@ class ReminderEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(resource: .reminderEditViewBackground)
+        view.backgroundColor = .my.secondaryBackground
         setUpNavigationBar()
         presenter.viewDidLoad()
         
