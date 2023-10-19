@@ -19,7 +19,7 @@ class ReminderEditViewController: UIViewController {
         let titleTextField = UITextField()
         titleTextField.accessibilityIdentifier = "Reminder Title Text Field"
         titleTextField.borderStyle = .roundedRect
-        titleTextField.backgroundColor = UIColor(resource: .textFieldBackground)
+        titleTextField.backgroundColor = .my.textFieldBackground
         return titleTextField
     }()
     
