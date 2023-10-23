@@ -853,7 +853,7 @@
 				DEVELOPMENT_TEAM = Q7RTLG93ZX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "quick-reminder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Reminder";
+				INFOPLIST_KEY_CFBundleDisplayName = "Quick Notifie";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -883,7 +883,7 @@
 				DEVELOPMENT_TEAM = Q7RTLG93ZX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "quick-reminder/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Quick Reminder";
+				INFOPLIST_KEY_CFBundleDisplayName = "Quick Notifie";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
